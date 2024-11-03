@@ -1,8 +1,25 @@
-import React, { useState } from "react";
-import ForBookingSeats from "./ForBookingSeats";
+import React, { useEffect, useState } from "react";
+// import ForBookingSeats from "./ForBookingSeats";
+import ForBookingSeats from "./SelectSeat/ForBookingSeats";
 
 const ResultForBusBokking = ({ from, to, busData }) => {
   const [SeatDetails, SetSeatDetails] = useState(false);
+
+  // const [busName, setBusName] = useState();
+
+  const detailsToBook = (e) => {
+    console.log(e);
+  };
+
+  const [busName, setBusName] = useState("");
+
+  // Set bus name whenever `data.stations` or `to` changes
+  // useEffect(() => {
+  //   const matchedStation = data.stations.find((station) => station.city === to);
+  //   if (matchedStation) {
+  //     setBusName(matchedStation.arrivaltime);
+  //   }
+  // }, [data.stations, to]);
 
   return (
     <div className=" bg-yellow-500 w-[60rem] ">
@@ -30,7 +47,11 @@ const ResultForBusBokking = ({ from, to, busData }) => {
               <div className="tabular-nums flex items-center text-3xl">
                 {data.stations.map((stations) => (
                   <div key={stations._id}>
-                    {stations.city === from && <p>{stations.departureTime}</p>}
+                    {stations.city === from && (
+                      <p onChange={(e) => detailsToBook("car")}>
+                        {stations.departureTime}
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
@@ -54,7 +75,8 @@ const ResultForBusBokking = ({ from, to, busData }) => {
             </button>
           </div>
           <div className="mt-1">
-            {SeatDetails === data._id && <ForBookingSeats busData={[data]} />}
+            {/* {SeatDetails === data._id && <ForBookingSeats busData={[data]} />} */}
+            <ForBookingSeats detailsToBook={detailsToBook} busData={[data]} />
           </div>
         </div>
       ))}

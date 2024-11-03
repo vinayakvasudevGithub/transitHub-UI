@@ -23,6 +23,7 @@ const ToAddNewBusToData = () => {
       {
         totalseats: "",
         seatformation: "",
+        seats: [],
       },
     ],
   });
@@ -126,17 +127,17 @@ const ToAddNewBusToData = () => {
   return (
     <div className=" mt-5 flex justify-center ">
       <form action="">
-        {/* {changePage === "firstPage" && (
-        <BusDetails
-          IsBusDataFilled={IsBusDataFilled}
-          handlePageChange={handlePageChange}
-          BusData={BusData}
-          handleBusInfoChange={handleBusInfoChange}
-          isBusInfoFilled={isBusInfoFilled}
-        />
-        )} */}
+        {changePage === "firstPage" && (
+          <BusDetails
+            IsBusDataFilled={IsBusDataFilled}
+            handlePageChange={handlePageChange}
+            BusData={BusData}
+            handleBusInfoChange={handleBusInfoChange}
+            isBusInfoFilled={isBusInfoFilled}
+          />
+        )}
 
-        {/* {changePage === "SecondPage" && (
+        {changePage === "SecondPage" && (
           <BusRoutes
             BusData={BusData}
             AddMoreStations={AddMoreStations}
@@ -144,20 +145,14 @@ const ToAddNewBusToData = () => {
             handlePageChange={handlePageChange}
             isStationsFilled={isStationsFilled}
           />
-        )} */}
-
-        {/* {changePage === "SecondPage" && ( */}
-        {/* <BusRoutes
-          BusData={BusData}
-          AddMoreStations={AddMoreStations}
-          handleStationChange={handleStationChange}
-          handlePageChange={handlePageChange}
-          isStationsFilled={isStationsFilled}
-        /> */}
-        {/* )} */}
-        {/* {changePage === "thirdPage" && ( */}
-        <BusSeat BusData={BusData} handleSeatChange={handleSeatChange} />
-        {/* )} */}
+        )}
+        {changePage === "thirdPage" && (
+          <BusSeat
+            BusData={BusData}
+            SetBusData={SetBusData}
+            handleSeatChange={handleSeatChange}
+          />
+        )}
         {isBusInfoFilled && isStationsFilled && isSeatDetailsFilled && (
           <div className="mt-5">
             <button

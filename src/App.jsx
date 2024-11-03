@@ -4,6 +4,7 @@ import ResultCombine from "./result/ResultCombine";
 // import Menu from "./AddNew/AddNewApiFromClients";
 import ClientsToUpload from "./AddNew/ClientsToUpload";
 import OptionsToUpload from "./AddNew/OptionsToUpload";
+import BookingPagesCompined from "./toBook/BookingPagesCompined";
 import "./App.css";
 import { useState } from "react";
 
@@ -35,6 +36,7 @@ function App() {
         <Route path="/*" element={<PageCombine />} />
         <Route path="/result/*" element={<ResultCombine />} />
         <Route path="/upload/*" element={<ClientsToUpload />} />
+        <Route path="/booking/*" element={<BookingPagesCompined />} />
       </Routes>
     </div>
   );

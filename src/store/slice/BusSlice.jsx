@@ -13,7 +13,7 @@ export const BusSlice = createSlice({
         id: nanoid(),
         from: action.payload.from,
         to: action.payload.to,
-        // busname: action.payload.busname,
+        busname: action.payload.busname,
         // busnumber: action.payload.busnumber,
         // bustype: action.payload.bustype,
       };
