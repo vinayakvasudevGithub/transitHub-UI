@@ -3,13 +3,22 @@ import axios from "axios";
 import { IoIosAirplane } from "react-icons/io";
 import { RxDotsHorizontal } from "react-icons/rx";
 import { FaRegCircle } from "react-icons/fa";
+import ToBookTicket from "./tobookticket/ToBookTicket";
+import { useNavigate } from "react-router-dom";
 
 const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
+  const navigate = useNavigate();
+
+  const handleNavigateToBookingPage = (id) => {
+    navigate("/booking/flightTicket", { state: { id } });
+  };
+
   return (
-    <div className=" bg-yellow-500 w-[60rem] ">
+    <div className=" bg-yellow-200 w-[60rem] p-2 ">
       <p>
         Flight From {FlightFrom} to {FlightTo}
       </p>
+
       {FlightData.map((data) => (
         <div
           key={data._id}
@@ -50,8 +59,10 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
                 {price.ecconomy}
               </div>
             ))}
-            <div className=" flex justify-end bg-yellow-300">
-              <button>book</button>
+            <div className=" flex justify-end bg-yellow-300 p-3">
+              <button onClick={(e) => handleNavigateToBookingPage(data._id)}>
+                book
+              </button>
             </div>
           </div>
         </div>

@@ -1,83 +1,124 @@
-import React, { useEffect, useState } from "react";
-// import ForBookingSeats from "./ForBookingSeats";
+import React, { useState } from "react";
 import ForBookingSeats from "./SelectSeat/ForBookingSeats";
+import { BusBookingDetails } from "../../../../store/BookingSlice/BusBookingSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const ResultForBusBokking = ({ from, to, busData }) => {
-  const [SeatDetails, SetSeatDetails] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // const [busName, setBusName] = useState();
+  const [activeBusId, setActiveBusId] = useState(null);
+  const [BookingDeatailsTrue, setBookingDeatailsTrue] = useState(false);
 
-  const detailsToBook = (e) => {
-    console.log(e);
+  const handleSelectBus = (
+    busseatnumber,
+    busname,
+    bustype,
+    arrivaltime,
+    departureTime
+  ) => {
+    busseatnumber &&
+      busname &&
+      bustype &&
+      arrivaltime &&
+      departureTime &&
+      setBookingDeatailsTrue(true);
+
+    dispatch(
+      BusBookingDetails({
+        busseatnumber,
+        busname,
+        bustype,
+        arrivaltime,
+        departureTime,
+      })
+    );
   };
 
-  const [busName, setBusName] = useState("");
-
-  // Set bus name whenever `data.stations` or `to` changes
-  // useEffect(() => {
-  //   const matchedStation = data.stations.find((station) => station.city === to);
-  //   if (matchedStation) {
-  //     setBusName(matchedStation.arrivaltime);
-  //   }
-  // }, [data.stations, to]);
+  const handleNavigateToconfirmBookingPage = () => {
+    navigate("/booking/busTicket");
+  };
 
   return (
-    <div className=" bg-yellow-500 w-[60rem] ">
+    <div className="bg-yellow-500 w-[60rem]">
       <p>
         Bus From {from} to {to}
       </p>
       {busData.map((data) => (
         <div
           key={data._id}
-          onClick={(e) => {
-            !SeatDetails ? SetSeatDetails(data._id) : SetSeatDetails(false);
-          }}
-          className=" pb-4 p-2 bg-white mt-3 shadow-[0px_2px_5px_0px_rgba(0,0,0,0.10)] 
-          cursor-pointer z-10 transition-all duration-100 ease-in
-          hover:scale-[1.01] hover:shadow-300 hover:duration-100
-          hover:ease-out border border-neutral-200 "
+          className="pb-4 p-2 bg-white mt-3 shadow-md border border-neutral-200"
         >
-          <div className="grid sm:grid-cols-12  bg-blue-300 gap-1 p-1">
-            <div className="bg-green-400 col-span-3  ">
-              <p className="flex text-xl font-bold">{data.busname}</p>
-              <p className="">{data.bustype}</p>
+          <div className="grid sm:grid-cols-12 bg-blue-300 gap-1 p-1">
+            <div className="bg-green-400 col-span-3">
+              <p className="text-xl font-bold">{data.busname}</p>
+              <p>{data.bustype}</p>
             </div>
-
-            <div className="bg-yellow-300 flex justify-between col-span-6  p-1 gap-1">
-              <div className="tabular-nums flex items-center text-3xl">
-                {data.stations.map((stations) => (
-                  <div key={stations._id}>
-                    {stations.city === from && (
-                      <p onChange={(e) => detailsToBook("car")}>
-                        {stations.departureTime}
-                      </p>
-                    )}
-                  </div>
-                ))}
+            <div className="bg-yellow-300 flex justify-between col-span-6 p-1 gap-1">
+              <div>
+                {data.stations
+                  .filter((station) => station.city === from)
+                  .map((station) => (
+                    <p key={station._id}>{station.departureTime}</p>
+                  ))}
               </div>
-              <div className=" flex items-center">designs</div>
-              <div className="flex items-center text-3xl">
-                {data.stations.map((stations) => (
-                  <div key={stations._id}>
-                    {stations.city === to && <p>{stations.arrivaltime}</p>}
-                  </div>
-                ))}
+              <div>
+                {data.stations
+                  .filter((station) => station.city === to)
+                  .map((station) => (
+                    <p key={station._id}>{station.arrivaltime}</p>
+                  ))}
               </div>
             </div>
-
-            <div className=" col-span-3  bg-yellow-300 flex justify-end items-center">
-              900
+            <div className="col-span-3 bg-yellow-300 flex justify-end items-center">
+              <p>₹900</p>
             </div>
           </div>
           <div className="flex justify-end items-center mt-1">
-            <button key={data._id} className=" bg-blue-500 w-[5rem] h-[2rem]">
-              select seat
+            <button
+              onClick={() =>
+                setActiveBusId((prevId) =>
+                  prevId === data._id ? null : data._id
+                )
+              }
+              className="bg-blue-500 w-[5rem] h-[2rem]"
+            >
+              Select Seat
             </button>
           </div>
-          <div className="mt-1">
-            {/* {SeatDetails === data._id && <ForBookingSeats busData={[data]} />} */}
-            <ForBookingSeats detailsToBook={detailsToBook} busData={[data]} />
-          </div>
+
+          {activeBusId === data._id && (
+            <div className="mt-1 bg-red-300 p-1">
+              <ForBookingSeats
+                busData={[data]}
+                // setAddSeatNumber={setAddSeatNumber}
+                handleSelectBus={(busseatnumber) =>
+                  handleSelectBus(
+                    busseatnumber,
+                    data.busname,
+                    data.bustype,
+                    data.stations.find((station) => station.city === to)
+                      ?.arrivaltime || "N/A",
+                    data.stations.find((station) => station.city === from)
+                      ?.departureTime || "N/A"
+                  )
+                }
+              />
+              <div className="flex justify-end bg-blue-600 p-2">
+                <button
+                  onClick={(e) => {
+                    BookingDeatailsTrue && handleNavigateToconfirmBookingPage();
+                  }}
+                  className={`${
+                    BookingDeatailsTrue ? "bg-blue-400" : "bg-blue-200"
+                  } p-4 mr-3`}
+                >
+                  Continue
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       ))}
     </div>

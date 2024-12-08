@@ -12,14 +12,8 @@ const BusSeat = ({ BusData, handleSeatChange, SetBusData }) => {
     { label: "sleeper", value: 6 },
   ];
 
-  // const [ss, setss] = useState();
-
-  // const [seatLength, setSeatLength] = useState("");
   const [totalSeats, setTotalSeats] = useState();
   const [seatFormation, setSeatFormation] = useState();
-  // const [seatPattern, setSeatPattern] = useState([]);
-  // console.log(seatFormation);
-  // let seatNumber = 0;
 
   return (
     <div className=" ">

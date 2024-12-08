@@ -28,6 +28,7 @@ const Bus = () => {
       <form action="" onSubmit={results}>
         <div className="">
           <div className="mt-2">
+            {/* <input type="text" onChange={(e) => setFrom(e.target.value)} /> */}
             <input type="text" onChange={(e) => setFrom(e.target.value)} />
           </div>
           <div className="mt-2">

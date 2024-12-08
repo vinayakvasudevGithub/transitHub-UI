@@ -94,6 +94,8 @@ const ToAddNewBusToData = () => {
   const { isBusInfoFilled, isStationsFilled, isSeatDetailsFilled } =
     IsBusDataFilled();
 
+  // console.log(isBusInfoFilled);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -122,14 +124,13 @@ const ToAddNewBusToData = () => {
     e === "firstPage" && isBusInfoFilled && setChangePage("SecondPage");
     e === "SecondPage" && isStationsFilled && setChangePage("thirdPage");
   };
-  // console.log(changePage);
 
   return (
     <div className=" mt-5 flex justify-center ">
       <form action="">
         {changePage === "firstPage" && (
           <BusDetails
-            IsBusDataFilled={IsBusDataFilled}
+            // IsBusDataFilled={IsBusDataFilled}
             handlePageChange={handlePageChange}
             BusData={BusData}
             handleBusInfoChange={handleBusInfoChange}
