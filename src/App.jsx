@@ -7,6 +7,7 @@ import OptionsToUpload from "./AddNew/OptionsToUpload";
 import BookingPagesCompined from "./toBook/BookingPagesCompined";
 import "./App.css";
 import { useState } from "react";
+import PayMentPageCombined from "./payment/PayMentPageCombined";
 
 function App() {
   const [ShowAddNew, SetShowAddNew] = useState(false);
@@ -37,6 +38,7 @@ function App() {
         <Route path="/result/*" element={<ResultCombine />} />
         <Route path="/upload/*" element={<ClientsToUpload />} />
         <Route path="/booking/*" element={<BookingPagesCompined />} />
+        <Route path="/payment/*" element={<PayMentPageCombined />} />
       </Routes>
     </div>
   );

@@ -24,16 +24,16 @@ const TrainResult = () => {
   }, []);
 
   return (
-    <div className="bg-red-200">
+    <div className="bg-red-200 ">
       <div>transithub</div>
-      <div className="sticky flex justify-center top-0 bg-yellow-300 p-1 ">
+      <div className="sticky flex justify-center top-0 bg-yellow-100 p-1 ">
         <SearchBarForTrain
           from={from}
           to={to}
           FirstTrainData={FirstTrainData}
         />
       </div>
-      <div className="flex  gap-4 mt-5 bg-red-400  p-1">
+      <div className=" gap-4 mt-5 bg-red-500 flex  p-1">
         <LeftSideBarForTrain />
         <ResultForTrainBooking from={from} to={to} TrainData={TrainData} />
       </div>
