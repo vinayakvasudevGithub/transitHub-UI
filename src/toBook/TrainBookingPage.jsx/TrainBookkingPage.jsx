@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const TrainBookingPage = () => {
   const searchKey = useSelector((state) => state.train.trains) || [];
   const location = useLocation();
+  const trainId = location?.state?.trainId;
 
   const [trainData, setTrainData] = useState([]);
 
@@ -13,7 +14,7 @@ const TrainBookingPage = () => {
     const fetchTrainData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4001/train/${location.state?.trainId}`
+          `http://localhost:4001/train/${trainId}`
         );
         setTrainData([response.data]);
       } catch (error) {
@@ -24,6 +25,7 @@ const TrainBookingPage = () => {
   }, [location.state?.trainId]);
 
   const [formData, setFormData] = useState({
+    trainId: trainId,
     userDetails: [
       {
         name: "",
@@ -67,9 +69,16 @@ const TrainBookingPage = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const handleSubmit = ({ departureStationDetails, arrivalStationDetails }) => {
     isUserDetailsFilled &&
-      navigate("/payment/trainPayment", { state: { formData } });
+      navigate("/payment/trainPayment", {
+        state: {
+          formData,
+          trainData,
+          departureStationDetails,
+          arrivalStationDetails,
+        },
+      });
   };
 
   return (
@@ -187,7 +196,12 @@ const TrainBookingPage = () => {
               </div>
               <div className={` bg-yellow-100 flex justify-end p-1`}>
                 <button
-                  onClick={(e) => handleSubmit()}
+                  onClick={(e) =>
+                    handleSubmit({
+                      departureStationDetails,
+                      arrivalStationDetails,
+                    })
+                  }
                   className={`p-1 ${
                     isUserDetailsFilled ? "bg-blue-400" : "bg-red-400"
                   }`}
