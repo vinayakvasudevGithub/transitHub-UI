@@ -3,12 +3,16 @@ import React, { useEffect, useState } from "react";
 const BusDetails = ({
   BusData,
   handleBusInfoChange,
+  handlePriceChange,
   isBusInfoFilled,
+  isTicketpriceFilled,
   handlePageChange,
 }) => {
+  const BusAndTicketFilled = isBusInfoFilled && isTicketpriceFilled;
+
   return (
     <div>
-      <p className="bg-yellow-400 mt-2">bus details</p>
+      <p className="bg-yellow-400 mt-2 ">bus details</p>
       <div className="bg-blue-300 flex justify-center  ">
         <div className="mt-4">
           <div>
@@ -42,12 +46,40 @@ const BusDetails = ({
               onChange={handleBusInfoChange}
             />
           </div>
+
+          {/* {console.log(BusData)} */}
+          {/* bus fare details */}
+          {BusData.ticketprices.map((ticketprices, index) => {
+            return (
+              <div key={index} className="bg-yellow-300 mt-3 p-1">
+                <h1 className="">Bus Fare details</h1>
+                <div>
+                  <label htmlFor="">Minimum Fare</label>
+                  <input
+                    type="number"
+                    name="minimumfare"
+                    value={ticketprices.minimumfare}
+                    onChange={(e) => handlePriceChange(index, e)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="">Fare Per Kilometre</label>
+                  <input
+                    type="number"
+                    name="perkilometre"
+                    value={ticketprices.perkilometre}
+                    onChange={(e) => handlePriceChange(index, e)}
+                  />
+                </div>
+              </div>
+            );
+          })}
+
           <div className="flex justify-end">
             <button
               type="button"
-              // onClick={IsBusDataFilled}
               onClick={(e) => handlePageChange("firstPage")}
-              className={!isBusInfoFilled ? "bg-red-500" : "bg-green-600"}
+              className={!BusAndTicketFilled ? "bg-red-500" : "bg-green-600"}
             >
               next page
             </button>

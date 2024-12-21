@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import BusDetails from "./components/BusDetails";
 import BusRoutes from "./components/BusRoutes";
 import BusSeat from "./components/BusSeat";
+import BusFares from "./components/BusFares";
 
 const ToAddNewBusToData = () => {
   const [BusData, SetBusData] = useState({
@@ -26,7 +27,15 @@ const ToAddNewBusToData = () => {
         seats: [],
       },
     ],
+    ticketprices: [
+      {
+        minimumfare: "",
+        perkilometre: "",
+      },
+    ],
   });
+
+  // console.log(BusData);
 
   const [Message, SetMessage] = useState("");
 
@@ -71,6 +80,14 @@ const ToAddNewBusToData = () => {
     });
   };
 
+  const handlePriceChange = (index, e) => {
+    const { name, value } = e.target;
+    const updatedPrice = BusData.ticketprices.map((ticketprices, i) =>
+      i === index ? { ...ticketprices, [name]: value } : ticketprices
+    );
+    SetBusData({ ...BusData, ticketprices: updatedPrice });
+  };
+
   const IsBusDataFilled = () => {
     const isArrayFilled = (array) => {
       return array.every((item) =>
@@ -78,21 +95,28 @@ const ToAddNewBusToData = () => {
       );
     };
 
-    const { busname, busnumber, bustype, stations, seatdetails } = BusData;
+    const { busname, busnumber, bustype, stations, seatdetails, ticketprices } =
+      BusData;
 
     const isBusInfoFilled = !!(busname && busnumber && bustype); // Ensuring boolean values
     const isStationsFilled = isArrayFilled(stations);
     const isSeatDetailsFilled = isArrayFilled(seatdetails);
+    const isTicketpriceFilled = isArrayFilled(ticketprices);
 
     return {
       isBusInfoFilled,
       isStationsFilled,
       isSeatDetailsFilled,
+      isTicketpriceFilled,
     };
   };
 
-  const { isBusInfoFilled, isStationsFilled, isSeatDetailsFilled } =
-    IsBusDataFilled();
+  const {
+    isBusInfoFilled,
+    isStationsFilled,
+    isSeatDetailsFilled,
+    isTicketpriceFilled,
+  } = IsBusDataFilled();
 
   // console.log(isBusInfoFilled);
 
@@ -121,7 +145,10 @@ const ToAddNewBusToData = () => {
 
   const handlePageChange = (e) => {
     console.log(e);
-    e === "firstPage" && isBusInfoFilled && setChangePage("SecondPage");
+    e === "firstPage" &&
+      isBusInfoFilled &&
+      isTicketpriceFilled &&
+      setChangePage("SecondPage");
     e === "SecondPage" && isStationsFilled && setChangePage("thirdPage");
   };
 
@@ -129,13 +156,18 @@ const ToAddNewBusToData = () => {
     <div className=" mt-5 flex justify-center ">
       <form action="">
         {changePage === "firstPage" && (
-          <BusDetails
-            // IsBusDataFilled={IsBusDataFilled}
-            handlePageChange={handlePageChange}
-            BusData={BusData}
-            handleBusInfoChange={handleBusInfoChange}
-            isBusInfoFilled={isBusInfoFilled}
-          />
+          <>
+            <BusDetails
+              // IsBusDataFilled={IsBusDataFilled}
+              handlePageChange={handlePageChange}
+              BusData={BusData}
+              handleBusInfoChange={handleBusInfoChange}
+              //ticket fare
+              handlePriceChange={handlePriceChange}
+              isBusInfoFilled={isBusInfoFilled}
+              isTicketpriceFilled={isTicketpriceFilled}
+            />
+          </>
         )}
 
         {changePage === "SecondPage" && (
