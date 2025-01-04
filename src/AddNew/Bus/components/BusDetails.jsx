@@ -46,6 +46,15 @@ const BusDetails = ({
               onChange={handleBusInfoChange}
             />
           </div>
+          <div>
+            <label htmlFor="">AirCondition</label>
+            <input
+              type="text"
+              name="AC"
+              value={BusData.AC}
+              onChange={handleBusInfoChange}
+            />
+          </div>
 
           {/* {console.log(BusData)} */}
           {/* bus fare details */}

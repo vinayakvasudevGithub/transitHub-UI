@@ -66,16 +66,22 @@ const ResultForBusBokking = ({
                 <p>{data.bustype}</p>
               </div>
               <div className="bg-yellow-300 flex justify-between col-span-6 p-1 gap-1">
-                <div>
+                <div className="bg-green-300">
                   {data.stations
-                    .filter((station) => station.city === from)
+                    .filter(
+                      (station) =>
+                        station.city.toLowerCase() === from.toLowerCase()
+                    )
                     .map((station) => (
                       <p key={station._id}>{station.departureTime}</p>
                     ))}
                 </div>
-                <div>
+                <div className="bg-blue-200">
                   {data.stations
-                    .filter((station) => station.city === to)
+                    .filter(
+                      (station) =>
+                        station.city.toLowerCase() === to.toLowerCase()
+                    )
                     .map((station) => (
                       <p key={station._id}>{station.arrivaltime}</p>
                     ))}

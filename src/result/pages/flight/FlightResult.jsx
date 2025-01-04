@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import ResultsForBooking from "./components/ResultsForBooking";
 import LeftSideBar from "./components/LeftSideBar";
 import SearchBar from "./components/SearchBar";
+import SortFlightData from "./components/SortFlightData";
 import axios from "axios";
 
 const FlightResult = () => {
@@ -12,6 +13,7 @@ const FlightResult = () => {
   const to = searchKey[searchKey.length - 1].to;
 
   //to get all the flight details to pass components
+  const [originalFlights, setOriginalFlights] = useState([]);
   const [flight, setFlight] = useState([]);
   const [FirstFlightData, setFirstFlightData] = useState([]);
   useEffect(() => {
@@ -19,11 +21,12 @@ const FlightResult = () => {
       .get(`http://localhost:4001/flight/search?from=${from}&to=${to}`)
       .then((response) => {
         setFlight(response.data);
+        setOriginalFlights(response.data);
         const firstData = response.data[0];
         setFirstFlightData([firstData]);
       })
       .catch((err) => console.log("flight", err));
-  }, []);
+  }, [from, to]);
 
   return (
     <div className="bg-gray-200 p-2">
@@ -39,11 +42,14 @@ const FlightResult = () => {
       </div>
       <div className="flex  gap-4 mt-5 bg-red-800  p-2">
         <LeftSideBar />
-        <ResultsForBooking
-          FlightFrom={from}
-          FlightTo={to}
-          FlightData={flight}
-        />
+        <div>
+          <SortFlightData />
+          <ResultsForBooking
+            FlightFrom={from}
+            FlightTo={to}
+            FlightData={flight}
+          />
+        </div>
       </div>
     </div>
   );
