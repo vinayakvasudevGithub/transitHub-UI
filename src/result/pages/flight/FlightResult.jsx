@@ -7,12 +7,10 @@ import SortFlightData from "./components/SortFlightData";
 import axios from "axios";
 
 const FlightResult = () => {
-  //to get departure city and arrival city
   const searchKey = useSelector((State) => State.flight.flights);
   const from = searchKey[searchKey.length - 1].from;
   const to = searchKey[searchKey.length - 1].to;
 
-  //to get all the flight details to pass components
   const [originalFlights, setOriginalFlights] = useState([]);
   const [flight, setFlight] = useState([]);
   const [FirstFlightData, setFirstFlightData] = useState([]);
@@ -40,10 +38,16 @@ const FlightResult = () => {
           FirstFlightData={FirstFlightData}
         />
       </div>
-      <div className="flex  gap-4 mt-5 bg-red-800  p-2">
-        <LeftSideBar />
-        <div>
-          <SortFlightData />
+      <div className="grid lg:grid-cols-4 gap-2 bg-red-800  p-2">
+        {/* <div className="col-span-1 hidden lg:block"> */}
+        <div className="col-span-1 ">
+          <LeftSideBar />
+        </div>
+        <div className="col-span-3">
+          <SortFlightData
+            originalFlights={originalFlights}
+            setFlight={setFlight}
+          />
           <ResultsForBooking
             FlightFrom={from}
             FlightTo={to}

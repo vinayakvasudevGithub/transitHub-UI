@@ -4,12 +4,14 @@ import { useSelector } from "react-redux";
 import ResultForTrainBooking from "./components/ResultForTrainBooking";
 import LeftSideBarForTrain from "./components/LeftSideBarForTrain";
 import SearchBarForTrain from "./components/SearchBarForTrain";
+import SortTrainData from "./components/SortTrainData";
 
 const TrainResult = () => {
   const searchKey = useSelector((State) => State.train.trains);
   const from = searchKey[searchKey.length - 1].from;
   const to = searchKey[searchKey.length - 1].to;
 
+  const [originalTrains, setOriginalTrains] = useState([]);
   const [TrainData, setTrainData] = useState([]);
   const [FirstTrainData, setFirstTrainData] = useState([]);
   useEffect(() => {
@@ -17,6 +19,7 @@ const TrainResult = () => {
       .get(`http://localhost:4001/train/search?from=${from}&to=${to}`)
       .then((Response) => {
         setTrainData(Response.data);
+        setOriginalTrains(Response.data);
         const FirstData = Response.data[0];
         setFirstTrainData(FirstData);
       })
@@ -33,9 +36,18 @@ const TrainResult = () => {
           FirstTrainData={FirstTrainData}
         />
       </div>
-      <div className=" gap-4 mt-5 bg-red-500 flex  p-1">
-        <LeftSideBarForTrain />
-        <ResultForTrainBooking from={from} to={to} TrainData={TrainData} />
+      <div className=" grid lg:grid-cols-4 gap-4 mt-5 bg-red-500 p-1">
+        {/* <div className="col-span-1 hidden lg:block"> */}
+        <div className="col-span-1 ">
+          <LeftSideBarForTrain />
+        </div>
+        <div className="bg-green-300 p-1 col-span-3">
+          <SortTrainData
+            originalTrains={originalTrains}
+            setTrainData={setTrainData}
+          />
+          <ResultForTrainBooking from={from} to={to} TrainData={TrainData} />
+        </div>
       </div>
     </div>
   );

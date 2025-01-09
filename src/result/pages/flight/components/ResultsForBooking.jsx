@@ -14,7 +14,7 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
   };
 
   return (
-    <div className=" bg-yellow-200 w-[60rem] p-2 ">
+    <div className=" bg-yellow-200  p-2 ">
       <p>
         Flight From {FlightFrom} to {FlightTo}
       </p>
@@ -37,19 +37,25 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
             </div>
 
             <div className="bg-yellow-300 flex justify-between col-span-6  p-1 gap-1">
-              <div className="tabular-nums flex items-center text-3xl">
-                {data.departureDateTime}
-              </div>
+              {data.airport.map((airport, index) => (
+                <div
+                  key={index}
+                  className="tabular-nums flex items-center text-3xl bg-red-400"
+                >
+                  {airport?.departureTime}
+                </div>
+              ))}
 
               <div className=" flex items-center">
                 <FaRegCircle className="w-2" /> <RxDotsHorizontal />{" "}
                 <RxDotsHorizontal /> <IoIosAirplane /> <RxDotsHorizontal />{" "}
                 <RxDotsHorizontal /> <FaRegCircle className="w-2" />{" "}
               </div>
-
-              <div className="flex items-center text-3xl">
-                {data.arrivalDateTime}
-              </div>
+              {data.destination.map((destination, index) => (
+                <div key={index} className="flex items-center text-3xl">
+                  {destination?.arrivalTime}
+                </div>
+              ))}
             </div>
             {data.prices.map((price) => (
               <div

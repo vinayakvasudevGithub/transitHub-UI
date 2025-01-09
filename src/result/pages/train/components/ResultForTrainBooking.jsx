@@ -10,7 +10,7 @@ const ResultForTrainBooking = ({ from, to, TrainData }) => {
 
   const [popUp, setPopUp] = useState("");
   return (
-    <div className=" bg-yellow-500 w-[60rem] p-5 ">
+    <div className=" bg-yellow-500  p-5 ">
       <p>
         Train From {from} to {to}
       </p>
