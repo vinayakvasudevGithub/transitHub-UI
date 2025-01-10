@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div>
-      <div className="flex gap-2 sticky justify-center top-0 bg-yellow-300 p-1">
+      {/* <div className="flex gap-2 sticky justify-center top-0 bg-yellow-300 p-1">
         <Link to={"/"} className="bg-blue-600">
           home page
         </Link>
@@ -30,7 +30,7 @@ function App() {
         >
           upload
         </button>
-      </div>
+      </div> */}
 
       {ShowAddNew && <OptionsToUpload />}
       <Routes>

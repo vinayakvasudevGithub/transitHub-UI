@@ -39,7 +39,13 @@ const TrainResult = () => {
       <div className=" grid lg:grid-cols-4 gap-4 mt-5 bg-red-500 p-1">
         {/* <div className="col-span-1 hidden lg:block"> */}
         <div className="col-span-1 ">
-          <LeftSideBarForTrain />
+          <LeftSideBarForTrain
+            TrainData={TrainData}
+            from={from}
+            to={to}
+            originalTrains={originalTrains}
+            setTrainData={setTrainData}
+          />
         </div>
         <div className="bg-green-300 p-1 col-span-3">
           <SortTrainData

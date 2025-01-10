@@ -30,8 +30,6 @@ const SearchBar = ({ FirstFlightData }) => {
       .get("http://localhost:4001/flight/")
       .then((response) => {
         setInpsearch(response.data);
-        // const firstData = response.data[0];
-        // setmon([firstData]);
       })
       .catch((err) => console.log("Error fetching flights", err));
   }, []);
