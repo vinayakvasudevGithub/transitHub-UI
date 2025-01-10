@@ -14,7 +14,7 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
   };
 
   return (
-    <div className=" bg-yellow-200  p-2 ">
+    <div className=" p-2 ">
       <p>
         Flight From {FlightFrom} to {FlightTo}
       </p>
@@ -22,13 +22,13 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
       {FlightData.map((data) => (
         <div
           key={data._id}
-          className=" pb-4 p-2 bg-white mt-3 shadow-[0px_2px_5px_0px_rgba(0,0,0,0.10)] 
+          className=" pb-4 p-2 bg-white mt-3 shadow-md
               cursor-pointer z-10 transition-all duration-100 ease-in
               hover:scale-[1.01] hover:shadow-300 hover:duration-100
               hover:ease-out border border-neutral-200 "
         >
-          <div className="grid sm:grid-cols-12  bg-blue-300 gap-1 p-1">
-            <div className="bg-green-400 col-span-2 flex justify-between items-center ">
+          <div className="grid sm:grid-cols-12 gap-1 p-1">
+            <div className=" col-span-2 flex  items-center ">
               <img
                 className="h-6 "
                 src={`https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/${data.airlineimagecode}.png?v=19&quot`}
@@ -36,11 +36,11 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
               <p className="flex text-2xl">{data.airline}</p>
             </div>
 
-            <div className="bg-yellow-300 flex justify-between col-span-6  p-1 gap-1">
+            <div className=" flex justify-between col-span-6  p-1 gap-1">
               {data.airport.map((airport, index) => (
                 <div
                   key={index}
-                  className="tabular-nums flex items-center text-3xl bg-red-400"
+                  className="tabular-nums flex items-center text-3xl "
                 >
                   {airport?.departureTime}
                 </div>
@@ -59,14 +59,17 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
             </div>
             {data.prices.map((price) => (
               <div
-                className="col-span-2 flex  justify-between bg-red-500"
+                className="col-span-2 flex  justify-between "
                 key={price._id}
               >
                 {price.ecconomy}
               </div>
             ))}
-            <div className=" flex justify-end bg-yellow-300 p-3">
-              <button onClick={(e) => handleNavigateToBookingPage(data._id)}>
+            <div className=" flex justify-center items-center  border bg-gradient-to-br from-blue-400 to-purple-700 p-3">
+              <button
+                onClick={(e) => handleNavigateToBookingPage(data._id)}
+                className="text-white"
+              >
                 book
               </button>
             </div>

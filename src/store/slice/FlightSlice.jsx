@@ -13,6 +13,8 @@ export const flightSlice = createSlice({
         id: nanoid(),
         from: action.payload.from,
         to: action.payload.to,
+        // travelDate: action.payload.travelDate,
+        // flightClass: action.payload.flightClass,
       };
 
       // Add the new flight to the state

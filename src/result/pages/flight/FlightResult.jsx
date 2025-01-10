@@ -27,10 +27,9 @@ const FlightResult = () => {
   }, [from, to]);
 
   return (
-    <div className="bg-gray-200 p-2">
-      <div className="flex  bg-red-500 ">transithub</div>
-
-      <div className="sticky flex justify-center top-0 bg-yellow-300 p-1  ">
+    <div className="p-2">
+      <div className="flex  ">transithub</div>
+      <div className="sticky flex justify-center top-0  p-1  ">
         <SearchBar
           FlightFrom={from}
           FlightTo={to}
@@ -38,9 +37,9 @@ const FlightResult = () => {
           FirstFlightData={FirstFlightData}
         />
       </div>
-      <div className="grid lg:grid-cols-4 gap-2 bg-red-800  p-2">
-        {/* <div className="col-span-1 hidden lg:block"> */}
-        <div className="col-span-1 ">
+      <div className="grid lg:grid-cols-4 gap-2  p-2">
+        <div className="col-span-1 hidden lg:block">
+          {/* <div className="col-span-1 "> */}
           <LeftSideBar />
         </div>
         <div className="col-span-3">
