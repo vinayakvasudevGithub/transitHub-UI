@@ -3,19 +3,21 @@ import { useState } from "react";
 import { BusDetails } from "../../../../store/slice/BusSlice";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import { PiArrowsLeftRightLight } from "react-icons/pi";
+import { HiMiniArrowsUpDown } from "react-icons/hi2";
 
 const SearchBarForBus = ({ from, to, busData }) => {
   const dispatch = useDispatch();
 
-  const [searchFrom, setsearchFrom] = useState("");
-  const [searchTo, setsearchTo] = useState("");
+  const [searchFrom, setsearchFrom] = useState(from || "");
+  const [searchTo, setsearchTo] = useState(to || "");
 
   const searchMore = (e) => {
     e.preventDefault();
     dispatch(
       BusDetails({
-        from: searchFrom,
-        to: searchTo,
+        from: searchFrom ? searchFrom : from,
+        to: searchTo ? searchTo : to,
       }),
       window.location.reload()
     );
@@ -50,98 +52,98 @@ const SearchBarForBus = ({ from, to, busData }) => {
 
   // input box show and hide ------------------------------------------>>>>>>>>>>
   const [InpBox, setInpBox] = useState("");
-  const InpBoxShow = (value) => {
-    value === "from" && setInpBox("from");
-    value === "to" && setInpBox("to");
-  };
-
-  // const [DepartureCity, setDepartureCity] = useState("");
-  // const [ArrivalCity, setArrivalCity] = useState("");
 
   return (
-    <div className="bg-white flex border-neutral-950 border-[1px]">
-      <form action="" onSubmit={searchMore}>
-        <div className="flex p-1 gap-4">
-          <div>
-            <p className="text-xs">from</p>
-            <div>
-              {InpBox === "from" ? (
-                <div>
-                  <input
-                    type="text"
-                    className="bg-red-200 w-[10rem]"
-                    onChange={(e) => setsearchFrom(e.target.value)}
-                  />
-                  <div className="relative w-[10rem] bg-blue-400 p-2">
-                    <div className="bg-red-500 overflow-y-scroll h-[10rem] absolute z-50 top-0 left-0 w-full">
-                      {filteredStations.map((stations) => (
-                        <p
-                          key={stations._id}
-                          onClick={(e) => {
-                            // setDepartureCity(stations.city);
-                            setsearchFrom(stations.city);
-                            setInpBox("");
-                          }}
-                        >
-                          {stations.city}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div
-                  className="font-bold text-xl"
-                  onClick={(e) => InpBoxShow("from")}
-                >
-                  <div>{searchFrom ? searchFrom : from}</div>
-                </div>
-              )}
-            </div>
+    <>
+      <div className="bg-red-200 col-span-6 grid grid-cols-1 sm:flex justify-between gap-1 p-3 w-full rounded-lg shadow-md">
+        {/* From Input */}
+        <div className="bg-yellow-200 col-span-3 p-1 w-full">
+          <h3 className="text-xs font-semibold text-gray-600 mb-1">From</h3>
+          <div className="relative">
+            <input
+              type="text"
+              value={searchFrom}
+              className="bg-gray-100 w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
+              placeholder="Enter origin"
+              onChange={(e) => setsearchFrom(e.target.value)}
+              onClick={(e) => setInpBox("from")}
+            />
+            {InpBox === "from" && (
+              <div className="absolute bg-white border border-gray-300 rounded-lg shadow-lg mt-2 z-50 w-full max-h-40 overflow-y-auto">
+                {filteredStations.map((stations) => (
+                  <p
+                    key={stations._id}
+                    className="px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-blue-100"
+                    onClick={(e) => {
+                      setsearchFrom(stations.city);
+                      setInpBox("");
+                    }}
+                  >
+                    {stations.city}
+                  </p>
+                ))}
+              </div>
+            )}
           </div>
-          <div>
-            <p className="text-xs">to</p>
-            <div>
-              {InpBox === "to" ? (
-                <div>
-                  <input
-                    type="text"
-                    className="bg-green-200 w-[10rem]"
-                    onChange={(e) => setsearchTo(e.target.value)}
-                  />
-                  <div className="relative w-[10rem] bg-blue-400 p-2">
-                    <div className="bg-red-500 overflow-y-scroll h-[10rem] absolute z-50 top-0 left-0 w-full">
-                      {filteredDestinations.map((stations) => (
-                        <p
-                          key={stations._id}
-                          onClick={(e) => {
-                            // setArrivalCity(stations.city);
-                            setsearchTo(stations.city);
-                            setInpBox("");
-                          }}
-                        >
-                          {stations.city}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <p
-                  className="font-bold text-xl"
-                  onClick={(e) => InpBoxShow("to")}
-                >
-                  {searchTo ? searchTo : to}
-                </p>
-              )}
-            </div>
+        </div>
+
+        {/* Arrow Icons */}
+        <div className="col-span-1 flex justify-center items-center text-gray-500">
+          <PiArrowsLeftRightLight className="hidden sm:block text-2xl" />
+          <HiMiniArrowsUpDown className="block sm:hidden text-xl" />
+        </div>
+
+        {/* To Input */}
+        <div className="bg-yellow-200 col-span-3 p-1 w-full">
+          <h3 className="text-xs font-semibold text-gray-600 mb-1">To</h3>
+          <div className="relative">
+            <input
+              type="text"
+              value={searchTo}
+              className="bg-gray-100 w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
+              placeholder="Enter destination"
+              onChange={(e) => setsearchTo(e.target.value)}
+              onClick={() => setInpBox("to")}
+            />
+            {InpBox === "to" && (
+              <div className="absolute bg-white border border-gray-300 rounded-lg shadow-lg mt-2 z-50 w-full max-h-40 overflow-y-auto">
+                {filteredDestinations.map((stations) => (
+                  <p
+                    key={stations._id}
+                    className="px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-blue-100"
+                    onClick={(e) => {
+                      setsearchTo(stations.city);
+                      setInpBox("");
+                    }}
+                  >
+                    {stations.city}
+                  </p>
+                ))}
+              </div>
+            )}
           </div>
-          <button className="bg-red-500" onClick={searchMore}>
-            search
+        </div>
+
+        {/* Date Input */}
+        <div className="bg-yellow-200 col-span-3 p-1 w-full">
+          <h3 className="text-xs font-semibold text-gray-600 mb-1">Date</h3>
+          <input
+            type="date"
+            className="bg-gray-100 w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
+          />
+        </div>
+
+        {/* Search Button */}
+        <div className="flex justify-center sm:w-[50%]">
+          <button
+            className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-semibold rounded-lg sm:w-full w-[25%] py-3 px-6 shadow-lg hover:from-blue-700 hover:to-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-300"
+            onClick={searchMore}
+          >
+            Search
           </button>
         </div>
-      </form>
-    </div>
+      </div>
+    </>
   );
 };
 

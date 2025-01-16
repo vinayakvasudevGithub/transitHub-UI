@@ -47,12 +47,22 @@ const BusResult = () => {
   }, [from, to]);
 
   return (
-    <div className="bg-red-500 p-1">
+    <div className=" bg-gray-50 p-1  min-h-screen">
       <div>transithub</div>
-      <div className="sticky flex justify-center top-0 bg-yellow-300 p-1 ">
-        <SearchBarForBus from={from} to={to} />
+      <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-1 ">
+        <div className="sticky   top-0  p-1 ">
+          <SearchBarForBus from={from} to={to} />
+        </div>
+        {/* <div className="bg-gradient-to-r from-blue-700 to-blue-500 text-white p-6 rounded-lg shadow-md"> */}
+        <div className="flex justify-end   text-white p-1  ">
+          <h2 className="text-2xl font-semibold uppercase">
+            Bus from {from} to {to}
+          </h2>
+          --
+          <p className="text-lg mt-1">Distance: {distance} km</p>
+        </div>
       </div>
-      <div className="grid lg:grid-cols-4 gap-1 mt-5 bg-green-500 p-1">
+      <div className="grid lg:grid-cols-4 gap-1 mt-5  p-1">
         <div className="col-span-1 hidden lg:block">
           {/* <div className="col-span-1 "> */}
           <LeftSideBarForBus
@@ -64,15 +74,21 @@ const BusResult = () => {
           />
         </div>
         <div className="col-span-3 space-y-1">
-          <div className="bg-yellow-200 p-1 gap-1">
-            <SortBusData originalBuses={originalBuses} setBuses={setBuses} />
+          <div className=" p-1 gap-1">
+            <SortBusData
+              originalBuses={originalBuses}
+              setBuses={setBuses}
+              buses={buses}
+            />
           </div>
-          <ResultForBusBokking
-            from={from}
-            to={to}
-            distance={distance}
-            busData={buses}
-          />
+          <div>
+            <ResultForBusBokking
+              from={from}
+              to={to}
+              distance={distance}
+              busData={buses}
+            />
+          </div>
         </div>
       </div>
     </div>

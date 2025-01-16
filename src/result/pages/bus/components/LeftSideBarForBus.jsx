@@ -198,93 +198,154 @@ const LeftSideBarForBus = ({ from, to, originalBuses, setBuses }) => {
   };
 
   return (
-    <div className="p-1 grid gap-1 bg-red-300">
-      <h1>BUS TYPE</h1>
-      <div className="bg-yellow-200 p-1 flex justify-between">
-        <input
-          type="checkbox"
-          checked={filters.showAC}
-          onChange={() => handleFilterChange("showAC")}
-        />
-        <h2>AC ({countBusesByCriteria.acCount})</h2>
+    <div className="p-4 bg-white rounded-lg shadow-lg space-y-4">
+      {/* Bus Type Section */}
+      <h1 className="text-lg font-bold text-gray-800">BUS TYPE</h1>
+      <div className="p-2 flex justify-between items-center border rounded-lg hover:bg-gray-50">
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={filters.showAC}
+            onChange={() => handleFilterChange("showAC")}
+            className="accent-blue-500 w-4 h-4"
+          />
+          <h2 className="text-gray-700">AC</h2>
+        </label>
+        <span className="text-sm text-gray-500">
+          ({countBusesByCriteria.acCount})
+        </span>
       </div>
-      <div className="bg-yellow-200 p-1 flex justify-between">
-        <input
-          type="checkbox"
-          checked={filters.showNonAC}
-          onChange={() => handleFilterChange("showNonAC")}
-        />
-        <h2>Non AC ({countBusesByCriteria.nonAcCount})</h2>
-      </div>
-
-      <h1>DEPARTURE TIME</h1>
-      <div className="flex justify-between p-1 bg-yellow-300">
-        <input
-          type="checkbox"
-          checked={filters.showBefore6am}
-          onChange={() => handleFilterChange("showBefore6am")}
-        />
-        <h2>Before 6 am ({countBusesByCriteria.before6am})</h2>
-      </div>
-      <div className="flex justify-between p-1 bg-yellow-300">
-        <input
-          type="checkbox"
-          checked={filters.show6amTo12pm}
-          onChange={() => handleFilterChange("show6amTo12pm")}
-        />
-        <h2>6 am to 12 pm ({countBusesByCriteria.between6amTo12pm})</h2>
-      </div>
-      <div className="flex justify-between p-1 bg-yellow-300">
-        <input
-          type="checkbox"
-          checked={filters.show12pmTo6pm}
-          onChange={() => handleFilterChange("show12pmTo6pm")}
-        />
-        <h2>12 pm to 6 pm ({countBusesByCriteria.between12pmTo6pm})</h2>
-      </div>
-      <div
-        className="flex justify-between p-1 bg-yellow-300"
-        onClick={() => handleFilterChange("showAfter6pm")}
-      >
-        <input
-          type="checkbox"
-          // checked={filters.showAfter6pm}
-          // onChange={() => handleFilterChange("showAfter6pm")}
-        />
-        <h2>After 6 pm ({countBusesByCriteria.after6pm})</h2>
+      <div className="p-2 flex justify-between items-center border rounded-lg hover:bg-gray-50">
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={filters.showNonAC}
+            onChange={() => handleFilterChange("showNonAC")}
+            className="accent-blue-500 w-4 h-4"
+          />
+          <h2 className="text-gray-700">Non AC</h2>
+        </label>
+        <span className="text-sm text-gray-500">
+          ({countBusesByCriteria.nonAcCount})
+        </span>
       </div>
 
-      <h1>ARRIVAL TIME</h1>
-      <div
-        className="flex justify-between p-1 bg-blue-400"
-        onClick={() => handleFilterChange("arrivalBefore6am")}
-      >
-        <input type="checkbox" />
-        <h2>Before 6 am({countBusesByCriteria.arrivalBefore6am})</h2>
+      {/* Departure Time Section */}
+      <h1 className="text-lg font-bold text-gray-800">DEPARTURE TIME</h1>
+      <div className="p-2 flex justify-between items-center border rounded-lg hover:bg-gray-50">
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={filters.showBefore6am}
+            onChange={() => handleFilterChange("showBefore6am")}
+            className="accent-blue-500 w-4 h-4"
+          />
+          <h2 className="text-gray-700">Before 6 am</h2>
+        </label>
+        <span className="text-sm text-gray-500">
+          ({countBusesByCriteria.before6am})
+        </span>
+      </div>
+      <div className="p-2 flex justify-between items-center border rounded-lg hover:bg-gray-50">
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={filters.show6amTo12pm}
+            onChange={() => handleFilterChange("show6amTo12pm")}
+            className="accent-blue-500 w-4 h-4"
+          />
+          <h2 className="text-gray-700">6 am to 12 pm</h2>
+        </label>
+        <span className="text-sm text-gray-500">
+          ({countBusesByCriteria.between6amTo12pm})
+        </span>
+      </div>
+      <div className="p-2 flex justify-between items-center border rounded-lg hover:bg-gray-50">
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={filters.show12pmTo6pm}
+            onChange={() => handleFilterChange("show12pmTo6pm")}
+            className="accent-blue-500 w-4 h-4"
+          />
+          <h2 className="text-gray-700">12 pm to 6 pm</h2>
+        </label>
+        <span className="text-sm text-gray-500">
+          ({countBusesByCriteria.between12pmTo6pm})
+        </span>
+      </div>
+      <div className="p-2 flex justify-between items-center border rounded-lg hover:bg-gray-50">
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={filters.showAfter6pm}
+            onChange={() => handleFilterChange("showAfter6pm")}
+            className="accent-blue-500 w-4 h-4"
+          />
+          <h2 className="text-gray-700">After 6 pm</h2>
+        </label>
+        <span className="text-sm text-gray-500">
+          ({countBusesByCriteria.after6pm})
+        </span>
       </div>
 
-      <div
-        className="flex justify-between p-1 bg-blue-400"
-        onClick={() => handleFilterChange("arrival6amTo12pm")}
-      >
-        <input type="checkbox" />
-        <h2>6 am to 12 pm ({countBusesByCriteria.arrivalBetween6amTo12pm})</h2>
+      {/* Arrival Time Section */}
+      <h1 className="text-lg font-bold text-gray-800">ARRIVAL TIME</h1>
+      <div className="p-2 flex justify-between items-center border rounded-lg hover:bg-gray-50">
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={filters.arrivalBefore6am}
+            onChange={() => handleFilterChange("arrivalBefore6am")}
+            className="accent-blue-500 w-4 h-4"
+          />
+          <h2 className="text-gray-700">Before 6 am</h2>
+        </label>
+        <span className="text-sm text-gray-500">
+          ({countBusesByCriteria.arrivalBefore6am})
+        </span>
       </div>
-
-      <div
-        className="flex justify-between p-1 bg-blue-400"
-        onClick={() => handleFilterChange("arrival12pmTo6pm")}
-      >
-        <input type="checkbox" />
-        <h2>12 pm to 6 pm({countBusesByCriteria.arrivalBetween12pmTo6pm})</h2>
+      <div className="p-2 flex justify-between items-center border rounded-lg hover:bg-gray-50">
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={filters.arrival6amTo12pm}
+            onChange={() => handleFilterChange("arrival6amTo12pm")}
+            className="accent-blue-500 w-4 h-4"
+          />
+          <h2 className="text-gray-700">6 am to 12 pm</h2>
+        </label>
+        <span className="text-sm text-gray-500">
+          ({countBusesByCriteria.arrivalBetween6amTo12pm})
+        </span>
       </div>
-
-      <div
-        className="flex justify-between p-1 bg-blue-400"
-        onClick={() => handleFilterChange("arrivalAfter6pm")}
-      >
-        <input type="checkbox" />
-        <h2>After 6 pm({countBusesByCriteria.arrivalAfter6pm})</h2>
+      <div className="p-2 flex justify-between items-center border rounded-lg hover:bg-gray-50">
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={filters.arrival12pmTo6pm}
+            onChange={() => handleFilterChange("arrival12pmTo6pm")}
+            className="accent-blue-500 w-4 h-4"
+          />
+          <h2 className="text-gray-700">12 pm to 6 pm</h2>
+        </label>
+        <span className="text-sm text-gray-500">
+          ({countBusesByCriteria.arrivalBetween12pmTo6pm})
+        </span>
+      </div>
+      <div className="p-2 flex justify-between items-center border rounded-lg hover:bg-gray-50">
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={filters.arrivalAfter6pm}
+            onChange={() => handleFilterChange("arrivalAfter6pm")}
+            className="accent-blue-500 w-4 h-4"
+          />
+          <h2 className="text-gray-700">After 6 pm</h2>
+        </label>
+        <span className="text-sm text-gray-500">
+          ({countBusesByCriteria.arrivalAfter6pm})
+        </span>
       </div>
     </div>
   );

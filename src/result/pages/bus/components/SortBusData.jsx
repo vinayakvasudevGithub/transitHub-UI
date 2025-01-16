@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SortBusData = ({ originalBuses, setBuses }) => {
+const SortBusData = ({ originalBuses, setBuses, buses }) => {
   const [sortPrice, setSortPrice] = useState(false);
   const [sortArrivalTime, setSortArrivalTime] = useState(false);
   const [sortDepartureTime, setSortDepartureTime] = useState(false);
@@ -65,9 +65,12 @@ const SortBusData = ({ originalBuses, setBuses }) => {
   };
 
   return (
-    <div>
-      <div className="bg-blue-300 col-span-6 p-1 flex justify-between">
-        <h1>SORT BY:</h1>
+    <div className="flex items-center p-4 bg-white rounded-lg shadow-md">
+      {/* Sort By Title */}
+      <h1 className="text-lg font-semibold text-gray-700 mr-4">SORT BY:</h1>
+
+      {/* Sort Buttons */}
+      <div className="flex gap-2">
         <button
           onClick={() => {
             setBuses(sortBusDataByPrice(originalBuses));
@@ -76,10 +79,15 @@ const SortBusData = ({ originalBuses, setBuses }) => {
             setSortDepartureTime(false);
             setSortDuration(false);
           }}
-          className={`p-3 ${sortPrice ? "bg-green-500" : "bg-red-400"}`}
+          className={`rounded-lg px-6 py-2 font-medium transition-all duration-300 ease-in-out ${
+            sortPrice
+              ? "bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white shadow-md"
+              : "bg-gray-100 text-gray-700 hover:bg-blue-100"
+          }`}
         >
           Cheapest
         </button>
+
         <button
           onClick={() => {
             setBuses(sortDataByDepartureTime(originalBuses));
@@ -88,10 +96,15 @@ const SortBusData = ({ originalBuses, setBuses }) => {
             setSortDepartureTime(true);
             setSortDuration(false);
           }}
-          className={`p-3 ${sortDepartureTime ? "bg-green-500" : "bg-red-400"}`}
+          className={`rounded-lg px-6 py-2 font-medium transition-all duration-300 ease-in-out ${
+            sortDepartureTime
+              ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-md"
+              : "bg-gray-100 text-gray-700 hover:bg-blue-100"
+          }`}
         >
           Departure
         </button>
+
         <button
           onClick={() => {
             setBuses(sortDataByDuration(originalBuses));
@@ -100,10 +113,15 @@ const SortBusData = ({ originalBuses, setBuses }) => {
             setSortDepartureTime(false);
             setSortDuration(true);
           }}
-          className={`p-3 ${sortDuration ? "bg-green-500" : "bg-red-400"}`}
+          className={`rounded-lg px-6 py-2 font-medium transition-all duration-300 ease-in-out ${
+            sortDuration
+              ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-md"
+              : "bg-gray-100 text-gray-700 hover:bg-blue-100"
+          }`}
         >
           Duration
         </button>
+
         <button
           onClick={() => {
             setBuses(sortDataByArrivalTime(originalBuses));
@@ -112,10 +130,19 @@ const SortBusData = ({ originalBuses, setBuses }) => {
             setSortDepartureTime(false);
             setSortDuration(false);
           }}
-          className={`p-3 ${sortArrivalTime ? "bg-green-500" : "bg-red-400"}`}
+          className={`rounded-lg px-6 py-2 font-medium transition-all duration-300 ease-in-out ${
+            sortArrivalTime
+              ? "bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white shadow-md"
+              : "bg-gray-100 text-gray-700 hover:bg-blue-100"
+          }`}
         >
           Arrival
         </button>
+      </div>
+
+      {/* Showing Buses Text */}
+      <div className="ml-auto text-sm text-gray-600 font-medium">
+        <span>Showing {buses.length} Buses on this route</span>
       </div>
     </div>
   );
