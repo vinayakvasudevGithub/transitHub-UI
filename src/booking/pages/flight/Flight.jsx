@@ -212,8 +212,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Flight = () => {
-  const [from, setFrom] = useState("Kannur");
-  const [to, setTo] = useState("Kochi");
+  const [from, setFrom] = useState("Mumbai");
+  const [to, setTo] = useState("Chennai");
   const [travelDate, setTravelDate] = useState(new Date());
   const [flightClass, setFlightClass] = useState("Economy");
   const [inpSearch, setInpSearch] = useState([]);

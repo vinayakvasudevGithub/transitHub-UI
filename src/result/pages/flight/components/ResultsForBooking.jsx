@@ -20,55 +20,69 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
       </p>
 
       {FlightData.map((data) => (
-        <div
-          key={data._id}
-          className=" pb-4 p-2 bg-white mt-3 shadow-md
-              cursor-pointer z-10 transition-all duration-100 ease-in
-              hover:scale-[1.01] hover:shadow-300 hover:duration-100
-              hover:ease-out border border-neutral-200 "
-        >
-          <div className="grid sm:grid-cols-12 gap-1 p-1">
-            <div className=" col-span-2 flex  items-center ">
-              <img
-                className="h-6 "
-                src={`https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/${data.airlineimagecode}.png?v=19&quot`}
-              ></img>
-              <p className="flex text-2xl">{data.airline}</p>
-            </div>
+        <div key={data._id} className="p-1    ">
+          <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 grid p-1">
+            <div className=" sm:grid grid-cols-5  gap-1 p-1 ">
+              <div className=" col-span-1 flex  items-center bg-yellow-200 p-1  ">
+                <div className=" flex gap-2">
+                  <img
+                    className="size-12 "
+                    src={`https://imgak.mmtcdn.com/flights/assets/media/dt/common/icons/${data.airlineimagecode}.png?v=19&quot`}
+                  ></img>
+                  <div className="">
+                    <p className="font-bold">{data.airline}</p>
+                    <p className="text-xs text-gray-600">{data.flightNumber}</p>
+                  </div>
+                </div>
+              </div>
 
-            <div className=" flex justify-between col-span-6  p-1 gap-1">
-              {data.airport.map((airport, index) => (
+              <div className=" flex justify-between col-span-3  p-1 gap-1">
+                {data.airport.map((airport, index) => (
+                  <div className="col-span-4 flex justify-end items-center">
+                    <div className="col-span-4 text-center">
+                      <h4 className="text-lg font-semibold text-gray-600">
+                        Departure
+                      </h4>
+                      <p className="text-xl font-bold text-gray-800">
+                        {airport?.departureTime || "N/A"}
+                      </p>
+                      <p className="text-sm text-gray-500">{FlightFrom}</p>
+                    </div>
+                  </div>
+                ))}
+
+                <div className=" flex items-center">
+                  <h2>Duration</h2>
+                </div>
+                {data.destination.map((destination, index) => (
+                  <div key={index} className="l">
+                    <div className="col-span-4 p-2 flex justify-start border-r-2">
+                      <div className="col-span-4 text-center">
+                        <h4 className="text-lg font-semibold text-gray-600">
+                          Arrival
+                        </h4>
+                        <p className="text-xl font-bold text-gray-800">
+                          {destination?.arrivalTime || "N/A"}
+                        </p>
+                        <p className="text-sm text-gray-500">{FlightTo}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {data.prices.map((price) => (
                 <div
-                  key={index}
-                  className="tabular-nums flex items-center text-3xl "
+                  className="bg-blue-100 col-span-1 flex  justify-between "
+                  key={price._id}
                 >
-                  {airport?.departureTime}
-                </div>
-              ))}
-
-              <div className=" flex items-center">
-                <FaRegCircle className="w-2" /> <RxDotsHorizontal />{" "}
-                <RxDotsHorizontal /> <IoIosAirplane /> <RxDotsHorizontal />{" "}
-                <RxDotsHorizontal /> <FaRegCircle className="w-2" />{" "}
-              </div>
-              {data.destination.map((destination, index) => (
-                <div key={index} className="flex items-center text-3xl">
-                  {destination?.arrivalTime}
+                  {price.ecconomy}
                 </div>
               ))}
             </div>
-            {data.prices.map((price) => (
-              <div
-                className="col-span-2 flex  justify-between "
-                key={price._id}
-              >
-                {price.ecconomy}
-              </div>
-            ))}
-            <div className=" flex justify-center items-center  border bg-gradient-to-br from-blue-400 to-purple-700 p-3">
+            <div className="  flex justify-end items-center ">
               <button
                 onClick={(e) => handleNavigateToBookingPage(data._id)}
-                className="text-white"
+                className="shining-button bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-transform transform hover:scale-110 focus:outline-none "
               >
                 book
               </button>
