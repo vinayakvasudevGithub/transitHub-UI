@@ -287,7 +287,7 @@ const ResultForBusBooking = ({ from, to, distance, busData }) => {
               : "N/A";
 
           return (
-            <div key={bus._id} className="p-1">
+            <div key={bus._id} className="p-1 ">
               {/* Bus Info */}
               <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div className="sm:grid grid-cols-8 border-b-2">
@@ -357,19 +357,26 @@ const ResultForBusBooking = ({ from, to, distance, busData }) => {
                   </div>
                 </div>
 
-                <div className="p-1">
-                  <div className="text-right col-span-1">
-                    <button
-                      onClick={() =>
-                        setActiveBusId((prevId) =>
-                          prevId === bus._id ? null : bus._id
-                        )
-                      }
-                      // className="bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold px-6 py-2 rounded-lg shadow hover:from-blue-700 hover:to-blue-600 transition-all duration-300"
-                      className="shining-button bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-transform transform hover:scale-110 focus:outline-none "
-                    >
-                      {activeBusId === bus._id ? "Close Seats" : "Select Seats"}
-                    </button>
+                <div className="p-1  ">
+                  <div className=" flex justify-end">
+                    <div className="grid bg-yellow-200 p-1 rounded-lg">
+                      <button
+                        onClick={() =>
+                          setActiveBusId((prevId) =>
+                            prevId === bus._id ? null : bus._id
+                          )
+                        }
+                        // className="bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold px-6 py-2 rounded-lg shadow hover:from-blue-700 hover:to-blue-600 transition-all duration-300"
+                        className="shining-button bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-transform transform hover:scale-110 focus:outline-none "
+                      >
+                        {activeBusId === bus._id
+                          ? "Close Seats"
+                          : "Select Seats"}
+                      </button>
+                      <div className="flex justify-center items-center">
+                        <h3 className="text-xs">Available Seats</h3>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Animated Dropdown for Seats */}

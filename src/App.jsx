@@ -19,7 +19,7 @@ function App() {
   return (
     // <div className=" bg-gradient-to-r from-blue-100 to-blue-500 h-screen">
     // <div className=" bg-gradient-to-b from-sky-400 to-sky-200 h-screen">
-    <div className=" bg-gradient-to-r from-gray-100 to-gray-300 h-screen">
+    <div className=" bg-gray-50 h-screen">
       {/* <div className="flex gap-2 sticky justify-center top-0 bg-yellow-300 p-1">
         <Link to={"/"} className="bg-blue-600">
           home page

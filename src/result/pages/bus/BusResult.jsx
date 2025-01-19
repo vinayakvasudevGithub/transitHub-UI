@@ -49,8 +49,9 @@ const BusResult = () => {
   return (
     <div className=" bg-gray-50 p-1  min-h-screen">
       <div>transithub</div>
-      <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-1 ">
-        <div className="sticky   top-0  p-1 ">
+
+      <div className="sticky top-0 bg-gradient-to-b from-gray-800 to-black rounded-lg shadow-xl border border-gray-700  p-1 ">
+        <div className="    p-1 ">
           <SearchBarForBus from={from} to={to} />
         </div>
         {/* <div className="bg-gradient-to-r from-blue-700 to-blue-500 text-white p-6 rounded-lg shadow-md"> */}

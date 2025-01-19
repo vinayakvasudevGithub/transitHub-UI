@@ -15,6 +15,9 @@ export default {
         },
       },
       animation: { "slide-down": "slide-down 0.1s ease-out forwards" },
+      backgroundImage: {
+        "custom-gradient": "linear-gradient(135deg, #ff7e5f, #feb47b)",
+      },
     },
   },
   plugins: [],

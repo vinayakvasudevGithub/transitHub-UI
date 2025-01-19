@@ -79,7 +79,7 @@ const SortBusData = ({ originalBuses, setBuses, buses }) => {
             setSortDepartureTime(false);
             setSortDuration(false);
           }}
-          className={`rounded-lg px-6 py-2 font-medium transition-all duration-300 ease-in-out ${
+          className={`rounded-lg  font-medium transition-all duration-300 ease-in-out ${
             sortPrice
               ? "bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white shadow-md"
               : "bg-gray-100 text-gray-700 hover:bg-blue-100"
@@ -96,7 +96,7 @@ const SortBusData = ({ originalBuses, setBuses, buses }) => {
             setSortDepartureTime(true);
             setSortDuration(false);
           }}
-          className={`rounded-lg px-6 py-2 font-medium transition-all duration-300 ease-in-out ${
+          className={`rounded-lg  font-medium transition-all duration-300 ease-in-out ${
             sortDepartureTime
               ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-md"
               : "bg-gray-100 text-gray-700 hover:bg-blue-100"
@@ -113,7 +113,7 @@ const SortBusData = ({ originalBuses, setBuses, buses }) => {
             setSortDepartureTime(false);
             setSortDuration(true);
           }}
-          className={`rounded-lg px-6 py-2 font-medium transition-all duration-300 ease-in-out ${
+          className={`rounded-lg  font-medium transition-all duration-300 ease-in-out ${
             sortDuration
               ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-md"
               : "bg-gray-100 text-gray-700 hover:bg-blue-100"
@@ -130,7 +130,7 @@ const SortBusData = ({ originalBuses, setBuses, buses }) => {
             setSortDepartureTime(false);
             setSortDuration(false);
           }}
-          className={`rounded-lg px-6 py-2 font-medium transition-all duration-300 ease-in-out ${
+          className={`rounded-lg  font-medium transition-all duration-300 ease-in-out ${
             sortArrivalTime
               ? "bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white shadow-md"
               : "bg-gray-100 text-gray-700 hover:bg-blue-100"
