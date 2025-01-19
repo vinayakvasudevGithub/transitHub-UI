@@ -38,9 +38,15 @@ const FlightResult = () => {
         />
       </div>
       <div className="grid lg:grid-cols-4 gap-2  p-2">
-        <div className="col-span-1 hidden lg:block">
-          {/* <div className="col-span-1 "> */}
-          <LeftSideBar />
+        {/* <div className="col-span-1 hidden lg:block"> */}
+        <div className="col-span-1 ">
+          <LeftSideBar
+            originalFlights={originalFlights}
+            setFlight={setFlight}
+            from={from}
+            to={to}
+            FlightData={flight}
+          />
         </div>
         <div className="col-span-3">
           <SortFlightData
