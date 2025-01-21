@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* .no-scrollbar::-webkit-scrollbar {
+  display: none;
+} */
+
+.scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .shining-button {
   position: relative;
   overflow: hidden;

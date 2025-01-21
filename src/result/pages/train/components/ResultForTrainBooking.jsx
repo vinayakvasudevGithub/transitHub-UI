@@ -3,93 +3,192 @@ import { useNavigate } from "react-router-dom";
 
 const ResultForTrainBooking = ({ from, to, TrainData }) => {
   const navigate = useNavigate();
+  const [popUp, setPopUp] = useState("");
+
+  // Calculate time duration
+  const calculateDuration = (departureTime, arrivalTime) => {
+    const [depHours, depMinutes] = departureTime.split(":").map(Number);
+    const [arrHours, arrMinutes] = arrivalTime.split(":").map(Number);
+
+    const depTotalMinutes = depHours * 60 + depMinutes;
+    const arrTotalMinutes = arrHours * 60 + arrMinutes;
+
+    const durationMinutes =
+      arrTotalMinutes >= depTotalMinutes
+        ? arrTotalMinutes - depTotalMinutes
+        : arrTotalMinutes + (24 * 60 - depTotalMinutes); // Handle overnight journeys
+
+    const hours = Math.floor(durationMinutes / 60);
+    const minutes = durationMinutes % 60;
+
+    return `${hours}h ${minutes}m`;
+  };
 
   const handleNavigateToBookingPage = (classId, trainId) => {
     navigate("/booking/trainTicket", { state: { classId, trainId } });
   };
 
-  const [popUp, setPopUp] = useState("");
   return (
-    <div className=" bg-yellow-500  p-5 ">
-      <p>
-        Train From {from} to {to}
-      </p>
-      {TrainData.map((data) => (
-        <div
-          onClick={(e) => {
-            !popUp ? setPopUp(data._id) : setPopUp(null);
-          }}
-          key={data._id}
-          className={`pb-4 p-2 bg-white mt-3 shadow-[0px_2px_5px_0px_rgba(0,0,0,0.10)] 
-          cursor-pointer z-10 transition-all duration-100 ease-in
-          ${
-            popUp ? "hover:scale-[1.06] " : "hover:scale-[1.01]"
-          } hover:shadow-300 hover:duration-100
-          hover:ease-out border border-neutral-200  `}
-        >
-          <div className="grid sm:grid-cols-12  bg-blue-300 gap-1 p-1">
-            <div className="bg-green-400 col-span-2 flex justify-between items-center ">
-              <p className="flex text-2xl">{data.trainname}</p>
-            </div>
-            <div className="bg-yellow-300 flex justify-between col-span-6  p-1 gap-1">
-              {data.stations
-                .filter((station) => station.city === from)
-                .map((station) => (
-                  <div
-                    key={station._id}
-                    className="bg-red-300 flex items-center text-3xl"
-                  >
-                    {station.departureTime}
-                  </div>
-                ))}
-
-              <div className=" flex items-center">designs</div>
-
-              {data.stations
-                .filter((station) => station.city === to)
-                .map((station) => (
-                  <div
-                    key={station._id}
-                    className="bg-green-300 flex items-center text-3xl"
-                  >
-                    {station.arrivalTime}
-                  </div>
-                ))}
-            </div>
-            <div className=" flex justify-end bg-yellow-300">
-              <button>book</button>
-            </div>
-          </div>
-
+    <div className=" min-h-screen p-5">
+      <div className="max-w-5xl mx-auto">
+        <p className="text-xl font-semibold text-gray-700 mb-4">
+          Trains from <span className="text-blue-500">{from}</span> to{" "}
+          <span className="text-blue-500">{to}</span>
+        </p>
+        {TrainData.map((data) => (
           <div
-            className={`bg-green-300 overflow-hidden transition-all duration-300 ease-in-out ${
-              popUp === data._id
-                ? "mt-2 p-1 h-[7rem]  opacity-100"
-                : "h-0 opacity-0"
-            }  overflow-x-auto  flex `}
+            onClick={() => (!popUp ? setPopUp(data._id) : setPopUp(null))}
+            key={data._id}
+            className={`p-4 border bg-white mt-4 rounded-lg shadow-md cursor-pointer transition-transform duration-300 ease-in-out ${
+              popUp === data._id ? "hover:scale-[1.03]" : "hover:scale-[1.02]"
+            }`}
           >
-            <div className="flex w-[20rem] gap-1">
-              {data?.classes.map((classes) => (
-                <div
-                  onClick={(e) =>
-                    handleNavigateToBookingPage(classes._id, data._id)
-                  }
-                  key={classes._id}
-                  className="bg-red-300 items-center p-1 min-w-[10rem]" // Ensure consistent width
-                >
-                  <div className="flex space-x-2">
-                    <h2 className="text-ms font-bold">{classes.classType}</h2>
-                    <h2>{classes.basicFare}</h2>
-                  </div>
-                  <div>
-                    <h4 className="text-sm">Available: gg</h4>
-                  </div>
+            <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
+              {/* Train Name and Number */}
+              <div className="sm:col-span-3 flex items-center justify-start">
+                <div className="grid">
+                  <h3 className="text-lg font-bold text-gray-800">
+                    {data.trainName}
+                  </h3>
+                  <h3 className="text-sm font-semibold text-gray-600">
+                    {data.category}
+                  </h3>
+                  <h3 className="text-sm text-red-700">{data.trainNumber}</h3>
                 </div>
-              ))}
+              </div>
+
+              {/* From and To Stations with Date, Time, and Duration */}
+              <div className="sm:col-span-7 flex justify-between items-center text-sm text-gray-600">
+                <div className="flex flex-col items-start">
+                  {data.stations
+                    .filter((station) => station.city === from)
+                    .map((station) => (
+                      <div key={station._id}>
+                        <p>
+                          <span className="font-semibold text-lg text-gray-800">
+                            {station.departureTime}
+                          </span>{" "}
+                          - Depart
+                        </p>
+                        <p>
+                          <span className="font-semibold text-gray-800">
+                            {station.station}
+                          </span>{" "}
+                          ({station.stationCode})
+                        </p>
+                        <p>{station.departureDate}</p>
+                      </div>
+                    ))}
+                </div>
+                <div className="text-gray-400">
+                  {data.stations
+                    .filter((station) => station.city === to)
+                    .map((station) => (
+                      <div key={station} className="text-green-600">
+                        <span>
+                          {calculateDuration(
+                            data.stations.find(
+                              (station) => station.city === from
+                            ).departureTime,
+                            station.arrivalTime
+                          )}
+                        </span>
+                      </div>
+                    ))}
+                </div>
+                <div className="flex flex-col items-end">
+                  {data.stations
+                    .filter((station) => station.city === to)
+                    .map((station) => (
+                      <div key={station._id}>
+                        <p>
+                          <span className="font-semibold text-lg text-gray-800">
+                            {station.arrivalTime}
+                          </span>{" "}
+                          - Arrive
+                        </p>
+                        <p>
+                          <span className="font-semibold text-gray-800">
+                            {station.station}
+                          </span>{" "}
+                          ({station.stationCode})
+                        </p>
+                        <p>{station.arrivalDate}</p>
+                      </div>
+                    ))}
+                </div>
+              </div>
+
+              {/* Book Button */}
+              <div className="sm:col-span-2 flex justify-end">
+                <button className=" bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all">
+                  Book Now
+                </button>
+              </div>
+            </div>
+
+            {/* Dropdown for Classes */}
+
+            <div
+              className={`bg-gray-100 overflow-hidden transition-all duration-300 ease-in-out ${
+                popUp === data._id ? "mt-2 p-1  opacity-100" : "h-0 opacity-0"
+              }  overflow-x-auto  flex  border rounded-lg scrollbar`}
+            >
+              <div className="flex w-[20rem] gap-4">
+                {data?.classes.map((classItem) => (
+                  <div
+                    onClick={() =>
+                      handleNavigateToBookingPage(classItem._id, data._id)
+                    }
+                    key={classItem._id}
+                    className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105 p-4 min-w-[10rem] flex flex-col"
+                  >
+                    {/* Class Info */}
+                    <div className="flex justify-between items-center mb-2">
+                      <h2 className="text-lg font-bold text-gray-800">
+                        {classItem.classType}
+                      </h2>
+                      <h2 className="text-md font-semibold text-green-600">
+                        {classItem.basicFare} INR
+                      </h2>
+                    </div>
+
+                    {/* Availability Info */}
+                    <div className="text-sm text-gray-500">
+                      <h4>Available: gg</h4>
+                    </div>
+
+                    {/* Hover effect for interaction */}
+                    <div className="mt-4 text-center text-blue-600 hover:text-blue-700">
+                      <span className="font-semibold">Book Now</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* <div className="flex w-[20rem] gap-1">
+                {data?.classes.map((classes) => (
+                  <div
+                    onClick={(e) =>
+                      handleNavigateToBookingPage(classes._id, data._id)
+                    }
+                    key={classes._id}
+                    className="bg-white items-center p-1 min-w-[10rem]" // Ensure consistent width
+                  >
+                    <div className="flex space-x-2">
+                      <h2 className="text-ms font-bold">{classes.classType}</h2>
+                      <h2>{classes.basicFare}</h2>
+                    </div>
+                    <div>
+                      <h4 className="text-sm">Available: gg</h4>
+                    </div>
+                  </div>
+                ))}
+              </div> */}
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

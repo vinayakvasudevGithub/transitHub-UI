@@ -22,8 +22,8 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
       {FlightData.map((data) => (
         <div key={data._id} className="p-1    ">
           <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 grid p-1">
-            <div className=" sm:grid grid-cols-5  gap-1 p-1 ">
-              <div className=" col-span-1 flex  items-center bg-yellow-200 p-1  ">
+            <div className=" sm:grid grid-cols-5  gap-1 p-1  ">
+              <div className=" col-span-1 flex  items-center   p-1 sm:flex justify-between  ">
                 <div className=" flex gap-2">
                   <img
                     className="size-12 "
@@ -34,11 +34,30 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
                     <p className="text-xs text-gray-600">{data.flightNumber}</p>
                   </div>
                 </div>
+                <div className="sm:hidden">
+                  {data.prices.map((price) => (
+                    <div key={price._id} className="p-1 col-span-1">
+                      <div className="flex justify-end">
+                        <h2 className="text-xs font-semibold text-gray-600">
+                          Starts at
+                        </h2>
+                      </div>
+                      <div className="flex justify-end">
+                        <p className="text-xl font-semibold">
+                          ₹{price.ecconomy}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <div className=" flex justify-between col-span-3  p-1 gap-1">
+              <div className=" flex sm:justify-between space-x-7 col-span-3  p-1 gap-1">
                 {data.airport.map((airport, index) => (
-                  <div className="col-span-4 flex justify-end items-center">
+                  <div
+                    key={index}
+                    className="col-span-4 flex justify-end items-center"
+                  >
                     <div className="col-span-4 text-center">
                       <h4 className="text-lg font-semibold text-gray-600">
                         Departure
@@ -56,7 +75,7 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
                 </div>
                 {data.destination.map((destination, index) => (
                   <div key={index} className="l">
-                    <div className="col-span-4 p-2 flex justify-start border-r-2">
+                    <div className="col-span-4 p-2 flex justify-start">
                       <div className="col-span-4 text-center">
                         <h4 className="text-lg font-semibold text-gray-600">
                           Arrival
@@ -71,11 +90,15 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
                 ))}
               </div>
               {data.prices.map((price) => (
-                <div
-                  className="bg-blue-100 col-span-1 flex  justify-between "
-                  key={price._id}
-                >
-                  {price.ecconomy}
+                <div key={price._id} className="p-1 col-span-1 hidden sm:block">
+                  <div className="flex justify-end">
+                    <h2 className="text-xs font-semibold text-gray-600">
+                      Starts at
+                    </h2>
+                  </div>
+                  <div className="flex justify-end">
+                    <p className="text-xl font-semibold">₹{price.ecconomy}</p>
+                  </div>
                 </div>
               ))}
             </div>

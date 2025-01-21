@@ -192,3 +192,86 @@ const TrainPayment = () => {
 };
 
 export default TrainPayment;
+
+// import React from "react";
+
+// const TrainPayment = ({
+//   trainData,
+//   bookingDetails,
+//   departureStationDetails,
+//   arrivalStationDetails,
+// }) => {
+//   const [day, month, year] = departureStationDetails.departureDate.split("-");
+//   const formattedDepartureDate = new Date(
+//     `${year}-${month}-${day}`
+//   ).toLocaleDateString("en-us", { month: "short", day: "numeric" });
+
+//   return (
+//     <div className="p-4 bg-gray-100 min-h-screen">
+//       {trainData.map((data) => (
+//         <div
+//           key={data._id}
+//           className="bg-white shadow-md rounded-xl overflow-hidden mb-6"
+//         >
+//           <div className="flex flex-col sm:flex-row">
+//             {/* Left Section: Main Ticket Details */}
+//             <div className="sm:w-3/4 p-4 border-r">
+//               {/* Train Name and Number */}
+//               <div className="flex justify-between items-center border-b pb-2 mb-4">
+//                 <div>
+//                   <h1 className="text-lg font-bold">{data.trainName}</h1>
+//                   <p className="text-sm text-gray-600">{data.trainNumber}</p>
+//                 </div>
+//                 <div className="bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold">
+//                   {formattedDepartureDate}
+//                 </div>
+//               </div>
+
+//               {/* Passenger Details */}
+//               {bookingDetails.userDetails.map((user, index) => (
+//                 <div key={index} className="mb-4">
+//                   <h2 className="font-semibold text-gray-700">Passenger</h2>
+//                   <p>{user.name}</p>
+//                   <p className="text-sm text-gray-500">Economy Class</p>
+//                 </div>
+//               ))}
+
+//               {/* Travel Details */}
+//               <div className="grid grid-cols-2 gap-4">
+//                 {/* Departure Details */}
+//                 <div>
+//                   <h3 className="text-sm font-semibold text-gray-600">From</h3>
+//                   <p>{departureStationDetails.city}</p>
+//                   <p className="text-sm text-gray-500">
+//                     {departureStationDetails.departureTime}
+//                   </p>
+//                 </div>
+
+//                 {/* Arrival Details */}
+//                 <div>
+//                   <h3 className="text-sm font-semibold text-gray-600">To</h3>
+//                   <p>{arrivalStationDetails.city}</p>
+//                   <p className="text-sm text-gray-500">
+//                     {arrivalStationDetails.arrivalTime}
+//                   </p>
+//                 </div>
+//               </div>
+//             </div>
+
+//             {/* Right Section: QR Code and Misc Details */}
+//             <div className="sm:w-1/4 p-4 bg-gray-50">
+//               <div className="flex flex-col items-center justify-center h-full">
+//                 <div className="bg-gray-200 w-24 h-24 flex items-center justify-center mb-4">
+//                   <span className="text-gray-400 text-sm">QR Code</span>
+//                 </div>
+//                 <p className="text-sm text-gray-500">Scan for details</p>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
+
+// export default TrainPayment;

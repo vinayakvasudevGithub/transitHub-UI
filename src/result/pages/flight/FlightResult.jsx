@@ -27,10 +27,11 @@ const FlightResult = () => {
   }, [from, to]);
 
   return (
-    <div className="p-2">
+    <div className="p-2 ">
       <div className="flex  ">transithub</div>
       <div className="sticky flex justify-center top-0  p-1  ">
         <SearchBar
+          flight={flight}
           FlightFrom={from}
           FlightTo={to}
           FlightData={flight}
@@ -50,6 +51,7 @@ const FlightResult = () => {
         </div>
         <div className="col-span-3">
           <SortFlightData
+            flight={flight}
             originalFlights={originalFlights}
             setFlight={setFlight}
           />

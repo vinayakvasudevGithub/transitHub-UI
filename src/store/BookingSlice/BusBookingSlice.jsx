@@ -12,10 +12,10 @@ export const BusBookingSlice = createSlice({
     BusBookingDetails: (state, action) => {
       const newBus = {
         id: nanoid(),
-        busseatnumber: action.payload.busseatnumber,
-        busname: action.payload.busname,
-        bustype: action.payload.bustype,
-        arrivaltime: action.payload.arrivaltime,
+        busSeatNumber: action.payload.busSeatNumber,
+        busName: action.payload.busName,
+        busType: action.payload.busType,
+        arrivalTime: action.payload.arrivalTime,
         departureTime: action.payload.departureTime,
       };
       state.Details.push(newBus);

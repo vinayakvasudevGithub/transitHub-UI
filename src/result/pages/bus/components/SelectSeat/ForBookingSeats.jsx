@@ -5,6 +5,7 @@ import { MdOutlineEventSeat } from "react-icons/md";
 import { useSelector } from "react-redux";
 
 const ForBookingSeats = ({ busData, handleSelectBus }) => {
+  const [selectedSeat, setSelectedSeat] = useState();
   const searchKey = useSelector((State) => State.bus.buses);
   const lastSearch = searchKey?.[searchKey.length - 1];
 
@@ -35,7 +36,8 @@ const ForBookingSeats = ({ busData, handleSelectBus }) => {
       ) || []
   );
 
-  console.log(bookedSeatNumber);
+  console.log(selectedSeat);
+  // console.log(bookedSeatNumber);
 
   return (
     <div className="bg-green-300">
@@ -62,13 +64,17 @@ const ForBookingSeats = ({ busData, handleSelectBus }) => {
                           <div
                             onClick={() => {
                               !bookedSeatNumber?.includes(seat) &&
+                                setSelectedSeat(!selectedSeat ? seat : false);
+                              !bookedSeatNumber?.includes(seat) &&
                                 handleSelectBus(seat);
                             }}
-                            className={`p-2 ${
+                            className={`p-2  ${
                               bookedSeatNumber?.includes(seat)
                                 ? "bg-gray-400 cursor-not-allowed" // Disabled look for booked seats
-                                : "hover:bg-red-300 cursor-pointer" // Interactive style for available seats
-                            } text-center w-14 h-13 flex items-center justify-center border`}
+                                : "hover:bg-red-300 cursor-pointer " // Interactive style for available seats
+                            } ${
+                              selectedSeat === seat && "bg-fuchsia-400"
+                            } text-center w-14 h-13 flex  items-center justify-center border`}
                           >
                             <MdOutlineEventSeat
                               className={`w-[3rem] h-[3rem] ${

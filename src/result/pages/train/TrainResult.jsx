@@ -27,7 +27,7 @@ const TrainResult = () => {
   }, []);
 
   return (
-    <div className="bg-red-200 ">
+    <div className=" bg-gray-50">
       <div>transithub</div>
       <div className="sticky flex justify-center top-0 bg-yellow-100 p-1 ">
         <SearchBarForTrain
@@ -36,9 +36,9 @@ const TrainResult = () => {
           FirstTrainData={FirstTrainData}
         />
       </div>
-      <div className=" grid lg:grid-cols-4 gap-4 mt-5 bg-red-500 p-1">
-        {/* <div className="col-span-1 hidden lg:block"> */}
-        <div className="col-span-1 ">
+      <div className=" grid lg:grid-cols-4 gap-4  p-1">
+        <div className="col-span-1 hidden lg:block">
+          {/* <div className="col-span-1 "> */}
           <LeftSideBarForTrain
             TrainData={TrainData}
             from={from}
@@ -47,8 +47,11 @@ const TrainResult = () => {
             setTrainData={setTrainData}
           />
         </div>
-        <div className="bg-green-300 p-1 col-span-3">
+        <div className=" p-1 col-span-3">
           <SortTrainData
+            from={from}
+            to={to}
+            TrainData={TrainData}
             originalTrains={originalTrains}
             setTrainData={setTrainData}
           />

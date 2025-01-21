@@ -232,6 +232,7 @@ const ResultForBusBooking = ({ from, to, distance, busData }) => {
     departureTime
   ) => {
     if (busSeatNumber && busName && busType && arrivalTime && departureTime) {
+      console.log(busSeatNumber);
       setIsBookingDetailsComplete(true);
       dispatch(
         BusBookingDetails({
@@ -290,13 +291,13 @@ const ResultForBusBooking = ({ from, to, distance, busData }) => {
             <div key={bus._id} className="p-1 ">
               {/* Bus Info */}
               <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="sm:grid grid-cols-8 border-b-2">
+                <div className=" sm:grid grid-cols-8 ">
                   <div className="p-4 flex justify-between items-center">
                     <div>
-                      <h3 className="text-xl font-bold text-gray-800">
+                      <h3 className="text-lg font-bold text-gray-800">
                         {bus.busname}
                       </h3>
-                      <p className="text-sm text-gray-500">{bus.bustype}</p>
+                      <p className="text-sm  text-gray-600">{bus.bustype}</p>
                     </div>
                   </div>
 
@@ -304,34 +305,36 @@ const ResultForBusBooking = ({ from, to, distance, busData }) => {
                     {/* Journey Info */}
                     {/* Departure */}
                     <div className="col-span-4 flex justify-end items-center">
-                      <div className="col-span-4 text-center">
-                        <h4 className="text-lg font-semibold text-gray-600">
-                          Departure
-                        </h4>
-                        <p className="text-xl font-bold text-gray-800">
+                      <div className="col-span-4 text-center text-sm text-gray-600">
+                        <h4 className="  text-gray-600">Departure</h4>
+                        <p className="font-semibold text-lg text-gray-800">
                           {departure?.departureTime || "N/A"}
                         </p>
-                        <p className="text-sm text-gray-500">{from}</p>
+                        <p className="text-sm text-gray-500">
+                          {departure.station}
+                        </p>
                       </div>
                     </div>
 
                     {/* Duration */}
                     <div className="col-span-4 flex flex-col items-center justify-center">
-                      <span className="text-gray-700 bg-gray-100 px-4 py-2 rounded-full shadow">
+                      <span className="text-sm text-gray-700 bg-gray-100 px-2 py-1 rounded-full shadow">
                         {duration}
                       </span>
                     </div>
 
                     {/* Arrival */}
-                    <div className="col-span-4 p-2 flex justify-start border-r-2">
-                      <div className="col-span-4 text-center">
-                        <h4 className="text-lg font-semibold text-gray-600">
+                    <div className=" col-span-4 p-2 flex justify-start ">
+                      <div className="col-span-4 text-center text-sm text-gray-600">
+                        <h4 className=" font-semibold text-gray-600">
                           Arrival
                         </h4>
-                        <p className="text-xl font-bold text-gray-800">
+                        <p className="font-semibold text-lg text-gray-800">
                           {arrival?.arrivaltime || "N/A"}
                         </p>
-                        <p className="text-sm text-gray-500">{to}</p>
+                        <p className="text-sm text-gray-500 ">
+                          {arrival.station}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -359,7 +362,7 @@ const ResultForBusBooking = ({ from, to, distance, busData }) => {
 
                 <div className="p-1  ">
                   <div className=" flex justify-end">
-                    <div className="grid bg-yellow-200 p-1 rounded-lg">
+                    <div className="grid bg-gray-100 p-1 rounded-lg">
                       <button
                         onClick={() =>
                           setActiveBusId((prevId) =>
@@ -367,7 +370,7 @@ const ResultForBusBooking = ({ from, to, distance, busData }) => {
                           )
                         }
                         // className="bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold px-6 py-2 rounded-lg shadow hover:from-blue-700 hover:to-blue-600 transition-all duration-300"
-                        className="shining-button bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-transform transform hover:scale-110 focus:outline-none "
+                        className="bg-blue-500 text-white  hover:bg-blue-600  font-bold py-2 px-6 rounded-lg shadow-lg   "
                       >
                         {activeBusId === bus._id
                           ? "Close Seats"
@@ -382,12 +385,10 @@ const ResultForBusBooking = ({ from, to, distance, busData }) => {
                   {/* Animated Dropdown for Seats */}
                   <div
                     className={`transition-all duration-200 ease-in-out overflow-hidden ${
-                      activeBusId === bus._id
-                        ? "max-h-[500px] p-4"
-                        : "max-h-0 p-0"
+                      activeBusId === bus._id ? " p-4" : "max-h-0 p-0"
                     } bg-gray-100 rounded mt-4`}
                     style={{
-                      maxHeight: activeBusId === bus._id ? "500px" : "0",
+                      maxHeight: activeBusId === bus._id ? "" : "0",
                     }}
                   >
                     {activeBusId === bus._id && (
@@ -398,8 +399,8 @@ const ResultForBusBooking = ({ from, to, distance, busData }) => {
                             busSeatNumber,
                             bus.busname,
                             bus.bustype,
-                            arrival?.arrivaltime || "N/A",
-                            departure?.departureTime || "N/A"
+                            arrival?.arrivaltime,
+                            departure?.departureTime
                           )
                         }
                       />
