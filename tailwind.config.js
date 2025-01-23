@@ -3,6 +3,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      clipPath: {
+        ellipse: "ellipse(50% 50% at 50% 50%)", // Or any other custom shape
+      },
+
       colors: { "custom-fafafa": "#fafafa" },
       colors: { "custom-c5cae9": "#e8eaf6" },
       boxShadow: {
