@@ -289,7 +289,10 @@ const Flight = () => {
   };
 
   return (
-    <div className="bg-white shadow-custom-shadow p-4">
+    <div
+      className="  bg-gray-200  p-4 rounded-lg"
+      // style="box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);"
+    >
       <form onSubmit={results}>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           {/* Departure City */}
@@ -309,7 +312,7 @@ const Flight = () => {
             </div>
             {inpBox === "from" && (
               <div className="relative">
-                <div className="bg-white overflow-y-scroll  h-40 absolute z-50 top-0 left-0 w-full animate-slide-down ">
+                <div className="bg-white overflow-y-scroll  h-40 absolute z-40 top-0 left-0 w-full animate-slide-down ">
                   {filteredAirports.map((airport, index) => (
                     <div
                       key={index}
