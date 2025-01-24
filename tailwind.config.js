@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      // colors: {
+      //   gold: "#FFD700", // Add the gold color here
+      // },
       clipPath: {
         ellipse: "ellipse(50% 50% at 50% 50%)", // Or any other custom shape
       },

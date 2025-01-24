@@ -121,7 +121,7 @@ const ResultForTrainBooking = ({ from, to, TrainData }) => {
 
               {/* Book Button */}
               <div className="sm:col-span-2 flex justify-end">
-                <button className=" bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all">
+                <button className="shining-button  text-white px-4 py-2 rounded-md bg-purple-500 hover:bg-purple-600 transition-all">
                   Book Now
                 </button>
               </div>
