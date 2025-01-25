@@ -20,9 +20,10 @@ const BusResult = () => {
   useEffect(() => {
     axios
       .get(
-        `https://maps.gomaps.pro/maps/api/distancematrix/json?destinations=${from}&origins=${to}&key=${apiKey}`
+        `https://maps.gomaps.pro/maps/api/distancematrix/json?destinations=${from.toUpperCase()}&origins=${to.toUpperCase()}&key=${apiKey}`
       )
       .then((response) => {
+        console.log(response?.data);
         const distanceText = response?.data?.rows[0].elements[0].distance.text;
         if (distanceText) {
           const numericDistance = parseFloat(
@@ -47,15 +48,14 @@ const BusResult = () => {
   }, [from, to]);
 
   return (
-    <div className=" bg-gray-50 p-1  min-h-screen">
-      <div>transithub</div>
-
-      <div className="sticky top-0 bg-gradient-to-b from-gray-800 to-black rounded-lg shadow-xl border border-gray-700  p-1 ">
-        <div className="    p-1 ">
+    <div className=" bg-gray-100 p-1  min-h-screen">
+      {/* <div className=" sm:sticky top-0 bg-gradient-to-b from-gray-800 to-black rounded-lg shadow-xl border border-gray-700  p-1 "> */}
+      <div className="  top-0 bg-gradient-to-b border border-gray-700  p-1 ">
+        <div className="  p-1 ">
           <SearchBarForBus from={from} to={to} />
         </div>
         {/* <div className="bg-gradient-to-r from-blue-700 to-blue-500 text-white p-6 rounded-lg shadow-md"> */}
-        <div className="flex justify-end   text-white p-1  ">
+        <div className="flex justify-end p-1   ">
           <h2 className="text-2xl font-semibold uppercase">
             Bus from {from} to {to}
           </h2>

@@ -136,7 +136,7 @@ const SearchBarForBus = ({ from, to, busData }) => {
         {/* Search Button */}
         <div className="flex justify-center sm:w-[50%]">
           <button
-            className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-semibold rounded-lg sm:w-full w-[25%] py-3 px-6 shadow-lg hover:from-blue-700 hover:to-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-300"
+            className="bg-blue-500 text-white  hover:bg-blue-600 font-semibold rounded-lg sm:w-full w-[25%] py-3 px-6 "
             onClick={searchMore}
           >
             Search

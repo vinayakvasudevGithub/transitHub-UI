@@ -386,7 +386,7 @@ const ResultForBusBooking = ({ from, to, distance, busData }) => {
                   <div
                     className={`transition-all duration-200 ease-in-out overflow-hidden ${
                       activeBusId === bus._id ? " p-4" : "max-h-0 p-0"
-                    } bg-gray-100 rounded mt-4`}
+                    }  rounded mt-4`}
                     style={{
                       maxHeight: activeBusId === bus._id ? "" : "0",
                     }}
