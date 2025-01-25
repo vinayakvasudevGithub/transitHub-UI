@@ -111,6 +111,7 @@ import { GiSteeringWheel } from "react-icons/gi";
 import { MdOutlineEventSeat } from "react-icons/md";
 import { useSelector } from "react-redux";
 import seatImage from "../../../../../assets/seat.png";
+import seat2 from "../../../../../assets/seat2.png";
 
 const ForBookingSeats = ({ busData, handleSelectBus }) => {
   const [selectedSeat, setSelectedSeat] = useState(null);
@@ -194,7 +195,7 @@ const ForBookingSeats = ({ busData, handleSelectBus }) => {
                             }`}
                           >
                             <div className="">
-                              <img src={seatImage} alt="" className="w-6 h-6" />
+                              <img src={seat2} alt="" className="w-6 h-6" />
                               {/* <MdOutlineEventSeat className="w-6 h-6" /> */}
                               <p className="text-xs ml-1">{seat}</p>
                             </div>

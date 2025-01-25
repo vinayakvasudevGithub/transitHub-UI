@@ -50,20 +50,20 @@ const BusResult = () => {
   return (
     <div className=" bg-gray-100 p-1  min-h-screen">
       {/* <div className=" sm:sticky top-0 bg-gradient-to-b from-gray-800 to-black rounded-lg shadow-xl border border-gray-700  p-1 "> */}
-      <div className="  top-0 bg-gradient-to-b border border-gray-700  p-1 ">
-        <div className="  p-1 ">
+      <div className="  top-0 bg-gradient-to-b p-1 ">
+        <div className=" p-1 ">
           <SearchBarForBus from={from} to={to} />
         </div>
         {/* <div className="bg-gradient-to-r from-blue-700 to-blue-500 text-white p-6 rounded-lg shadow-md"> */}
-        <div className="flex justify-end p-1   ">
+        {/* <div className="flex justify-end p-1   ">
           <h2 className="text-2xl font-semibold uppercase">
             Bus from {from} to {to}
           </h2>
           --
           <p className="text-lg mt-1">Distance: {distance} km</p>
-        </div>
+        </div> */}
       </div>
-      <div className="grid lg:grid-cols-4 gap-1 mt-5  p-1">
+      <div className="grid lg:grid-cols-4 gap-3 p-1">
         <div className="col-span-1 hidden lg:block">
           {/* <div className="col-span-1 "> */}
           <LeftSideBarForBus
@@ -74,8 +74,8 @@ const BusResult = () => {
             busData={buses}
           />
         </div>
-        <div className="col-span-3 space-y-1">
-          <div className=" p-1 gap-1">
+        <div className="col-span-3">
+          <div className=" p-1">
             <SortBusData
               originalBuses={originalBuses}
               setBuses={setBuses}

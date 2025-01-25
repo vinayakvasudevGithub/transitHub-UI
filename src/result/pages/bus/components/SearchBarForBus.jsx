@@ -55,9 +55,9 @@ const SearchBarForBus = ({ from, to, busData }) => {
 
   return (
     <>
-      <div className=" col-span-6 grid grid-cols-1 sm:flex justify-between gap-1 p-3 w-full ">
+      <div className=" bg-white col-span-6 grid grid-cols-1 sm:flex justify-between gap-1 p-3 w-full ">
         {/* From Input */}
-        <div className="bg-yellow-200 col-span-3 p-1 w-full">
+        <div className="col-span-3 p-1 w-full">
           <h3 className="text-xs font-semibold text-gray-600 mb-1">From</h3>
           <div className="relative">
             <input
@@ -94,7 +94,7 @@ const SearchBarForBus = ({ from, to, busData }) => {
         </div>
 
         {/* To Input */}
-        <div className="bg-yellow-200 col-span-3 p-1 w-full">
+        <div className="col-span-3 p-1 w-full">
           <h3 className="text-xs font-semibold text-gray-600 mb-1">To</h3>
           <div className="relative">
             <input
@@ -125,7 +125,7 @@ const SearchBarForBus = ({ from, to, busData }) => {
         </div>
 
         {/* Date Input */}
-        <div className="bg-yellow-200 col-span-3 p-1 w-full">
+        <div className="col-span-3 p-1 w-full">
           <h3 className="text-xs font-semibold text-gray-600 mb-1">Date</h3>
           <input
             type="date"
