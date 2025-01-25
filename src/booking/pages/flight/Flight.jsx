@@ -412,7 +412,7 @@ const Flight = () => {
           </div>
 
           {/* Search Button */}
-          <div className="flex items-end">
+          <div className="flex justify-center items-center">
             <button
               type="submit"
               className="bg-blue-500 text-white p-2 rounded w-full hover:bg-blue-600"

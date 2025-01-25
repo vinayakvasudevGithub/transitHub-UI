@@ -411,7 +411,7 @@ const LeftSideBarForTrain = ({
   };
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-lg space-y-4">
+    <div className="p-4 bg-white  shadow-lg space-y-4">
       {/* Train Class Section */}
       <h1 className="text-lg font-bold text-gray-800">JOURNEY CLASS</h1>
       <div className="space-y-2">

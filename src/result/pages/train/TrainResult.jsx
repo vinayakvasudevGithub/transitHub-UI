@@ -27,9 +27,8 @@ const TrainResult = () => {
   }, []);
 
   return (
-    <div className=" bg-gray-50">
-      <div>transithub</div>
-      <div className="sticky flex justify-center top-0 bg-yellow-100 p-1 ">
+    <div className=" bg-gray-100 p-3">
+      <div className="sticky flex justify-center top-0   ">
         <SearchBarForTrain
           from={from}
           to={to}

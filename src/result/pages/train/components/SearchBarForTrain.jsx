@@ -1,129 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { TrainDetails } from "../../../../store/slice/TrainSlice";
-// import axios from "axios";
-
-// const SearchBarForTrain = ({ from, to, FirstTrainData }) => {
-//   const [InputBox, setInputBox] = useState();
-
-//   const [SearchFrom, SetSearchFrom] = useState(from || "");
-//   const [SearchTo, SetSearchTo] = useState(to || "");
-//   const dispatch = useDispatch();
-
-//   const searchMore = (e) => {
-//     e.preventDefault();
-//     dispatch(
-//       TrainDetails({
-//         from: SearchFrom,
-//         to: SearchTo,
-//       }),
-//       window.location.reload()
-//     );
-//   };
-
-//   //------------------------
-
-//   const [Inpsearch, SetInpsearch] = useState([]);
-
-//   useEffect(() => {
-//     axios
-//       .get("http://localhost:4001/train")
-//       .then((Response) => {
-//         SetInpsearch(Response.data);
-//       })
-//       .catch((err) => console.log("error on fetching train", err));
-//   }, []);
-
-//   const filteredStations = Inpsearch.flatMap((train) =>
-//     train.stations.filter((stations) =>
-//       stations.city.toLowerCase().includes(SearchFrom.toLowerCase())
-//     )
-//   );
-
-//   const filteredDestinations = Inpsearch.flatMap((train) =>
-//     train.stations.filter((stations) =>
-//       stations.city.toLowerCase().includes(SearchTo.toLowerCase())
-//     )
-//   );
-
-//   return (
-//     <div className="bg-white border-neutral-950 border-[1px]">
-//       <form action="" onSubmit={searchMore}>
-//         <div className="flex p-1 gap-4">
-//           <div>
-//             <p className="text-xs">form</p>
-//             <div>
-//               <input
-//                 type="text"
-//                 value={SearchFrom}
-//                 className="w-[10rem]"
-//                 onChange={(e) => SetSearchFrom(e.target.value)}
-//                 onClick={(e) => {
-//                   setInputBox("from");
-//                 }}
-//               />
-
-//               <div className=" relative bg-blue-400 ">
-//                 {InputBox === "from" && (
-//                   <div className="bg-red-500  overflow-y-scroll h-[10rem] absolute z-50 top-0 left-0 w-full">
-//                     {filteredStations.map((stations) => (
-//                       <p
-//                         key={stations._id}
-//                         onClick={(e) => {
-//                           SetSearchFrom(stations.city);
-//                           setInputBox("");
-//                         }}
-//                       >
-//                         {stations.city}
-//                       </p>
-//                     ))}
-//                   </div>
-//                 )}
-//               </div>
-//             </div>
-//           </div>
-//           <div>
-//             <p className="text-xs">To</p>
-//             <div>
-//               <input
-//                 type="text"
-//                 value={SearchTo}
-//                 className="w-[10rem]"
-//                 onChange={(e) => SetSearchTo(e.target.value)}
-//                 onClick={(e) => {
-//                   setInputBox("to");
-//                 }}
-//               />
-//               <div className="relative w-[10rem] bg-blue-400 ">
-//                 {InputBox === "to" && (
-//                   <div className="bg-red-500 mt-10 overflow-y-scroll h-[10rem] absolute z-50 top-0 left-0 w-full">
-//                     {filteredDestinations.map((stations) => (
-//                       <p
-//                         key={stations._id}
-//                         onClick={(e) => {
-//                           SetSearchTo(stations.city);
-//                           setInputBox("");
-//                         }}
-//                       >
-//                         {stations.city}
-//                       </p>
-//                     ))}
-//                   </div>
-//                 )}
-//               </div>
-//             </div>
-//           </div>
-//           <button className="bg-blue-500 text-white  rounded-md hover:bg-blue-600 transition-all">
-//             search
-//           </button>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default SearchBarForTrain;
-
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { TrainDetails } from "../../../../store/slice/TrainSlice";
@@ -176,9 +50,9 @@ const SearchBarForTrain = ({ from, to, FirstTrainData }) => {
   );
 
   return (
-    <div className="bg-white border-neutral-950 border-[1px] p-4 rounded-lg w-full  ">
+    <div className="bg-white border-neutral-950  p-4 w-full  ">
       <form action="" onSubmit={searchMore}>
-        <div className=" p-1 gap-6 grid sm:grid-cols-5 ">
+        <div className=" p-1 gap-5 grid sm:grid-cols-5 ">
           {/* From Field */}
           <div className="flex flex-col ">
             <label className="text-xs text-gray-600 mb-1">From</label>
@@ -253,7 +127,7 @@ const SearchBarForTrain = ({ from, to, FirstTrainData }) => {
           </div>
 
           {/* Class Field */}
-          <div className="flex flex-col ">
+          <div className="flex justify-center items-center flex-col ">
             <label className="text-xs text-gray-600 mb-1">Class</label>
             <select
               value={selectedClass}
@@ -269,8 +143,8 @@ const SearchBarForTrain = ({ from, to, FirstTrainData }) => {
           </div>
 
           {/* Submit Button */}
-          <div className="flex items-end">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all">
+          <div className="flex justify-center items-end ">
+            <button className="bg-blue-500 text-white px-4 py-[10px] rounded-md hover:bg-blue-600 transition-all">
               Search
             </button>
           </div>

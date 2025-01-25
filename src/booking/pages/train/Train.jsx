@@ -65,9 +65,9 @@ const Train = () => {
   };
 
   return (
-    <div className="bg-white shadow-custom-shadow p-4">
+    <div className="bg-gray-200  p-4 rounded-lg">
       <form onSubmit={submit}>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           {/* From Station */}
           <div>
             <h3 className="text-xs font-semibold mb-1">From</h3>

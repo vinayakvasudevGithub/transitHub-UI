@@ -118,6 +118,7 @@ import map from "../assets/map.png";
 import sand from "../assets/sand.jpg";
 import alaska from "../assets/alaska.jpg";
 import sky from "../assets/sky.jpg";
+import aircraft from "../assets/aircraft.png";
 
 const PageCombine = () => {
   const [select, setSelect] = useState("");
@@ -148,7 +149,7 @@ const PageCombine = () => {
           backgroundPosition: "center",
         }}
       >
-        <div className=" row-span-1 hidden md:block">h</div>
+        <div className=" row-span-1 hidden md:block"></div>
 
         <div
           className=" row-span-2  flex justify-center items-center"
@@ -158,8 +159,13 @@ const PageCombine = () => {
           //   backgroundPosition: "center",
           // }}
         >
+          {/* <div
+            className="border-[10px] border-solid"
+            style={{ borderColor: "var(--clr)" }}
+          ></div> */}
+
           <div
-            className="w-full md:w-[80%]  bg-blue-500 bg-opacity-20  rounded-lg p-6 shadow-lg"
+            className="w-full md:w-[80%]   bg-white bg-opacity-20  rounded-lg p-6 shadow-lg"
             // style={{
             //   backgroundImage: `url(${plane})`,
             //   backgroundSize: "cover",

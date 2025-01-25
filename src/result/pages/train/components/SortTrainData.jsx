@@ -285,7 +285,7 @@ const SortTrainData = ({
   };
 
   return (
-    <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
+    <div className="flex items-center justify-between p-4 bg-white  shadow-md">
       {/* Sort By Title */}
       <div className="flex gap-2">
         <h1 className="text-lg font-semibold text-gray-700 mr-4">SORT BY:</h1>
