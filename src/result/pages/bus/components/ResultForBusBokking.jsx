@@ -3,6 +3,7 @@ import ForBookingSeats from "./SelectSeat/ForBookingSeats";
 import { BusBookingDetails } from "../../../../store/BookingSlice/BusBookingSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import busImg from "../../../../assets/bus.png";
 
 const ResultForBusBooking = ({ from, to, distance, busData }) => {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ const ResultForBusBooking = ({ from, to, distance, busData }) => {
   };
 
   return (
-    <div className="p-1">
+    <div className="">
       {/* Header */}
 
       {/* Bus Data */}
@@ -78,12 +79,15 @@ const ResultForBusBooking = ({ from, to, distance, busData }) => {
           return (
             <div key={bus._id} className="p-1 ">
               {/* Bus Info */}
-              <div className="p-2 bg-white  shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="p-2 bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300">
                 <div className=" sm:grid grid-cols-5  ">
                   {/* <div className=" bg-red-300 p-2  col-span-4 sm:grid grid-cols-4 border-b    "> */}
                   <div className="col-span-4 border-r  ">
-                    <div className="sm:grid grid-cols-4 p-1 c">
-                      <div className=" flex justify-between ">
+                    <div className="sm:grid grid-cols-4 p-1 ">
+                      <div className=" flex gap-3 ">
+                        <div className="flex justify-center items-center">
+                          <img src={busImg} className="w-13 h-10" alt="" />
+                        </div>
                         <div>
                           <h3 className="text-lg font-bold text-gray-800 ">
                             {bus.busname}
@@ -160,7 +164,7 @@ const ResultForBusBooking = ({ from, to, distance, busData }) => {
                         })}
                       </div>
                       <div className="  flex justify-center items-center  ">
-                        <div className="grid bg-gray-100 rounded-lg w-full  ">
+                        <div className="grid bg-gray-100 rounded-lg w-full p-1  ">
                           <button
                             onClick={() =>
                               setActiveBusId((prevId) =>

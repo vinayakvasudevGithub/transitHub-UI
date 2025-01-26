@@ -14,15 +14,15 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
   };
 
   return (
-    <div className=" p-2 ">
-      <p>
+    <div className="space-y-2">
+      {/* <p>
         Flight From {FlightFrom} to {FlightTo}
-      </p>
+      </p> */}
 
       {FlightData.map((data) => (
-        <div key={data._id} className="p-1    ">
-          <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 grid p-1">
-            <div className=" sm:grid grid-cols-5  gap-1 p-1  ">
+        <div key={data._id} className="">
+          <div className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 grid ">
+            <div className="sm:grid grid-cols-5  gap-1 p-1 text-gray-600  ">
               <div className=" col-span-1 flex  items-center   p-1 sm:flex justify-between  ">
                 <div className=" flex gap-2">
                   <img
@@ -52,18 +52,25 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
                 </div>
               </div>
 
-              <div className=" flex sm:justify-between space-x-7 col-span-3  p-1 gap-1">
+              <div className="text-sm flex sm:justify-between space-x-7 col-span-3  p-1 gap-1">
                 {data.airport.map((airport, index) => (
                   <div
                     key={index}
-                    className="col-span-4 flex justify-end items-center"
+                    className="col-span-4 flex justify-end text-sm items-center"
                   >
-                    <div className="col-span-4 text-center">
-                      <h4 className="text-lg font-semibold text-gray-600">
-                        Departure
-                      </h4>
-                      <p className="text-xl font-bold text-gray-800">
+                    <div className="col-span-4 ">
+                      <div className="flex items-center">
+                        <p className="font-semibold text-lg text-gray-800">
+                          {airport?.departureTime || "N/A"}
+                        </p>
+                        -<h4 className="font-semibold text-gray-600">Depart</h4>
+                      </div>
+
+                      {/* <p className="text-xl font-bold text-gray-800">
                         {airport?.departureTime || "N/A"}
+                      </p> */}
+                      <p className="font-semibold text-gray-800">
+                        {airport?.name}
                       </p>
                       <p className="text-sm text-gray-500">{FlightFrom}</p>
                     </div>
@@ -76,40 +83,56 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
                 {data.destination.map((destination, index) => (
                   <div key={index} className="l">
                     <div className="col-span-4 p-2 flex justify-start">
-                      <div className="col-span-4 text-center">
-                        <h4 className="text-lg font-semibold text-gray-600">
-                          Arrival
-                        </h4>
-                        <p className="text-xl font-bold text-gray-800">
-                          {destination?.arrivalTime || "N/A"}
+                      <div className="col-span-4">
+                        <div className="flex items-center">
+                          <p className="font-semibold text-lg text-gray-800">
+                            {destination?.arrivalTime || "N/A"}
+                          </p>
+                          -<h4 className="">Arrive</h4>
+                        </div>
+
+                        <p className="font-semibold text-gray-800">
+                          {destination?.name}
                         </p>
-                        <p className="text-sm text-gray-500">{FlightTo}</p>
+                        <p className=" text-gray-500">{FlightTo}</p>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
-              {data.prices.map((price) => (
-                <div key={price._id} className="p-1 col-span-1 hidden sm:block">
-                  <div className="flex justify-end">
-                    <h2 className="text-xs font-semibold text-gray-600">
-                      Starts at
-                    </h2>
+              <div className="col-span-1">
+                {data.prices.map((price) => (
+                  <div key={price._id} className="p-1  hidden sm:block">
+                    <div className="flex justify-end">
+                      <h2 className="text-xs font-semibold text-gray-600">
+                        Starts at
+                      </h2>
+                    </div>
+                    <div className="flex justify-end">
+                      <p className="text-xl font-semibold">₹{price.ecconomy}</p>
+                    </div>
                   </div>
-                  <div className="flex justify-end">
-                    <p className="text-xl font-semibold">₹{price.ecconomy}</p>
+                ))}
+                <div>
+                  <div className="  flex justify-end items-center ">
+                    <button
+                      onClick={(e) => handleNavigateToBookingPage(data._id)}
+                      className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-lg "
+                    >
+                      book
+                    </button>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
-            <div className="  flex justify-end items-center ">
+            {/* <div className="  flex justify-end items-center ">
               <button
                 onClick={(e) => handleNavigateToBookingPage(data._id)}
-                className="shining-button bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-transform transform hover:scale-110 focus:outline-none "
+                className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-lg "
               >
                 book
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       ))}

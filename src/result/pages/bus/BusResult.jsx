@@ -48,9 +48,9 @@ const BusResult = () => {
   }, [from, to]);
 
   return (
-    <div className=" bg-gray-100 p-1  min-h-screen">
+    <div className=" bg-gray-200 p-4  min-h-screen">
       {/* <div className=" sm:sticky top-0 bg-gradient-to-b from-gray-800 to-black rounded-lg shadow-xl border border-gray-700  p-1 "> */}
-      <div className="  top-0 bg-gradient-to-b p-1 ">
+      <div className="  top-0 bg-gradient-to-b  ">
         <div className=" p-1 ">
           <SearchBarForBus from={from} to={to} />
         </div>
@@ -63,8 +63,8 @@ const BusResult = () => {
           <p className="text-lg mt-1">Distance: {distance} km</p>
         </div> */}
       </div>
-      <div className="grid lg:grid-cols-4 gap-3 p-1">
-        <div className="col-span-1 hidden lg:block">
+      <div className="grid lg:grid-cols-4 gap-3">
+        <div className="col-span-1 hidden lg:block p-1">
           {/* <div className="col-span-1 "> */}
           <LeftSideBarForBus
             from={from}
@@ -75,7 +75,7 @@ const BusResult = () => {
           />
         </div>
         <div className="col-span-3">
-          <div className=" p-1">
+          <div className="p-1">
             <SortBusData
               originalBuses={originalBuses}
               setBuses={setBuses}

@@ -198,7 +198,7 @@ const LeftSideBarForBus = ({ from, to, originalBuses, setBuses }) => {
   };
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-lg space-y-4">
+    <div className="p-2 bg-white  shadow-lg space-y-4">
       {/* Bus Type Section */}
       <h1 className="text-lg font-bold text-gray-800">BUS TYPE</h1>
       <div className="p-2 flex justify-between items-center border rounded-lg hover:bg-gray-50">
