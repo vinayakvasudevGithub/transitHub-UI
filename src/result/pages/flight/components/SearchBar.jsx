@@ -60,7 +60,7 @@ const SearchBar = ({ FlightFrom, FlightTo, FirstFlightData }) => {
   const [destinationCityName, setdestinationCityName] = useState("");
 
   return (
-    <div className="bg-white p-3 border w-full border-neutral-950 rounded-md shadow-sm">
+    <div className="bg-white p-3 w-full shadow-sm">
       {/* <form onSubmit={searchMore} className=" gap-4 bg-red-100 p-1"> */}
       {FirstFlightData.map((data) => (
         <div className="sm:grid grid-cols-7 gap-1" key={data._id}>
@@ -173,7 +173,7 @@ const SearchBar = ({ FlightFrom, FlightTo, FirstFlightData }) => {
           {/* Submit Button */}
           <div className=" flex justify-center">
             <button
-              className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-semibold rounded-lg sm:w-full w-[25%] py-3 px-6 shadow-lg hover:from-blue-700 hover:to-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-300"
+              className="bg-blue-700 hover:bg-blue-800 p-3 text-white w-full rounded-lg"
               onClick={searchMore}
             >
               Search

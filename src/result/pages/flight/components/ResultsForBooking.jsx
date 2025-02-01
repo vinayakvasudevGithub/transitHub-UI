@@ -117,9 +117,9 @@ const ResultsForBooking = ({ FlightFrom, FlightTo, FlightData }) => {
                   <div className="  flex justify-end items-center ">
                     <button
                       onClick={(e) => handleNavigateToBookingPage(data._id)}
-                      className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-lg "
+                      className="w-full sm:w-[70%] bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-lg "
                     >
-                      book
+                      Book
                     </button>
                   </div>
                 </div>
