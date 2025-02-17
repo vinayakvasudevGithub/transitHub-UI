@@ -1,10 +1,19 @@
+// import React from "react";
+
+// const TrainHomeSearch = () => {
+//   return <div>TrainHomeSearch</div>;
+// };
+
+// export default TrainHomeSearch;
+
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { TrainDetails } from "../../../store/slice/TrainSlice";
+// import { TrainDetails } from "../../../store/slice/TrainSlice";
+import { TrainDetails } from "../../store/slice/TrainSlice";
 
-const Train = () => {
+const TrainHomeSearch = () => {
   const [from, setFrom] = useState("Kannur");
   const [to, setTo] = useState("Kozhikode");
   const [date, setDate] = useState(""); // New date state
@@ -199,4 +208,4 @@ const Train = () => {
   );
 };
 
-export default Train;
+export default TrainHomeSearch;

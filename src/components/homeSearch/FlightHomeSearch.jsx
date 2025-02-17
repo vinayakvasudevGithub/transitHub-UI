@@ -1,3 +1,11 @@
+// import React from "react";
+
+// const FlightHomeSearch = () => {
+//   return <div>FlightHomeSearch</div>;
+// };
+
+// export default FlightHomeSearch;
+
 // import React, { useEffect, useState } from "react";
 // import { useDispatch } from "react-redux";
 // import { useNavigate } from "react-router-dom";
@@ -206,12 +214,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Flightdetails } from "../../../store/slice/FlightSlice";
+// import { Flightdetails } from "../../../store/slice/FlightSlice";
+import { Flightdetails } from "../../store/slice/FlightSlice";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const Flight = () => {
+const FlightHomeSearch = () => {
   const [from, setFrom] = useState("Mumbai");
   const [to, setTo] = useState("Chennai");
   const [travelDate, setTravelDate] = useState(new Date());
@@ -426,4 +435,4 @@ const Flight = () => {
   );
 };
 
-export default Flight;
+export default FlightHomeSearch;

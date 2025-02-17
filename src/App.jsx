@@ -1,5 +1,5 @@
 import { Routes, Route, Link } from "react-router-dom";
-import PageCombine from "./booking/PageCombine";
+// import PageCombine from "./booking/PageCombine";
 import ResultCombine from "./result/ResultCombine";
 // import Menu from "./AddNew/AddNewApiFromClients";
 import ClientsToUpload from "./AddNew/ClientsToUpload";
@@ -8,6 +8,7 @@ import BookingPagesCompined from "./toBook/BookingPagesCompined";
 import "./App.css";
 import { useState } from "react";
 import PayMentPageCombined from "./payment/PayMentPageCombined";
+import HomePage from "./pages/HomePage";
 
 function App() {
   const [ShowAddNew, SetShowAddNew] = useState(false);
@@ -34,9 +35,11 @@ function App() {
         </button>
       </div> */}
 
-      {ShowAddNew && <OptionsToUpload />}
+      {/* {ShowAddNew && <OptionsToUpload />} */}
+      {/* <OptionsToUpload /> */}
       <Routes>
-        <Route path="/*" element={<PageCombine />} />
+        <Route path="/*" element={<HomePage />} />
+        {/* <Route path="/*" element={<PageCombine />} /> */}
         <Route path="/result/*" element={<ResultCombine />} />
         <Route path="/upload/*" element={<ClientsToUpload />} />
         <Route path="/booking/*" element={<BookingPagesCompined />} />
