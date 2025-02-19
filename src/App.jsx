@@ -1,5 +1,4 @@
 import { Routes, Route, Link } from "react-router-dom";
-// import PageCombine from "./booking/PageCombine";
 import ResultCombine from "./result/ResultCombine";
 // import Menu from "./AddNew/AddNewApiFromClients";
 import ClientsToUpload from "./AddNew/ClientsToUpload";
@@ -9,6 +8,8 @@ import "./App.css";
 import { useState } from "react";
 import PayMentPageCombined from "./payment/PayMentPageCombined";
 import HomePage from "./pages/HomePage";
+import SearchResults from "./pages/SearchResults";
+import BookingPage from "./pages/BookingPage";
 
 function App() {
   const [ShowAddNew, SetShowAddNew] = useState(false);
@@ -37,12 +38,14 @@ function App() {
 
       {/* {ShowAddNew && <OptionsToUpload />} */}
       {/* <OptionsToUpload /> */}
+
       <Routes>
         <Route path="/*" element={<HomePage />} />
-        {/* <Route path="/*" element={<PageCombine />} /> */}
-        <Route path="/result/*" element={<ResultCombine />} />
+        {/* <Route path="/result/*" element={<ResultCombine />} /> */}
+        <Route path="/result/*" element={<SearchResults />} />
         <Route path="/upload/*" element={<ClientsToUpload />} />
-        <Route path="/booking/*" element={<BookingPagesCompined />} />
+        {/* <Route path="/booking/*" element={<BookingPagesCompined />} /> */}
+        <Route path="/booking/*" element={<BookingPage />} />
         <Route path="/payment/*" element={<PayMentPageCombined />} />
       </Routes>
     </div>
