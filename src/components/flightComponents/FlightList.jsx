@@ -1,11 +1,3 @@
-// import React from "react";
-
-// const FlightList = () => {
-//   return <div>FlightList</div>;
-// };
-
-// export default FlightList;
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { IoIosAirplane } from "react-icons/io";
