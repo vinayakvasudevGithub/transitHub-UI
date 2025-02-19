@@ -1,9 +1,9 @@
 import { Routes, Route, Link } from "react-router-dom";
-import ResultCombine from "./result/ResultCombine";
+// import ResultCombine from "./result/ResultCombine";
 // import Menu from "./AddNew/AddNewApiFromClients";
 import ClientsToUpload from "./AddNew/ClientsToUpload";
 import OptionsToUpload from "./AddNew/OptionsToUpload";
-import BookingPagesCompined from "./toBook/BookingPagesCompined";
+// import BookingPagesCompined from "./toBook/BookingPagesCompined";
 import "./App.css";
 import { useState } from "react";
 import PayMentPageCombined from "./payment/PayMentPageCombined";
@@ -41,10 +41,8 @@ function App() {
 
       <Routes>
         <Route path="/*" element={<HomePage />} />
-        {/* <Route path="/result/*" element={<ResultCombine />} /> */}
         <Route path="/result/*" element={<SearchResults />} />
         <Route path="/upload/*" element={<ClientsToUpload />} />
-        {/* <Route path="/booking/*" element={<BookingPagesCompined />} /> */}
         <Route path="/booking/*" element={<BookingPage />} />
         <Route path="/payment/*" element={<PayMentPageCombined />} />
       </Routes>
