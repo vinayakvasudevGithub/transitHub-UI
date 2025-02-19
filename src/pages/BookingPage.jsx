@@ -4,6 +4,7 @@ import TrainBookingPage from "../components/bookingForm/TrainBookingPage";
 const BookingPage = () => {
   return (
     <div>
+      bookkkkk
       <TrainBookingPage />
     </div>
   );

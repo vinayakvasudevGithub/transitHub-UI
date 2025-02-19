@@ -1,21 +1,10 @@
-// import React from "react";
-
-// const TrainResults = () => {
-//   return <div>TrainResults</div>;
-// };
-
-// export default TrainResults;
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import TrainList from "./resultPageComponents/reasultList/TrainList";
-import TrainFilterBar from "./resultPageComponents/filterSideBar/TrainFilterBar";
-import TrainSearchBar from "./resultPageComponents/searchBar/TrainSearchBar";
-import TrainSortingBar from "./resultPageComponents/sortingBar/TrainSortingBar";
-// import ResultForTrainBooking from "./components/ResultForTrainBooking";
-// import LeftSideBarForTrain from "./components/LeftSideBarForTrain";
-// import SearchBarForTrain from "./components/SearchBarForTrain";
-// import SortTrainData from "./components/SortTrainData";
+import TrainSearchBar from "./trainComponents/TrainSearchBar";
+import TrainFilterBar from "./trainComponents/TrainFilterBar";
+import TrainList from "./trainComponents/TrainList";
+import TrainSortingBar from "./trainComponents/TrainSortingBar";
 
 const TrainResults = () => {
   const searchKey = useSelector((State) => State.train.trains);

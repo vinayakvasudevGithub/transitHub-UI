@@ -9,7 +9,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 // import { TrainDetails } from "../../../../store/slice/TrainSlice";
-import { TrainDetails } from "../../../store/slice/TrainSlice";
+// import { TrainDetails } from "../../../store/slice/TrainSlice";
+import { TrainDetails } from "../../store/slice/TrainSlice";
 import axios from "axios";
 
 const TrainSearchBar = ({ from, to, FirstTrainData }) => {
