@@ -4,10 +4,12 @@ import sand from "../assets/sand.jpg";
 import FlightHomeSearch from "../components/homeSearch/FlightHomeSearch";
 import BusSearchHome from "../components/homeSearch/BusSearchHome";
 import TrainHomeSearch from "../components/homeSearch/TrainHomeSearch";
+// import { getAllBuses } from "../api/busApi";
 
 const HomePage = () => {
   const [select, setSelect] = useState("");
-
+  // const apiKey = import.meta.env.VITE_BASE_URL;
+  // console.log(apiKey);
   console.log(select);
   return (
     <div className="relative grid grid-rows-10   bg-gray-50">
@@ -110,3 +112,39 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+// import React, { useEffect, useState } from "react";
+// import { getAllBuses } from "../api/busApi";
+
+// const HomePage = () => {
+//   const [buses, setBuses] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   //   const baseURL = import.meta.env.VITE_BASE_URL;
+//   //   console.log(baseURL);
+//   useEffect(() => {
+//     const fetchBuses = async () => {
+//       try {
+//         const data = await getAllBuses();
+//         setBuses(data);
+//       } catch (error) {
+//         console.error("Failed to fetch buses.");
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+//     fetchBuses();
+//   }, []);
+
+//   if (loading) return <p>Loading buses....</p>;
+//   if (!buses.length) return <p>No buses available....</p>;
+//   // console.log(buses);
+//   return (
+//     <div>
+//       {buses.map((bus) => {
+//         return <div key={bus._id}>{bus.busname}</div>;
+//       })}
+//     </div>
+//   );
+// };
+
+// export default HomePage;
