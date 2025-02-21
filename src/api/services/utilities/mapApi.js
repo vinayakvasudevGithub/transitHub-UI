@@ -1,5 +1,6 @@
 import axios from "axios";
-import handleApiError from "./globalErrorHandler";
+// import handleApiError from "./globalErrorHandler";
+import handleApiError from "../../config/globalErrorHandler";
 
 const apiKey = import.meta.env.VITE_API_KEY_GOOGLE_MAP;
 

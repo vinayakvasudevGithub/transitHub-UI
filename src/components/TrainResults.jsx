@@ -4,7 +4,8 @@ import TrainSearchBar from "./trainComponents/TrainSearchBar";
 import TrainFilterBar from "./trainComponents/TrainFilterBar";
 import TrainList from "./trainComponents/TrainList";
 import TrainSortingBar from "./trainComponents/TrainSortingBar";
-import { searchTrains } from "../api/trainApi";
+// import { searchTrains } from "../api/trainApi";
+import { searchTrains } from "../api/services/transport/trainApi";
 
 const TrainResults = () => {
   const searchKey = useSelector((State) => State.train.trains);

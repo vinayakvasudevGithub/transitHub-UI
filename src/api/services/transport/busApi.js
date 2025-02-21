@@ -1,6 +1,9 @@
-import axiosInstance from "./axiosInstance";
-import { API_ENDPOINTS } from "./apiConfig";
-import handleApiError from "./globalErrorHandler";
+// import axiosInstance from "./axiosInstance";
+import axiosInstance from "../../config/axiosInstance";
+// import { API_ENDPOINTS } from "./apiConfig";
+import { API_ENDPOINTS } from "../../config/apiConfig";
+// import handleApiError from "./globalErrorHandler";
+import handleApiError from "../../config/globalErrorHandler";
 
 export const getAllBuses = async () => {
   try {

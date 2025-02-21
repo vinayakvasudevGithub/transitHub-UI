@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 // import { TrainDetails } from "../../../store/slice/TrainSlice";
 import { TrainDetails } from "../../store/slice/TrainSlice";
+import { getAllTrains } from "../../api/services/transport/trainApi";
 
 const TrainHomeSearch = () => {
   const [from, setFrom] = useState("Kannur");
@@ -27,15 +28,24 @@ const TrainHomeSearch = () => {
 
   // Fetch train data from the API
   useEffect(() => {
-    axios
-      .get("http://localhost:2001/train")
-      .then((response) => {
-        setTrainData(response.data);
-      })
-      .catch(() => {
+    const fetchAllTrains = async () => {
+      try {
+        const data = await getAllTrains();
+        setTrainData(data);
+      } catch (error) {
         console.error("Error fetching train data");
-        alert("Failed to fetch train data. Please try again later.");
-      });
+      }
+    };
+    fetchAllTrains();
+    // axios
+    //   .get("http://localhost:2001/train")
+    //   .then((response) => {
+    //     setTrainData(response.data);
+    //   })
+    //   .catch(() => {
+    //     console.error("Error fetching train data");
+    //     alert("Failed to fetch train data. Please try again later.");
+    //   });
   }, []);
 
   // Filter stations based on user input

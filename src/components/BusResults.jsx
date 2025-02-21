@@ -1,12 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { searchBuses } from "../api/busApi";
+import { busRouteMap } from "../api/services/utilities/mapApi";
+// import { searchBuses } from "../api/busApi";
+import { searchBuses } from "../api/services/transport/busApi";
 import BusFliterBar from "./busComponents/BusFliterBar";
 import BusList from "./busComponents/BusList";
 import BusSortingBar from "./busComponents/BusSortingBar";
 import BusSearchBar from "./busComponents/BusSearchBar";
-import { busRouteMap } from "../api/mapApi";
+// import { busRouteMap } from "../api/mapApi";
+// import { busRouteMap } from "../api/mapApi";
+// import { busRouteMap } from "../api/services/utilities/mapApi";
 
 const BusResults = () => {
   const searchKey = useSelector((state) => state.bus.buses);

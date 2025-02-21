@@ -1,6 +1,6 @@
-import axiosInstance from "./axiosInstance";
-import { API_ENDPOINTS } from "./apiConfig";
-import handleApiError from "./globalErrorHandler";
+import axiosInstance from "../../config/axiosInstance";
+import { API_ENDPOINTS } from "../../config/apiConfig";
+import handleApiError from "../../config/globalErrorHandler";
 
 export const getAllTrains = async () => {
   try {

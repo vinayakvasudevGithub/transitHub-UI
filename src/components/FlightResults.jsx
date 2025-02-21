@@ -4,7 +4,8 @@ import FlightList from "./flightComponents/FlightList";
 import FlightSearchBar from "./flightComponents/FlightSearchBar";
 import FlightFilterBar from "./flightComponents/FlightFilterBar";
 import FlightSortingBar from "./flightComponents/FlightSortingBar";
-import { searchFlights } from "../api/flightApi";
+// import { searchFlights } from "../api/flightApi";
+import { searchFlights } from "../api/services/transport/flightApi";
 
 const FlightResults = () => {
   const searchKey = useSelector((State) => State.flight.flights);

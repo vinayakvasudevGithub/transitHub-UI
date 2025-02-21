@@ -5,7 +5,8 @@ import { BusDetails } from "../../store/slice/BusSlice";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { getAllBuses } from "../../api/busApi";
+// import { getAllBuses } from "../../api/busApi";
+import { getAllBuses } from "../../api/services/transport/busApi";
 
 const BusSearchHome = () => {
   const [from, setFrom] = useState("Kannur");
@@ -37,10 +38,21 @@ const BusSearchHome = () => {
         setInpSearch(data);
       } catch (error) {
         console.error("Error fetching buses");
-        alert("Failed to fetch bus data. Please try again later.");
+        // alert("Failed to fetch bus data. Please try again later.");
       }
     };
+
     fetchAllBuses();
+
+    // axios
+    //   .get("http://localhost:2001/bus")
+    //   .then((response) => {
+    //     setInpSearch(response.data);
+    //   })
+    //   .catch(() => {
+    //     console.error("Error fetching buses");
+    //     alert("Failed to fetch bus data. Please try again later.");
+    //   });
   }, []);
 
   const filteredBusStops = [
