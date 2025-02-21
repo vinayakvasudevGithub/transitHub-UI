@@ -219,6 +219,7 @@ import { Flightdetails } from "../../store/slice/FlightSlice";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+// import { getAllBuses } from "../../api/busApi";
 
 const FlightHomeSearch = () => {
   const [from, setFrom] = useState("Mumbai");
@@ -249,14 +250,20 @@ const FlightHomeSearch = () => {
   const handleToChange = debounce((value) => setTo(value), 0);
 
   useEffect(() => {
+    // try {
+    //   const data = getAllBuses()
+    //   return data
+    // } catch (error) {
+
+    // }
     axios
-      .get("http://localhost:4001/flight/")
+      .get("http://localhost:2001/flight/")
       .then((response) => {
         setInpSearch(response.data);
       })
       .catch(() => {
         console.error("Error fetching flights");
-        alert("Failed to fetch flight data. Please try again later.");
+        alert("Failed to fetch flightddd data. Please try again later.");
       });
   }, []);
 

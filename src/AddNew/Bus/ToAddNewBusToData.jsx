@@ -135,7 +135,7 @@ const ToAddNewBusToData = () => {
         window.location.reload(); // Reload the page after successful submission
       } catch (error) {
         console.log("There was an error posting this data", error);
-        SetMessage("Failed to add bus data");
+        SetMessage("Failed to add bushhh data");
       }
     } else {
       SetMessage("Please fill out all fields before submitting.");

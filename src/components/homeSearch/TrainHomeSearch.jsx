@@ -28,7 +28,7 @@ const TrainHomeSearch = () => {
   // Fetch train data from the API
   useEffect(() => {
     axios
-      .get("http://localhost:4001/train")
+      .get("http://localhost:2001/train")
       .then((response) => {
         setTrainData(response.data);
       })
