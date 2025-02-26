@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import TrainSearchBar from "./trainComponents/TrainSearchBar";
-import TrainFilterBar from "./trainComponents/TrainFilterBar";
-import TrainList from "./trainComponents/TrainList";
-import TrainSortingBar from "./trainComponents/TrainSortingBar";
+import TrainFilterBar from "./transport/trainComponents/TrainFilterBar";
+import TrainList from "./transport/trainComponents/TrainList";
+import TrainSearchBar from "./transport/trainComponents/TrainSearchBar";
+import TrainSortingBar from "./transport/trainComponents/TrainSortingBar";
+// import TrainSearchBar from "./trainComponents/TrainSearchBar";
+// import TrainFilterBar from "./trainComponents/TrainFilterBar";
+// import TrainList from "./trainComponents/TrainList";
+// import TrainSortingBar from "./trainComponents/TrainSortingBar";
 // import { searchTrains } from "../api/trainApi";
 import { searchTrains } from "../api/services/transport/trainApi";
 

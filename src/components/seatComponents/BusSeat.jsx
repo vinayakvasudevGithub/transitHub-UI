@@ -5,6 +5,7 @@ import { MdOutlineEventSeat } from "react-icons/md";
 import { useSelector } from "react-redux";
 // import seatImage from "../../../assets/seat.png";
 import seat2 from "../../assets/seat2.png";
+import { bookedBuses } from "../../api/services/transport/busApi";
 
 const BusSeat = ({ busData, handleSelectBus }) => {
   const [selectedSeat, setSelectedSeat] = useState(null);
@@ -17,13 +18,22 @@ const BusSeat = ({ busData, handleSelectBus }) => {
   useEffect(() => {
     const fetchBookedDetails = async () => {
       try {
-        const response = await axios.get("http://localhost:4001/busticket");
-        setBookedDetails(response.data);
+        const data = await bookedBuses();
+        setBookedDetails(data);
       } catch (err) {
         console.error("Error fetching booked details:", err);
         setError("Failed to fetch booked details. Please try again later.");
       }
     };
+    // const fetchBookedDetails = async () => {
+    //   try {
+    //     const response = await axios.get("http://localhost:2001/busticket");
+    //     setBookedDetails(response.data);
+    //   } catch (err) {
+    //     console.error("Error fetching booked details:", err);
+    //     setError("Failed to fetch booked details. Please try again later.");
+    //   }
+    // };
 
     fetchBookedDetails();
   }, []);

@@ -21,3 +21,26 @@ export const searchTrains = async (from, to) => {
     return handleApiError(error);
   }
 };
+
+export const bookedTrains = async () => {
+  try {
+    const response = await axiosInstance.get(
+      API_ENDPOINTS.TRAIN.GET_BOOKED_TRAINS
+    );
+    return response.data;
+  } catch (error) {
+    return handleApiError(error);
+  }
+};
+
+export const bookTrainTicket = async (FormData) => {
+  try {
+    const response = await axiosInstance.post(
+      API_ENDPOINTS.TRAIN.BOOK_TRAIN_TICKET,
+      FormData
+    );
+    return response.data;
+  } catch (error) {
+    return handleApiError(error);
+  }
+};

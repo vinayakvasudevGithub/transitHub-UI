@@ -10,8 +10,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 // import { TrainDetails } from "../../../../store/slice/TrainSlice";
 // import { TrainDetails } from "../../../store/slice/TrainSlice";
-import { TrainDetails } from "../../store/slice/TrainSlice";
+import { TrainDetails } from "../../../store/slice/TrainSlice";
+// import { TrainSlice } from "../../../store/slice/TrainSlice";
 import axios from "axios";
+import { getAllTrains } from "../../../api/services/transport/trainApi";
 
 const TrainSearchBar = ({ from, to, FirstTrainData }) => {
   const [InputBox, setInputBox] = useState();
@@ -39,13 +41,25 @@ const TrainSearchBar = ({ from, to, FirstTrainData }) => {
   const [Inpsearch, SetInpsearch] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4001/train")
-      .then((Response) => {
-        SetInpsearch(Response.data);
-      })
-      .catch((err) => console.log("error on fetching train", err));
+    const fetchAllTrains = async () => {
+      try {
+        const data = await getAllTrains();
+        SetInpsearch(data);
+      } catch (error) {
+        console.error("Error fetching train data");
+      }
+    };
+    fetchAllTrains();
   }, []);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:4001/train")
+  //     .then((Response) => {
+  //       SetInpsearch(Response.data);
+  //     })
+  //     .catch((err) => console.log("error on fetching train", err));
+  // }, []);
 
   const filteredStations = Inpsearch.flatMap((train) =>
     train.stations.filter((stations) =>

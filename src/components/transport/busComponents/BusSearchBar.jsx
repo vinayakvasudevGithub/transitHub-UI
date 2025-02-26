@@ -8,9 +8,12 @@
 
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { BusDetails } from "../../store/slice/BusSlice";
+// import { BusDetails } from "../../store/slice/BusSlice";
+import { BusDetails } from "../../../store/slice/BusSlice";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+// import { getAllBuses } from "../../api/services/transport/busApi";
+import { getAllBuses } from "../../../api/services/transport/busApi";
 import { PiArrowsLeftRightLight } from "react-icons/pi";
 import { HiMiniArrowsUpDown } from "react-icons/hi2";
 
@@ -36,13 +39,37 @@ const BusSearchBar = ({ from, to, busData }) => {
   const [Inpsearch, setInpsearch] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4001/bus")
-      .then((Response) => {
-        setInpsearch(Response.data);
-      })
-      .catch((err) => console.log("error fetching buses", err));
+    const fetchAllBuses = async () => {
+      try {
+        const data = await getAllBuses();
+        setInpsearch(data);
+      } catch (error) {
+        console.error("Error fetching buses");
+        // alert("Failed to fetch bus data. Please try again later.");
+      }
+    };
+
+    fetchAllBuses();
+
+    // axios
+    //   .get("http://localhost:2001/bus")
+    //   .then((response) => {
+    //     setInpSearch(response.data);
+    //   })
+    //   .catch(() => {
+    //     console.error("Error fetching buses");
+    //     alert("Failed to fetch bus data. Please try again later.");
+    //   });
   }, []);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:4001/bus")
+  //     .then((Response) => {
+  //       setInpsearch(Response.data);
+  //     })
+  //     .catch((err) => console.log("error fetching buses", err));
+  // }, []);
 
   /////
 

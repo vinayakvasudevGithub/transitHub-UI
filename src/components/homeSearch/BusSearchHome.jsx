@@ -14,8 +14,8 @@ const BusSearchHome = () => {
   const [travelDate, setTravelDate] = useState(new Date());
   const [inpSearch, setInpSearch] = useState([]);
   const [inpBox, setInpBox] = useState("");
-  const [departureBusStop, setDepartureBusStop] = useState("Delhi Bus Stand");
-  const [arrivalBusStop, setArrivalBusStop] = useState("Mumbai Bus Stand");
+  // const [departureBusStop, setDepartureBusStop] = useState("Delhi Bus Stand");
+  // const [arrivalBusStop, setArrivalBusStop] = useState("Mumbai Bus Stand");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

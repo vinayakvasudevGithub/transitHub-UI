@@ -1,7 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Flightdetails } from "../../store/slice/FlightSlice";
+// import { Flightdetails } from "../../store/slice/FlightSlice";
+import { Flightdetails } from "../../../store/slice/FlightSlice";
+// import { getAllFlights } from "../../api/services/transport/flightApi";
+import { getAllFlights } from "../../../api/services/transport/flightApi";
 
 const FlightSearchBar = ({ FlightFrom, FlightTo, FirstFlightData }) => {
   // Initialize states
@@ -25,13 +28,34 @@ const FlightSearchBar = ({ FlightFrom, FlightTo, FirstFlightData }) => {
   // Fetch flight data
   const [inpsearch, setInpsearch] = useState([]);
   useEffect(() => {
-    axios
-      .get("http://localhost:4001/flight/")
-      .then((response) => {
-        setInpsearch(response.data);
-      })
-      .catch((err) => console.log("Error fetching flights", err));
+    const fetchAllFlights = async () => {
+      try {
+        const data = await getAllFlights();
+        setInpsearch(data);
+      } catch (error) {
+        console.error("Error fetching flights");
+      }
+    };
+    fetchAllFlights();
+    // axios
+    //   .get("http://localhost:2001/flight/")
+    //   .then((response) => {
+    //     setInpSearch(response.data);
+    //   })
+    //   .catch(() => {
+    //     console.error("Error fetching flights");
+    //     alert("Failed to fetch flightddd data. Please try again later.");
+    //   });
   }, []);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:4001/flight/")
+  //     .then((response) => {
+  //       setInpsearch(response.data);
+  //     })
+  //     .catch((err) => console.log("Error fetching flights", err));
+  // }, []);
 
   // Filtered options for departure and destination
   const filteredAirports = inpsearch.flatMap((flight) =>

@@ -1,11 +1,3 @@
-// import React from "react";
-
-// const TrainHomeSearch = () => {
-//   return <div>TrainHomeSearch</div>;
-// };
-
-// export default TrainHomeSearch;
-
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -37,15 +29,6 @@ const TrainHomeSearch = () => {
       }
     };
     fetchAllTrains();
-    // axios
-    //   .get("http://localhost:2001/train")
-    //   .then((response) => {
-    //     setTrainData(response.data);
-    //   })
-    //   .catch(() => {
-    //     console.error("Error fetching train data");
-    //     alert("Failed to fetch train data. Please try again later.");
-    //   });
   }, []);
 
   // Filter stations based on user input

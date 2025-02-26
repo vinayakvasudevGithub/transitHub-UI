@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { getAllFlights } from "../../api/services/transport/flightApi";
+import { getFlightsById } from "../../api/services/transport/flightApi";
+import { bookFlightTicket } from "../../api/services/transport/flightApi";
 
 const FlightBookingPage = () => {
   const [flightData, setFlightData] = useState([]);
@@ -22,10 +25,9 @@ const FlightBookingPage = () => {
   });
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4001/flight/${id}`)
-      .then((response) => {
-        const flight = response.data;
+    const fetchSelectedFlight = async () => {
+      try {
+        const flight = await getFlightsById(id);
         setFlightData([flight]);
         setFormData((prev) => ({
           ...prev,
@@ -51,9 +53,84 @@ const FlightBookingPage = () => {
             },
           ],
         }));
-      })
-      .catch((error) => console.log("Error fetching flight data:", error));
+      } catch (error) {
+        console.log("Error fetching flight data:", error);
+      }
+    };
+    fetchSelectedFlight();
+    // axios
+    //   .get(`http://localhost:2001/flight/${id}`)
+    //   .then((response) => {
+    //     const flight = response.data;
+    //     setFlightData([flight]);
+    //     setFormData((prev) => ({
+    //       ...prev,
+    //       airlineTicketId: id,
+    //       flightDetails: [
+    //         {
+    //           departure: flight.airport.map((dep) => ({
+    //             code: dep.code,
+    //             name: dep.name,
+    //             city: dep.city,
+    //             country: dep.country,
+    //             departureDate: dep.departureDate,
+    //             departureTime: dep.departureTime,
+    //           })),
+    //           arrival: flight.destination.map((arr) => ({
+    //             code: arr.code,
+    //             name: arr.name,
+    //             city: arr.city,
+    //             country: arr.country,
+    //             arrivalDate: arr.arrivalDate,
+    //             arrivalTime: arr.arrivalTime,
+    //           })),
+    //         },
+    //       ],
+    //     }));
+    //   })
+    //   .catch((error) => console.log("Error fetching flight data:", error));
   }, [id]);
+
+  // useEffect(() => {
+  //   const fetchSelectedFlight=async()=>{
+  //     try {
+  //       const response=await
+  //     } catch (error) {
+
+  //     }
+  //   }
+  //   axios
+  //     .get(`http://localhost:2001/flight/${id}`)
+  //     .then((response) => {
+  //       const flight = response.data;
+  //       setFlightData([flight]);
+  //       setFormData((prev) => ({
+  //         ...prev,
+  //         airlineTicketId: id,
+  //         flightDetails: [
+  //           {
+  //             departure: flight.airport.map((dep) => ({
+  //               code: dep.code,
+  //               name: dep.name,
+  //               city: dep.city,
+  //               country: dep.country,
+  //               departureDate: dep.departureDate,
+  //               departureTime: dep.departureTime,
+  //             })),
+  //             arrival: flight.destination.map((arr) => ({
+  //               code: arr.code,
+  //               name: arr.name,
+  //               city: arr.city,
+  //               country: arr.country,
+  //               arrivalDate: arr.arrivalDate,
+  //               arrivalTime: arr.arrivalTime,
+  //             })),
+  //           },
+  //         ],
+  //       }));
+  //     })
+  //     .catch((error) => console.log("Error fetching flight data:", error));
+  // }, [id]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -69,13 +146,22 @@ const FlightBookingPage = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await axios.post(
-      "http://localhost:4001/flightticket/booking",
-      formData
-    );
-    console.log(response.data);
+    try {
+      const flightBooking = await bookFlightTicket(formData);
+      console.log("Booking Successful:", flightBooking);
+    } catch (error) {
+      console.error("Booking Failed:", error);
+    }
   };
+  // const handleSubmit = async (e) => {
+
+  //   e.preventDefault();
+  //   const response = await axios.post(
+  //     "http://localhost:2001/flightticket/booking",
+  //     formData
+  //   );
+  //   console.log(response.data);
+  // };
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">

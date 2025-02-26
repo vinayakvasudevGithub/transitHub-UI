@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { bookTrainTicket } from "../../api/services/transport/trainApi";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const TrainBookingPage = () => {
@@ -14,7 +15,7 @@ const TrainBookingPage = () => {
     const fetchTrainData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4001/train/${trainId}`
+          `http://localhost:2001/train/${trainId}`
         );
         setTrainData([response.data]);
       } catch (error) {

@@ -24,3 +24,26 @@ export const searchBuses = async (from, to) => {
     return handleApiError(error);
   }
 };
+
+export const bookedBuses = async (from, to) => {
+  try {
+    const response = await axiosInstance.get(
+      API_ENDPOINTS.BUS.GET_BOOKED_BUSES
+    );
+    return response.data;
+  } catch (error) {
+    return handleApiError(error);
+  }
+};
+
+export const bookBusTicket = async (formData) => {
+  try {
+    const response = await axiosInstance.post(
+      API_ENDPOINTS.BUS.BOOK_BUS_TICKET,
+      formData
+    );
+    return response.data;
+  } catch (error) {
+    return handleApiError(error);
+  }
+};

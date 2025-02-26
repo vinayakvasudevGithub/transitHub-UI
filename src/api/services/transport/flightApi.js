@@ -13,11 +13,44 @@ export const getAllFlights = async () => {
     return handleApiError(error);
   }
 };
+export const getFlightsById = async (id) => {
+  try {
+    const response = await axiosInstance.get(
+      `${API_ENDPOINTS.FLIGHT.GET_ALL}/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    return handleApiError(error);
+  }
+};
 
 export const searchFlights = async (from, to) => {
   try {
     const response = await axiosInstance.get(
       `${API_ENDPOINTS.FLIGHT.GET_FLIGHT_BY_SEARCH}?from=${from}&to=${to}`
+    );
+    return response.data;
+  } catch (error) {
+    return handleApiError(error);
+  }
+};
+
+export const bookedFlights = async () => {
+  try {
+    const response = await axiosInstance.get(
+      API_ENDPOINTS.FLIGHT.GET_BOOKED_FLIGHTS
+    );
+    return response.data;
+  } catch (error) {
+    return handleApiError(error);
+  }
+};
+
+export const bookFlightTicket = async (formData) => {
+  try {
+    const response = await axiosInstance.post(
+      API_ENDPOINTS.FLIGHT.BOOK_FLIGHT_TICKET,
+      formData
     );
     return response.data;
   } catch (error) {

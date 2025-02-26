@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 // import ForBookingSeats from "./SelectSeat/ForBookingSeats";
 // import ForBookingSeats from "../../result/pages/bus/components/SelectSeat/ForBookingSeats";
-import { BusBookingDetails } from "../../store/BookingSlice/BusBookingSlice";
+// import { BusBookingDetails } from "../../store/BookingSlice/BusBookingSlice";
+// import {BusBookingDetails}
+import { BusBookingDetails } from "../../../store/BookingSlice/BusBookingSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import busImg from "../../assets/bus.png";
-import BusSeat from "../seatComponents/BusSeat";
+// import busImg from "../../assets/bus.png";
+import busImg from "../../../assets/bus.png";
+// import BusSeat from "../seatComponents/BusSeat";
+import BusSeat from "../../seatComponents/BusSeat";
 const BusList = ({ from, to, distance, busData }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

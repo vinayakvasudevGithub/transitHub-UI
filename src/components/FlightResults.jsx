@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import FlightList from "./flightComponents/FlightList";
-import FlightSearchBar from "./flightComponents/FlightSearchBar";
-import FlightFilterBar from "./flightComponents/FlightFilterBar";
-import FlightSortingBar from "./flightComponents/FlightSortingBar";
+// import FlightList from "./flightComponents/FlightList";
+// import FlightSearchBar from "./flightComponents/FlightSearchBar";
+// import FlightFilterBar from "./flightComponents/FlightFilterBar";
+// import FlightSortingBar from "./flightComponents/FlightSortingBar";
+// import FlightList from "./transport/flightComponents/FlightList";
+import FlightSortingBar from "./transport/flightComponents/FlightSortingBar";
+import FlightFilterBar from "./transport/flightComponents/FlightFilterBar";
+import FlightList from "./transport/flightComponents/FlightList";
+import FlightSearchBar from "./transport/flightComponents/FlightSearchBar";
 // import { searchFlights } from "../api/flightApi";
 import { searchFlights } from "../api/services/transport/flightApi";
 

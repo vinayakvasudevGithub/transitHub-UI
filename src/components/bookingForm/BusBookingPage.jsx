@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { bookBusTicket } from "../../api/services/transport/busApi";
 
 const BusBookingPage = () => {
   const bookingBusDetails = useSelector((state) => state.busTicket.Details);
   const lastBooking = bookingBusDetails?.[bookingBusDetails.length - 1];
-
   const searchKey = useSelector((State) => State.bus.buses);
   const lastSearch = searchKey?.[searchKey.length - 1];
 
@@ -59,11 +59,28 @@ const BusBookingPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post(
-      "http://localhost:4001/busticket/booking",
-      formData
-    );
-    console.log(response.data);
+    try {
+      const busBooking = await bookBusTicket(formData);
+      console.log("Booking Successful:", busBooking);
+    } catch (error) {
+      console.error("Booking Failed:", error);
+    }
+    // };
+    // try {
+    //   const busBooking = await bookBusTicket(formData);
+    //   console.log("booking succesful", busBooking);
+    // } catch (error) {
+    //   console.error("Booking Failed:", error);
+    // }
+    // const busBooking = await bookBusTicket(formData);
+    // // "http://localhost:2001/busticket/booking", formData;
+    // // );
+    // // const response = await axios.post(
+    // //   "http://localhost:2001/busticket/booking",
+    // //   formData
+    // // );
+    // console.log("booking succesful", busBooking);
+    // // console.log(response.data);
   };
 
   return (
