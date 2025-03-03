@@ -4,17 +4,12 @@ import TrainFilterBar from "./transport/trainComponents/TrainFilterBar";
 import TrainList from "./transport/trainComponents/TrainList";
 import TrainSearchBar from "./transport/trainComponents/TrainSearchBar";
 import TrainSortingBar from "./transport/trainComponents/TrainSortingBar";
-// import TrainSearchBar from "./trainComponents/TrainSearchBar";
-// import TrainFilterBar from "./trainComponents/TrainFilterBar";
-// import TrainList from "./trainComponents/TrainList";
-// import TrainSortingBar from "./trainComponents/TrainSortingBar";
-// import { searchTrains } from "../api/trainApi";
 import { searchTrains } from "../api/services/transport/trainApi";
 
 const TrainResults = () => {
-  const searchKey = useSelector((State) => State.train.trains);
-  const from = searchKey[searchKey.length - 1].from;
-  const to = searchKey[searchKey.length - 1].to;
+  const searchKey = useSelector((State) => State.train.TrainList);
+  const from = searchKey[searchKey.length - 1].departureCity;
+  const to = searchKey[searchKey.length - 1].destinationCity;
 
   const [originalTrains, setOriginalTrains] = useState([]);
   const [TrainData, setTrainData] = useState([]);

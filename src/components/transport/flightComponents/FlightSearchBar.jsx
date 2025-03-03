@@ -1,13 +1,10 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-// import { Flightdetails } from "../../store/slice/FlightSlice";
-import { Flightdetails } from "../../../store/slice/FlightSlice";
-// import { getAllFlights } from "../../api/services/transport/flightApi";
+
+import { tripInfo } from "../../../store/slices/userTransport/flightUserSlice";
 import { getAllFlights } from "../../../api/services/transport/flightApi";
 
 const FlightSearchBar = ({ FlightFrom, FlightTo, FirstFlightData }) => {
-  // Initialize states
   const [searchFrom, setsearchFrom] = useState(FlightFrom || "");
   const [searchTo, setsearchTo] = useState(FlightTo || "");
   const [travelDate, setTravelDate] = useState(""); // State for date input
@@ -16,10 +13,10 @@ const FlightSearchBar = ({ FlightFrom, FlightTo, FirstFlightData }) => {
   const searchMore = (e) => {
     e.preventDefault();
     dispatch(
-      Flightdetails({
-        from: searchFrom ? searchFrom : FlightFrom,
-        to: searchTo ? searchTo : FlightTo,
-        date: travelDate, // Include date in dispatch
+      tripInfo({
+        departureCity: searchFrom ? searchFrom : FlightFrom,
+        destinationCity: searchTo ? searchTo : FlightTo,
+        // date: travelDate, // Include date in dispatch
       })
     );
     window.location.reload();
@@ -37,25 +34,7 @@ const FlightSearchBar = ({ FlightFrom, FlightTo, FirstFlightData }) => {
       }
     };
     fetchAllFlights();
-    // axios
-    //   .get("http://localhost:2001/flight/")
-    //   .then((response) => {
-    //     setInpSearch(response.data);
-    //   })
-    //   .catch(() => {
-    //     console.error("Error fetching flights");
-    //     alert("Failed to fetch flightddd data. Please try again later.");
-    //   });
   }, []);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:4001/flight/")
-  //     .then((response) => {
-  //       setInpsearch(response.data);
-  //     })
-  //     .catch((err) => console.log("Error fetching flights", err));
-  // }, []);
 
   // Filtered options for departure and destination
   const filteredAirports = inpsearch.flatMap((flight) =>

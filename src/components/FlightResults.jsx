@@ -1,30 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-// import FlightList from "./flightComponents/FlightList";
-// import FlightSearchBar from "./flightComponents/FlightSearchBar";
-// import FlightFilterBar from "./flightComponents/FlightFilterBar";
-// import FlightSortingBar from "./flightComponents/FlightSortingBar";
-// import FlightList from "./transport/flightComponents/FlightList";
 import FlightSortingBar from "./transport/flightComponents/FlightSortingBar";
 import FlightFilterBar from "./transport/flightComponents/FlightFilterBar";
 import FlightList from "./transport/flightComponents/FlightList";
 import FlightSearchBar from "./transport/flightComponents/FlightSearchBar";
-// import { searchFlights } from "../api/flightApi";
 import { searchFlights } from "../api/services/transport/flightApi";
 
 const FlightResults = () => {
-  const searchKey = useSelector((State) => State.flight.flights);
-  const from = searchKey[searchKey.length - 1].from;
-  const to = searchKey[searchKey.length - 1].to;
+  const searchKey = useSelector((State) => State.flight.FlightList);
+  const departureCity = searchKey[searchKey.length - 1].departureCity;
+  const destinationCity = searchKey[searchKey.length - 1].destinationCity;
   const [originalFlights, setOriginalFlights] = useState([]);
   const [flight, setFlight] = useState([]);
   const [FirstFlightData, setFirstFlightData] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  // from;
   useEffect(() => {
     const fetchFlights = async () => {
       try {
-        const data = await searchFlights(from, to);
+        const data = await searchFlights(departureCity, destinationCity);
         setFlight(data);
         setOriginalFlights(data);
         const firstData = data[0];
@@ -36,7 +30,7 @@ const FlightResults = () => {
       }
     };
     fetchFlights();
-  }, [from, to]);
+  }, [departureCity, destinationCity]);
 
   if (loading) return <p>Loading flights....</p>;
   if (!flight.length) return <p>No flights available....</p>;
@@ -46,8 +40,8 @@ const FlightResults = () => {
       <div className="sticky flex justify-center top-0 p-1 ">
         <FlightSearchBar
           flight={flight}
-          FlightFrom={from}
-          FlightTo={to}
+          FlightFrom={departureCity}
+          FlightTo={departureCity}
           FlightData={flight}
           FirstFlightData={FirstFlightData}
         />
@@ -58,8 +52,8 @@ const FlightResults = () => {
           <FlightFilterBar
             originalFlights={originalFlights}
             setFlight={setFlight}
-            from={from}
-            to={to}
+            from={departureCity}
+            to={destinationCity}
             FlightData={flight}
           />
         </div>
@@ -72,7 +66,11 @@ const FlightResults = () => {
             />
           </div>
           <div>
-            <FlightList FlightFrom={from} FlightTo={to} FlightData={flight} />
+            <FlightList
+              FlightFrom={departureCity}
+              FlightTo={destinationCity}
+              FlightData={flight}
+            />
           </div>
         </div>
       </div>
@@ -84,18 +82,22 @@ export default FlightResults;
 
 // import React, { useEffect, useState } from "react";
 // import { useSelector } from "react-redux";
-// import FlightList from "./flightComponents/FlightList";
-// import FlightSearchBar from "./flightComponents/FlightSearchBar";
-// import FlightFilterBar from "./flightComponents/FlightFilterBar";
-// import FlightSortingBar from "./flightComponents/FlightSortingBar";
-// import axios from "axios";
-// import { searchFlights } from "../api/flightApi";
+// // import FlightList from "./flightComponents/FlightList";
+// // import FlightSearchBar from "./flightComponents/FlightSearchBar";
+// // import FlightFilterBar from "./flightComponents/FlightFilterBar";
+// // import FlightSortingBar from "./flightComponents/FlightSortingBar";
+// // import FlightList from "./transport/flightComponents/FlightList";
+// import FlightSortingBar from "./transport/flightComponents/FlightSortingBar";
+// import FlightFilterBar from "./transport/flightComponents/FlightFilterBar";
+// import FlightList from "./transport/flightComponents/FlightList";
+// import FlightSearchBar from "./transport/flightComponents/FlightSearchBar";
+// // import { searchFlights } from "../api/flightApi";
+// import { searchFlights } from "../api/services/transport/flightApi";
 
 // const FlightResults = () => {
 //   const searchKey = useSelector((State) => State.flight.flights);
 //   const from = searchKey[searchKey.length - 1].from;
 //   const to = searchKey[searchKey.length - 1].to;
-
 //   const [originalFlights, setOriginalFlights] = useState([]);
 //   const [flight, setFlight] = useState([]);
 //   const [FirstFlightData, setFirstFlightData] = useState([]);
@@ -120,18 +122,6 @@ export default FlightResults;
 
 //   if (loading) return <p>Loading flights....</p>;
 //   if (!flight.length) return <p>No flights available....</p>;
-
-//   // useEffect(() => {
-//   //   axios
-//   //     .get(`http://localhost:4001/flight/search?from=${from}&to=${to}`)
-//   //     .then((response) => {
-//   //       setFlight(response.data);
-//   //       setOriginalFlights(response.data);
-//   //       const firstData = response.data[0];
-//   //       setFirstFlightData([firstData]);
-//   //     })
-//   //     .catch((err) => console.log("flight", err));
-//   // }, [from, to]);
 
 //   return (
 //     <div className="p-2 bg-gray-200 ">
