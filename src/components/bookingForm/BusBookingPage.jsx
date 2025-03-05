@@ -1,19 +1,17 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { bookBusTicket } from "../../api/services/transport/busApi";
-
 const BusBookingPage = () => {
-  const bookingBusDetails = useSelector((state) => state.busTicket.Details);
+  const bookingBusDetails = useSelector((state) => state.bus.tripDetails);
   const lastBooking = bookingBusDetails?.[bookingBusDetails.length - 1];
-  const searchKey = useSelector((State) => State.bus.buses);
+  const searchKey = useSelector((State) => State.bus.BusList);
   const lastSearch = searchKey?.[searchKey.length - 1];
 
   const [formData, setFormData] = useState({
     busdetails: [
       {
-        departurecity: lastSearch?.from,
-        arrivalcity: lastSearch?.to,
+        departurecity: lastSearch?.departureCity,
+        arrivalcity: lastSearch?.destinationCity,
         busname: lastBooking?.busName,
         busseatnumber: lastBooking?.busSeatNumber,
         bustype: lastBooking?.busType,
@@ -65,22 +63,6 @@ const BusBookingPage = () => {
     } catch (error) {
       console.error("Booking Failed:", error);
     }
-    // };
-    // try {
-    //   const busBooking = await bookBusTicket(formData);
-    //   console.log("booking succesful", busBooking);
-    // } catch (error) {
-    //   console.error("Booking Failed:", error);
-    // }
-    // const busBooking = await bookBusTicket(formData);
-    // // "http://localhost:2001/busticket/booking", formData;
-    // // );
-    // // const response = await axios.post(
-    // //   "http://localhost:2001/busticket/booking",
-    // //   formData
-    // // );
-    // console.log("booking succesful", busBooking);
-    // // console.log(response.data);
   };
 
   return (
@@ -111,10 +93,11 @@ const BusBookingPage = () => {
             </p>
             <p>
               <span className="font-semibold">From:</span>{" "}
-              {lastSearch?.from || "-"}
+              {lastSearch?.departureCity || "-"}
             </p>
             <p>
-              <span className="font-semibold">To:</span> {lastSearch?.to || "-"}
+              <span className="font-semibold">To:</span>{" "}
+              {lastSearch?.destinationCity || "-"}
             </p>
           </div>
         </div>

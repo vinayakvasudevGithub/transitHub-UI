@@ -1,0 +1,38 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  BusList: JSON.parse(localStorage.getItem("BusList")) || [],
+  tripDetails: JSON.parse(localStorage.getItem("journey")) || [],
+};
+
+const BusUserSlice = createSlice({
+  name: "BUS",
+  initialState,
+  reducers: {
+    tripInfo: (state, action) => {
+      const { departureCity, destinationCity } = action.payload;
+      const tripDetails = { departureCity, destinationCity };
+
+      state.BusList.push(tripDetails);
+      localStorage.setItem("BusList", JSON.stringify(state.BusList));
+    },
+    tripDetails: (state, action) => {
+      const { busSeatNumber, busName, busType, arrivalTime, departureTime } =
+        action.payload;
+      const journeyDetails = {
+        busSeatNumber,
+        busName,
+        busType,
+        arrivalTime,
+        departureTime,
+      };
+
+      state.tripDetails.push(journeyDetails);
+      localStorage.setItem("journey", JSON.stringify(state.tripDetails));
+    },
+  },
+});
+
+export default BusUserSlice.reducer;
+export const { tripInfo } = BusUserSlice.actions;
+export const { tripDetails } = BusUserSlice.actions;

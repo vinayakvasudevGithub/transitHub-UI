@@ -1,40 +1,26 @@
-// import React from "react";
-
-// const BusSearchBar = () => {
-//   return <div>BusSearchBar</div>;
-// };
-
-// export default BusSearchBar;
-
 import React, { useEffect } from "react";
 import { useState } from "react";
-// import { BusDetails } from "../../store/slice/BusSlice";
-import { BusDetails } from "../../../store/slice/BusSlice";
+import { tripInfo } from "../../../store/slices/userTransport/busUserSlice";
 import { useDispatch } from "react-redux";
-import axios from "axios";
-// import { getAllBuses } from "../../api/services/transport/busApi";
 import { getAllBuses } from "../../../api/services/transport/busApi";
 import { PiArrowsLeftRightLight } from "react-icons/pi";
 import { HiMiniArrowsUpDown } from "react-icons/hi2";
 
 const BusSearchBar = ({ from, to, busData }) => {
   const dispatch = useDispatch();
-
   const [searchFrom, setsearchFrom] = useState(from || "");
   const [searchTo, setsearchTo] = useState(to || "");
 
   const searchMore = (e) => {
     e.preventDefault();
     dispatch(
-      BusDetails({
-        from: searchFrom ? searchFrom : from,
-        to: searchTo ? searchTo : to,
+      tripInfo({
+        departureCity: searchFrom ? searchFrom : from,
+        destinationCity: searchTo ? searchTo : to,
       }),
       window.location.reload()
     );
   };
-
-  //to get city ddetails to dropdown ------------------------------->>>>>>>>>>>>>>
 
   const [Inpsearch, setInpsearch] = useState([]);
 
@@ -50,28 +36,7 @@ const BusSearchBar = ({ from, to, busData }) => {
     };
 
     fetchAllBuses();
-
-    // axios
-    //   .get("http://localhost:2001/bus")
-    //   .then((response) => {
-    //     setInpSearch(response.data);
-    //   })
-    //   .catch(() => {
-    //     console.error("Error fetching buses");
-    //     alert("Failed to fetch bus data. Please try again later.");
-    //   });
   }, []);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:4001/bus")
-  //     .then((Response) => {
-  //       setInpsearch(Response.data);
-  //     })
-  //     .catch((err) => console.log("error fetching buses", err));
-  // }, []);
-
-  /////
 
   const filteredStations = Inpsearch.flatMap((bus) =>
     bus.stations.filter((stations) =>

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { tripInfo } from "./flightUserSlice";
 const initialState = {
   TrainList: JSON.parse(localStorage.getItem("TrainList")) || [],
 };

@@ -9,7 +9,7 @@ import { bookedBuses } from "../../api/services/transport/busApi";
 
 const BusSeat = ({ busData, handleSelectBus }) => {
   const [selectedSeat, setSelectedSeat] = useState(null);
-  const searchKey = useSelector((state) => state.bus.buses);
+  const searchKey = useSelector((state) => state.bus.BusList);
   const lastSearch = searchKey?.[searchKey.length - 1];
 
   const [bookedDetails, setBookedDetails] = useState([]);
@@ -25,15 +25,6 @@ const BusSeat = ({ busData, handleSelectBus }) => {
         setError("Failed to fetch booked details. Please try again later.");
       }
     };
-    // const fetchBookedDetails = async () => {
-    //   try {
-    //     const response = await axios.get("http://localhost:2001/busticket");
-    //     setBookedDetails(response.data);
-    //   } catch (err) {
-    //     console.error("Error fetching booked details:", err);
-    //     setError("Failed to fetch booked details. Please try again later.");
-    //   }
-    // };
 
     fetchBookedDetails();
   }, []);
@@ -43,8 +34,10 @@ const BusSeat = ({ busData, handleSelectBus }) => {
       data.busdetails
         ?.filter(
           (busdetails) =>
-            busdetails.departurecity === lastSearch.from &&
-            busdetails.arrivalcity === lastSearch.to
+            busdetails.departurecity === lastSearch.departureCity &&
+            busdetails.arrivalcity === lastSearch.destinationCity
+          // busdetails.departurecity === lastSearch.from &&
+          // busdetails.arrivalcity === lastSearch.to
         )
         .map((busdetails) => busdetails.busseatnumber) || []
   );

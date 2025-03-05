@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { BusDetails } from "../../store/slice/BusSlice";
-import axios from "axios";
+// import { BusDetails } from "../../store/slice/BusSlice";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import { getAllBuses } from "../../api/busApi";
+import { tripInfo } from "../../store/slices/userTransport/busUserSlice";
 import { getAllBuses } from "../../api/services/transport/busApi";
 
 const BusSearchHome = () => {
@@ -43,16 +43,6 @@ const BusSearchHome = () => {
     };
 
     fetchAllBuses();
-
-    // axios
-    //   .get("http://localhost:2001/bus")
-    //   .then((response) => {
-    //     setInpSearch(response.data);
-    //   })
-    //   .catch(() => {
-    //     console.error("Error fetching buses");
-    //     alert("Failed to fetch bus data. Please try again later.");
-    //   });
   }, []);
 
   const filteredBusStops = [
@@ -82,9 +72,9 @@ const BusSearchHome = () => {
   const results = (e) => {
     e.preventDefault();
     dispatch(
-      BusDetails({
-        from,
-        to,
+      tripInfo({
+        departureCity: from,
+        destinationCity: to,
         // travelDate,
       })
     );

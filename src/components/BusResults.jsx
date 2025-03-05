@@ -1,25 +1,16 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { busRouteMap } from "../api/services/utilities/mapApi";
-// import { searchBuses } from "../api/busApi";
 import { searchBuses } from "../api/services/transport/busApi";
-// import BusFliterBar from "./busComponents/BusFliterBar";
-// import BusList from "./busComponents/BusList";
-// import BusSortingBar from "./busComponents/BusSortingBar";
-// import BusSearchBar from "./busComponents/BusSearchBar";
 import BusSortingBar from "./transport/busComponents/BusSortingBar";
 import BusFliterBar from "./transport/busComponents/BusFliterBar";
 import BusList from "./transport/busComponents/BusList";
 import BusSearchBar from "./transport/busComponents/BusSearchBar";
-// import { busRouteMap } from "../api/mapApi";
-// import { busRouteMap } from "../api/mapApi";
-// import { busRouteMap } from "../api/services/utilities/mapApi";
 
 const BusResults = () => {
-  const searchKey = useSelector((state) => state.bus.buses);
-  const from = searchKey[searchKey.length - 1].from;
-  const to = searchKey[searchKey.length - 1].to;
+  const searchKey = useSelector((state) => state.bus.BusList);
+  const from = searchKey[searchKey.length - 1].departureCity;
+  const to = searchKey[searchKey.length - 1].destinationCity;
   const [buses, setBuses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [distance, setDistance] = useState();

@@ -3,7 +3,8 @@ import React, { useState } from "react";
 // import ForBookingSeats from "../../result/pages/bus/components/SelectSeat/ForBookingSeats";
 // import { BusBookingDetails } from "../../store/BookingSlice/BusBookingSlice";
 // import {BusBookingDetails}
-import { BusBookingDetails } from "../../../store/BookingSlice/BusBookingSlice";
+// import { BusBookingDetails } from "../../../store/BookingSlice/BusBookingSlice";
+import { tripDetails } from "../../../store/slices/userTransport/busUserSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // import busImg from "../../assets/bus.png";
@@ -29,7 +30,7 @@ const BusList = ({ from, to, distance, busData }) => {
       console.log(busSeatNumber);
       setIsBookingDetailsComplete(true);
       dispatch(
-        BusBookingDetails({
+        tripDetails({
           busSeatNumber,
           busName,
           busType,
