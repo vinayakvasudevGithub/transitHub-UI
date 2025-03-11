@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { bookBusTicket } from "../../api/services/transport/busApi";
+
 const BusBookingPage = () => {
   const bookingBusDetails = useSelector((state) => state.bus.tripDetails);
   const lastBooking = bookingBusDetails?.[bookingBusDetails.length - 1];

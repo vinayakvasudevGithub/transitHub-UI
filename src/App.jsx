@@ -11,6 +11,8 @@ import HomePage from "./pages/HomePage";
 import SearchResults from "./pages/SearchResults";
 import BookingPage from "./pages/BookingPage";
 import PaymentPage from "./pages/PaymentPage";
+import BookedPage from "./pages/BookedPage";
+import UserAuth from "./pages/UserAuth";
 
 function App() {
   const [ShowAddNew, SetShowAddNew] = useState(false);
@@ -46,6 +48,8 @@ function App() {
         <Route path="/upload/*" element={<ClientsToUpload />} />
         <Route path="/booking/*" element={<BookingPage />} />
         <Route path="/payment/*" element={<PaymentPage />} />
+        <Route path="/booked/*" element={<BookedPage />} />
+        <Route path="/login/*" element={<UserAuth />} />
       </Routes>
     </div>
   );
