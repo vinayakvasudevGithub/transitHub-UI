@@ -35,7 +35,7 @@ const HomePage = () => {
             <div className="flex justify-center ">
               <div className="flex justify-center items-center space-x-6 p-7">
                 {/* Flights Button */}
-                <Link to="/flight" onClick={() => setSelect("flight")}>
+                <Link to="/home/flight" onClick={() => setSelect("flight")}>
                   <div className="p-2 mt-5 relative flex justify-center group">
                     <div className="rounded-full bg-gray-300 border-[4px]  absolute bottom-10 flex justify-center items-center ">
                       <img
@@ -52,7 +52,7 @@ const HomePage = () => {
                 </Link>
 
                 {/* Bus Button */}
-                <Link to="/Bus" onClick={() => setSelect("bus")}>
+                <Link to="/home/Bus" onClick={() => setSelect("bus")}>
                   <div className="p-2 mt-5 relative flex justify-center group">
                     <div
                       className={`rounded-full absolute bottom-9 flex justify-center items-center ${
@@ -72,7 +72,7 @@ const HomePage = () => {
                 </Link>
 
                 {/* Train Button */}
-                <Link to="/Train">
+                <Link to="/home/Train">
                   <div className="p-2 mt-5 relative flex justify-center group">
                     <div className="rounded-full absolute bottom-9 flex justify-center items-center bg-gray-300 border-[4px]  ">
                       <img

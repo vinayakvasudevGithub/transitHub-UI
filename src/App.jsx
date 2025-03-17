@@ -43,13 +43,13 @@ function App() {
       {/* <OptionsToUpload /> */}
 
       <Routes>
-        <Route path="/*" element={<HomePage />} />
+        <Route path="/*" element={<UserAuth />} />
+        <Route path="/home/*" element={<HomePage />} />
         <Route path="/result/*" element={<SearchResults />} />
         <Route path="/upload/*" element={<ClientsToUpload />} />
         <Route path="/booking/*" element={<BookingPage />} />
         <Route path="/payment/*" element={<PaymentPage />} />
         <Route path="/booked/*" element={<BookedPage />} />
-        <Route path="/login/*" element={<UserAuth />} />
       </Routes>
     </div>
   );

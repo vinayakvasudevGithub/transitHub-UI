@@ -17,4 +17,8 @@ export const API_ENDPOINTS = {
     GET_BOOKED_FLIGHTS: "/flightticket",
     BOOK_FLIGHT_TICKET: "/flightticket/booking",
   },
+  USER: {
+    REGISTER: "/users/register",
+    LOGIN: "/users/login",
+  },
 };

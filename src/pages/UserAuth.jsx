@@ -8,9 +8,10 @@ const UserAuth = () => {
   return (
     <div>
       <Routes>
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        {/* <Route path="/signup" element={<SignupPage />} /> */}
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </div>
   );

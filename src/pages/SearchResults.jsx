@@ -8,7 +8,7 @@ const SearchResults = () => {
   const Navigate = useNavigate();
 
   const handleNavigate = (value) => {
-    Navigate(`/${value}`);
+    Navigate(`/home/${value}`);
   };
 
   return (
