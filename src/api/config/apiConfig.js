@@ -20,5 +20,6 @@ export const API_ENDPOINTS = {
   USER: {
     REGISTER: "/users/register",
     LOGIN: "/users/login",
+    CURRENT: "/users/current",
   },
 };

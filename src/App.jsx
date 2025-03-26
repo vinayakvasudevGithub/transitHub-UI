@@ -12,38 +12,18 @@ import SearchResults from "./pages/SearchResults";
 import BookingPage from "./pages/BookingPage";
 import PaymentPage from "./pages/PaymentPage";
 import BookedPage from "./pages/BookedPage";
-import UserAuth from "./pages/UserAuth";
+import { Toaster } from "react-hot-toast";
+// import UserAuth from "./pages/UserAuth";
+import axios from "axios";
+// import { UserContextProvider } from "../context/UserContext";
 
 function App() {
-  const [ShowAddNew, SetShowAddNew] = useState(false);
-
-  const ShowAndHide = () => {
-    console.log("car");
-  };
-
   return (
-    // <div className=" bg-gradient-to-r from-blue-100 to-blue-500 h-screen">
-    // <div className=" bg-gradient-to-b from-sky-400 to-sky-200 h-screen">
-    <div className=" bg-gray-50 h-screen">
-      {/* <div className="flex gap-2 sticky justify-center top-0 bg-yellow-300 p-1">
-        <Link to={"/"} className="bg-blue-600">
-          home page
-        </Link>
-        <button
-          onClick={(e) => {
-            !ShowAddNew ? SetShowAddNew(true) : SetShowAddNew(false);
-          }}
-          className="bg-green-500"
-        >
-          upload
-        </button>
-      </div> */}
-
-      {/* {ShowAddNew && <OptionsToUpload />} */}
-      {/* <OptionsToUpload /> */}
-
+    <div className="bg-gray-50 min-h-screen">
+      {/* <UserContextProvider> */}
+      <Toaster position="bottom-right" toastOptions={{ duration: 2000 }} />
       <Routes>
-        <Route path="/*" element={<UserAuth />} />
+        {/* <Route path="/*" element={<UserAuth />} /> */}
         <Route path="/home/*" element={<HomePage />} />
         <Route path="/result/*" element={<SearchResults />} />
         <Route path="/upload/*" element={<ClientsToUpload />} />
@@ -51,8 +31,28 @@ function App() {
         <Route path="/payment/*" element={<PaymentPage />} />
         <Route path="/booked/*" element={<BookedPage />} />
       </Routes>
+      {/* </UserContextProvider> */}
     </div>
   );
 }
 
 export default App;
+
+// function App() {
+//   return (
+//     <div className=" bg-gray-50 h-screen">
+//       <UserContextProvider>
+//         <Toaster position="bottom-right" toastOptions={{ duration: 2000 }} />
+// <Routes>
+//   <Route path="/*" element={<UserAuth />} />
+//   <Route path="/home/*" element={<HomePage />} />
+//   <Route path="/result/*" element={<SearchResults />} />
+//   <Route path="/upload/*" element={<ClientsToUpload />} />
+//   <Route path="/booking/*" element={<BookingPage />} />
+//   <Route path="/payment/*" element={<PaymentPage />} />
+//   <Route path="/booked/*" element={<BookedPage />} />
+// </Routes>
+//       </UserContextProvider>
+//     </div>
+//   );
+// }

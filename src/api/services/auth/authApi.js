@@ -25,3 +25,12 @@ export const loginUser = async (formData) => {
     return handleApiError(error);
   }
 };
+
+export const loggedInUser = async () => {
+  try {
+    const res = await axiosInstance.get(API_ENDPOINTS.USER.CURRENT);
+    return res.data;
+  } catch (error) {
+    return handleApiError(error);
+  }
+};

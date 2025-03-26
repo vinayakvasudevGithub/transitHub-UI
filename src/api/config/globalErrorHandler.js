@@ -4,6 +4,7 @@ const handleApiError = (error) => {
       "API Error :",
       error.response.data.message || "something went wrong"
     );
+
     return {
       success: false,
       status: error.response.status,
