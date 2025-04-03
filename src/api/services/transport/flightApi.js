@@ -50,7 +50,8 @@ export const bookFlightTicket = async (formData) => {
   try {
     const response = await axiosInstance.post(
       API_ENDPOINTS.FLIGHT.BOOK_FLIGHT_TICKET,
-      formData
+      formData,
+      { withCredentials: true }
     );
     return response.data;
   } catch (error) {

@@ -9,7 +9,8 @@ export const API_ENDPOINTS = {
     GET_ALL: "/train",
     GET_TRAIN_BY_SEARCH: "/train/search",
     GET_BOOKED_TRAINS: "/trainticket",
-    BOOK_TRAIN_TICKET: "/trainticket/booking",
+    // BOOK_TRAIN_TICKET: "/trainticket/booking",
+    BOOK_TRAIN_TICKET: "/trainticket/create",
   },
   FLIGHT: {
     GET_ALL: "/flight",

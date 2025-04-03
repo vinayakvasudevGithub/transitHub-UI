@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { bookTrainTicket } from "../api/services/transport/trainApi";
 
 const TrainPayment = () => {
   const location = useLocation();
@@ -12,6 +13,16 @@ const TrainPayment = () => {
   const formattedDepartureDate = new Date(
     `${year}-${month}-${day}`
   ).toLocaleDateString("en-us", { month: "short", day: "numeric" });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const trainBooking = await bookTrainTicket(bookingDetails);
+      console.log("train Ticket booked successfully ", trainBooking);
+    } catch (error) {
+      console.error("Booking failed", error);
+    }
+  };
 
   const TicketHeader = ({ trainName, trainNumber }) => (
     <div className="bg-red-700 text-white p-4 rounded-t-lg flex justify-between items-center">
@@ -67,6 +78,7 @@ const TrainPayment = () => {
 
   return (
     <div className="p-4 bg-red-200 grid sm:grid-cols-2 ">
+      <button onClick={handleSubmit}>click</button>
       <div className=" p-2 bg-blue-50">
         {trainData.map((data) => (
           <div key={data._id} className="bg-green-300 rounded-lg shadow-lg">

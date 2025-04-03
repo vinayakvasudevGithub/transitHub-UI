@@ -9,9 +9,9 @@ const OptionsToUpload = () => {
   };
   return (
     <div>
-      <div onClick={(e) => Results("bus")}>bus</div>
-      <div onClick={(e) => Results("flight")}>flight</div>
-      <div onClick={(e) => Results("train")}>train</div>
+      <div onClick={(e) => Results("/bus")}>bus</div>
+      <div onClick={(e) => Results("/flight")}>flight</div>
+      <div onClick={(e) => Results("/train")}>train</div>
     </div>
   );
 };

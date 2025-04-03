@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { bookTrainTicket } from "../../api/services/transport/trainApi";
 import { useLocation, useNavigate } from "react-router-dom";
+import { trainTicketApiStructure } from "../../api/structure/ticket/trainTicketApiStructure";
+import { useTrainTicketForm } from "../../api/ticketform/useTrainTicketForm";
 
 const TrainBookingPage = () => {
   const searchKey = useSelector((state) => state.train.TrainList) || [];
@@ -27,6 +29,7 @@ const TrainBookingPage = () => {
 
   const [formData, setFormData] = useState({
     trainId: trainId,
+    // train: "car",
     userDetails: [
       {
         name: "",
@@ -37,6 +40,8 @@ const TrainBookingPage = () => {
       },
     ],
   });
+
+  // const [formData, setFormData] = useState(trainTicketApiStructure);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

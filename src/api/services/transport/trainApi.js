@@ -39,6 +39,7 @@ export const bookTrainTicket = async (FormData) => {
       API_ENDPOINTS.TRAIN.BOOK_TRAIN_TICKET,
       FormData
     );
+    console.log(response.data);
     return response.data;
   } catch (error) {
     return handleApiError(error);

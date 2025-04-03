@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { bookTrainTicket } from "../../api/services/transport/trainApi";
 
 const TrainPayment = () => {
   const location = useLocation();
@@ -14,8 +15,17 @@ const TrainPayment = () => {
     `${year}-${month}-${day}`
   ).toLocaleDateString("en-us", { month: "short", day: "numeric" });
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const trainBooking = await bookTrainTicket(bookingDetails);
+      console.log(trainBooking.data);
+    } catch (error) {}
+  };
+
   return (
     <div>
+      <button onClick={handleSubmit}>click</button>
       <div className="  grid sm:grid-cols-2 p-1  ">
         {trainData.map((data) => {
           return (
