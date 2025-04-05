@@ -1,12 +1,22 @@
+// import React from "react";
+
+// const BusSearch = () => {
+//   return <div>BusSearch</div>;
+// };
+
+// export default BusSearch;
+
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { tripInfo } from "../../../store/slices/userTransport/busUserSlice";
+// import { tripInfo } from "../../../store/slices/userTransport/busUserSlice";
 import { useDispatch } from "react-redux";
-import { getAllBuses } from "../../../api/services/transport/busApi";
+// import { getAllBuses } from "../../../api/services/transport/busApi";
 import { PiArrowsLeftRightLight } from "react-icons/pi";
 import { HiMiniArrowsUpDown } from "react-icons/hi2";
+import { getAllBuses } from "../../../../api/services/transport/busApi";
+import { tripInfo } from "../../../../store/slices/userTransport/busUserSlice";
 
-const BusSearchBar = ({ from, to, busData }) => {
+const BusSearch = ({ from, to, busData }) => {
   const dispatch = useDispatch();
   const [searchFrom, setsearchFrom] = useState(from || "");
   const [searchTo, setsearchTo] = useState(to || "");
@@ -147,4 +157,4 @@ const BusSearchBar = ({ from, to, busData }) => {
   );
 };
 
-export default BusSearchBar;
+export default BusSearch;

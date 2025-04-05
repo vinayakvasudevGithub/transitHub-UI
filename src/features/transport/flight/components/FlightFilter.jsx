@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 
-const FlightFilterBar = ({ from, to, originalFlights, setFlight }) => {
+const FlightFilter = ({ from, to, originalFlights, setFlight }) => {
   const [filters, setFilters] = useState({
     showBefore6am: false,
     show6amTo12pm: false,
@@ -299,4 +299,4 @@ const FlightFilterBar = ({ from, to, originalFlights, setFlight }) => {
   );
 };
 
-export default FlightFilterBar;
+export default FlightFilter;

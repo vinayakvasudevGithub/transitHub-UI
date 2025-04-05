@@ -1,3 +1,11 @@
+// import React from "react";
+
+// const BusHomeSearch = () => {
+//   return <div>BusHomeSearch</div>;
+// };
+
+// export default BusHomeSearch;
+
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -7,8 +15,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { tripInfo } from "../../store/slices/userTransport/busUserSlice";
 import { getAllBuses } from "../../api/services/transport/busApi";
+// import { tripInfo } from "../../store/slices/userTransport/busUserSlice";
+// import { getAllBuses } from "../../api/services/transport/busApi";
 
-const BusSearchHome = () => {
+const BusHomeSearch = () => {
+  // const [from, setFrom] = useState("");
+  // const [to, setTo] = useState("");
   const [from, setFrom] = useState("Kannur");
   const [to, setTo] = useState("Mukkam");
   const [travelDate, setTravelDate] = useState(new Date());
@@ -36,6 +48,7 @@ const BusSearchHome = () => {
       try {
         const data = await getAllBuses();
         setInpSearch(data);
+        // console.log(data);
       } catch (error) {
         console.error("Error fetching buses");
         // alert("Failed to fetch bus data. Please try again later.");
@@ -183,4 +196,4 @@ const BusSearchHome = () => {
   );
 };
 
-export default BusSearchHome;
+export default BusHomeSearch;

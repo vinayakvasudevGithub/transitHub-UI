@@ -12,6 +12,8 @@ const BusSeat = ({ busData, handleSelectBus }) => {
   const searchKey = useSelector((state) => state.bus.BusList);
   const lastSearch = searchKey?.[searchKey.length - 1];
 
+  // console.log(selectedSeat);
+
   const [bookedDetails, setBookedDetails] = useState([]);
   const [error, setError] = useState(null);
 

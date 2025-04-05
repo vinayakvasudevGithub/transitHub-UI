@@ -1,12 +1,25 @@
+// import React from "react";
+
+// const FlightListingPage = () => {
+//   return <div>FlightListingPage</div>;
+// };
+
+// export default FlightListingPage;
+
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import FlightSortingBar from "./transport/flightComponents/FlightSortingBar";
-import FlightFilterBar from "./transport/flightComponents/FlightFilterBar";
-import FlightList from "./transport/flightComponents/FlightList";
-import FlightSearchBar from "./transport/flightComponents/FlightSearchBar";
-import { searchFlights } from "../api/services/transport/flightApi";
+// import FlightSortingBar from "./transport/flightComponents/FlightSortingBar";
+// import FlightFilterBar from "./transport/flightComponents/FlightFilterBar";
+// import FlightList from "./transport/flightComponents/FlightList";
+// import FlightSearchBar from "./transport/flightComponents/FlightSearchBar";
+// import { searchFlights } from "../api/services/transport/flightApi";
+import { searchFlights } from "../../../../api/services/transport/flightApi";
+import FlightSearch from "../components/FlightSearch";
+import FlightFilter from "../components/FlightFilter";
+import FlightSort from "../components/FlightSort";
+import FlightCard from "../components/FlightCard";
 
-const FlightResults = () => {
+const FlightListingPage = () => {
   const searchKey = useSelector((State) => State.flight.FlightList);
   const departureCity = searchKey[searchKey.length - 1].departureCity;
   const destinationCity = searchKey[searchKey.length - 1].destinationCity;
@@ -38,7 +51,14 @@ const FlightResults = () => {
   return (
     <div className="p-2 bg-gray-200 ">
       <div className="sticky flex justify-center top-0 p-1 ">
-        <FlightSearchBar
+        {/* <FlightSearchBar
+          flight={flight}
+          FlightFrom={departureCity}
+          FlightTo={departureCity}
+          FlightData={flight}
+          FirstFlightData={FirstFlightData}
+        /> */}
+        <FlightSearch
           flight={flight}
           FlightFrom={departureCity}
           FlightTo={departureCity}
@@ -49,28 +69,45 @@ const FlightResults = () => {
       <div className="grid lg:grid-cols-4 gap-2  p-1">
         <div className="col-span-1 hidden lg:block">
           {/* <div className="col-span-1 "> */}
-          <FlightFilterBar
+          <FlightFilter
             originalFlights={originalFlights}
             setFlight={setFlight}
             from={departureCity}
             to={destinationCity}
             FlightData={flight}
           />
+          {/* <FlightFilterBar
+            originalFlights={originalFlights}
+            setFlight={setFlight}
+            from={departureCity}
+            to={destinationCity}
+            FlightData={flight}
+          /> */}
         </div>
         <div className="col-span-3 space-y-3">
           <div>
-            <FlightSortingBar
+            <FlightSort
               flight={flight}
               originalFlights={originalFlights}
               setFlight={setFlight}
             />
+            {/* <FlightSortingBar
+              flight={flight}
+              originalFlights={originalFlights}
+              setFlight={setFlight}
+            /> */}
           </div>
           <div>
-            <FlightList
+            <FlightCard
               FlightFrom={departureCity}
               FlightTo={destinationCity}
               FlightData={flight}
             />
+            {/* <FlightList
+              FlightFrom={departureCity}
+              FlightTo={destinationCity}
+              FlightData={flight}
+            /> */}
           </div>
         </div>
       </div>
@@ -78,7 +115,7 @@ const FlightResults = () => {
   );
 };
 
-export default FlightResults;
+export default FlightListingPage;
 
 // import React, { useEffect, useState } from "react";
 // import { useSelector } from "react-redux";

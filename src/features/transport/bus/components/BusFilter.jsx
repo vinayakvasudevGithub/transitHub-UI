@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 
-const BusFliterBar = ({ from, to, originalBuses, setBuses }) => {
+const BusFilter = ({ from, to, originalBuses, setBuses }) => {
   const [filters, setFilters] = useState({
     showAC: false,
     showNonAC: false,
@@ -351,4 +351,4 @@ const BusFliterBar = ({ from, to, originalBuses, setBuses }) => {
   );
 };
 
-export default BusFliterBar;
+export default BusFilter;

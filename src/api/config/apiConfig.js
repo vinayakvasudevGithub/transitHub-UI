@@ -20,7 +20,12 @@ export const API_ENDPOINTS = {
   },
   USER: {
     REGISTER: "/users/register",
-    LOGIN: "/users/login",
+    LOGIN: "/auth/login",
     CURRENT: "/users/current",
+  },
+  ADMIN: {
+    REGISTER: "/admin/register",
+    LOGIN: "/admin/login",
+    // CURRENT:
   },
 };

@@ -1,17 +1,11 @@
 import React, { useState } from "react";
-// import ForBookingSeats from "./SelectSeat/ForBookingSeats";
-// import ForBookingSeats from "../../result/pages/bus/components/SelectSeat/ForBookingSeats";
-// import { BusBookingDetails } from "../../store/BookingSlice/BusBookingSlice";
-// import {BusBookingDetails}
-// import { BusBookingDetails } from "../../../store/BookingSlice/BusBookingSlice";
-import { tripDetails } from "../../../store/slices/userTransport/busUserSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-// import busImg from "../../assets/bus.png";
-import busImg from "../../../assets/bus.png";
-// import BusSeat from "../seatComponents/BusSeat";
-import BusSeat from "../../seatComponents/BusSeat";
-const BusList = ({ from, to, distance, busData }) => {
+import busImg from "../../../../assets/bus.png";
+import BusSeat from "../../../../components/seatComponents/BusSeat";
+import { tripDetails } from "../../../../store/slices/userTransport/busUserSlice";
+
+const BusCard = ({ from, to, distance, busData }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,6 +20,11 @@ const BusList = ({ from, to, distance, busData }) => {
     arrivalTime,
     departureTime
   ) => {
+    console.log("busSeatNumber", busSeatNumber);
+    console.log("busName", busName);
+    console.log("busType", busType);
+    console.log("arrivalTime", arrivalTime);
+    console.log("departureTime", departureTime);
     if (busSeatNumber && busName && busType && arrivalTime && departureTime) {
       console.log(busSeatNumber);
       setIsBookingDetailsComplete(true);
@@ -40,6 +39,8 @@ const BusList = ({ from, to, distance, busData }) => {
       );
     }
   };
+
+  // console.log(busSeatNumber);
 
   const handleNavigateToConfirmBookingPage = () => {
     if (isBookingDetailsComplete) {
@@ -191,44 +192,6 @@ const BusList = ({ from, to, distance, busData }) => {
                   </div>
                 </div>
                 <div className="">
-                  {/* <div className=" flex justify-end ">
-                    <div className="grid bg-gray-100 rounded-lg sm:w-[15%] w-full  ">
-                      <button
-                        onClick={() =>
-                          setActiveBusId((prevId) =>
-                            prevId === bus._id ? null : bus._id
-                          )
-                        }
-                        // className="bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold px-6 py-2 rounded-lg shadow hover:from-blue-700 hover:to-blue-600 transition-all duration-300"
-                        className=" bg-blue-500 text-white  hover:bg-blue-600  font-bold py-2 px-6 rounded-lg shadow-lg   "
-                      >
-                        {activeBusId === bus._id ? "Close" : "Select"}
-                      </button>
-                      <div className="flex justify-center items-center">
-                        <h3 className="text-xs">Available Seats</h3>
-                      </div>
-                    </div>
-                  </div> */}
-                  {/* <div className=" flex justify-end">
-                    <div className="grid bg-gray-100 p-1 rounded-lg">
-                      <button
-                        onClick={() =>
-                          setActiveBusId((prevId) =>
-                            prevId === bus._id ? null : bus._id
-                          )
-                        }
-                        // className="bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold px-6 py-2 rounded-lg shadow hover:from-blue-700 hover:to-blue-600 transition-all duration-300"
-                        className="bg-blue-500 text-white  hover:bg-blue-600  font-bold py-2 px-6 rounded-lg shadow-lg   "
-                      >
-                        {activeBusId === bus._id
-                          ? "Close Seats"
-                          : "Select Seats"}
-                      </button>
-                      <div className="flex justify-center items-center">
-                        <h3 className="text-xs">Available Seats</h3>
-                      </div>
-                    </div>
-                  </div> */}
                   {/* Animated Dropdown for Seats */}
                   <div
                     className={`transition-all duration-200 ease-in-out overflow-hidden ${
@@ -277,4 +240,4 @@ const BusList = ({ from, to, distance, busData }) => {
   );
 };
 
-export default BusList;
+export default BusCard;

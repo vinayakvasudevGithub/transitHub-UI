@@ -16,6 +16,8 @@ import { Toaster } from "react-hot-toast";
 import UserAuth from "./pages/UserAuth";
 import axios from "axios";
 import { UserContextProvider } from "../context/UserContext";
+// import AdminPanel from "./pages/AdminPanel";
+import Admin from "./pages/Admin";
 // import { UserContextProvider } from "./context/UserContext";
 // import { UserContextProvider } from "./context/UserContext";
 // import { UserContextProvider } from "../context/UserContext";
@@ -36,6 +38,9 @@ function App() {
           <Route path="/booking/*" element={<BookingPage />} />
           <Route path="/payment/*" element={<PaymentPage />} />
           <Route path="/booked/*" element={<BookedPage />} />
+
+          <Route path="/admin/*" element={<Admin />} />
+          {/* <Route path="/admin/*" element={<AdminPanel />} /> */}
         </Routes>
       </UserContextProvider>
       {/* </UserContextProvider> */}

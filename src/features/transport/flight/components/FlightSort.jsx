@@ -1,5 +1,13 @@
 // import React from "react";
 
+// const FlightSort = () => {
+//   return <div>FlightSort</div>;
+// };
+
+// export default FlightSort;
+
+// import React from "react";
+
 // const FlightSortingBar = () => {
 //   return <div>FlightSortingBar</div>;
 // };
@@ -8,7 +16,7 @@
 
 import React, { useState } from "react";
 
-const FlightSortingBar = ({ originalFlights, setFlight, flight }) => {
+const FlightSort = ({ originalFlights, setFlight, flight }) => {
   const [sortPrice, setSortPrice] = useState(false);
   const [sortArrivalTime, setSortArrivalTime] = useState(false);
   const [sortDepartureTime, setSortDepartureTime] = useState(false);
@@ -162,4 +170,4 @@ const FlightSortingBar = ({ originalFlights, setFlight, flight }) => {
   );
 };
 
-export default FlightSortingBar;
+export default FlightSort;

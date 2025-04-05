@@ -7,7 +7,7 @@ import { FaRegCircle } from "react-icons/fa";
 
 import { useNavigate } from "react-router-dom";
 
-const FlightList = ({ FlightFrom, FlightTo, FlightData }) => {
+const FlightCard = ({ FlightFrom, FlightTo, FlightData }) => {
   const navigate = useNavigate();
 
   const handleNavigateToBookingPage = (id) => {
@@ -141,4 +141,4 @@ const FlightList = ({ FlightFrom, FlightTo, FlightData }) => {
   );
 };
 
-export default FlightList;
+export default FlightCard;

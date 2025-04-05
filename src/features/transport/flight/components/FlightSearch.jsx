@@ -1,10 +1,22 @@
+// import React from 'react'
+
+// const FlightSearch = () => {
+//   return (
+//     <div>FlightSearch</div>
+//   )
+// }
+
+// export default FlightSearch
+
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { tripInfo } from "../../../store/slices/userTransport/flightUserSlice";
-import { getAllFlights } from "../../../api/services/transport/flightApi";
+// import { tripInfo } from "../../../store/slices/userTransport/flightUserSlice";
+// import { getAllFlights } from "../../../api/services/transport/flightApi";
+import { tripInfo } from "../../../../store/slices/userTransport/flightUserSlice";
+import { getAllFlights } from "../../../../api/services/transport/flightApi";
 
-const FlightSearchBar = ({ FlightFrom, FlightTo, FirstFlightData }) => {
+const FlightSearch = ({ FlightFrom, FlightTo, FirstFlightData }) => {
   const [searchFrom, setsearchFrom] = useState(FlightFrom || "");
   const [searchTo, setsearchTo] = useState(FlightTo || "");
   const [travelDate, setTravelDate] = useState(""); // State for date input
@@ -189,4 +201,4 @@ const FlightSearchBar = ({ FlightFrom, FlightTo, FirstFlightData }) => {
   );
 };
 
-export default FlightSearchBar;
+export default FlightSearch;

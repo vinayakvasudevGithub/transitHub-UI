@@ -241,6 +241,8 @@ const ToAddNewBusToData = () => {
     ],
   });
 
+  console.log(BusData);
+
   const [Message, SetMessage] = useState("");
 
   const handleBusInfoChange = (e) => {

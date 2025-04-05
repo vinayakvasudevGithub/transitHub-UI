@@ -1,6 +1,14 @@
+// import React from "react";
+
+// const BusSort = () => {
+//   return <div>BusSort</div>;
+// };
+
+// export default BusSort;
+
 import React, { useState } from "react";
 
-const BusSortingBar = ({ originalBuses, setBuses, buses }) => {
+const BusSort = ({ originalBuses, setBuses, buses }) => {
   const [sortPrice, setSortPrice] = useState(false);
   const [sortArrivalTime, setSortArrivalTime] = useState(false);
   const [sortDepartureTime, setSortDepartureTime] = useState(false);
@@ -148,4 +156,4 @@ const BusSortingBar = ({ originalBuses, setBuses, buses }) => {
   );
 };
 
-export default BusSortingBar;
+export default BusSort;
