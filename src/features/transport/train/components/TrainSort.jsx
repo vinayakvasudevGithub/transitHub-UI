@@ -1,20 +1,6 @@
-// import React from "react";
-
-// const TrainSortingBar = () => {
-//   return <div>TrainSortingBar</div>;
-// };
-
-// export default TrainSortingBar;
-
 import React, { useState } from "react";
 
-const TrainSortingBar = ({
-  originalTrains,
-  setTrainData,
-  TrainData,
-  from,
-  to,
-}) => {
+const TrainSort = ({ originalTrains, setTrainData, TrainData, from, to }) => {
   const [sortDepartureActive, setSortDepartureActive] = useState(false);
   const [sortArrivalActive, setSortArrivalActive] = useState(false);
   const [sortDurationActive, setSortDurationActive] = useState(false);
@@ -150,4 +136,4 @@ const TrainSortingBar = ({
   );
 };
 
-export default TrainSortingBar;
+export default TrainSort;

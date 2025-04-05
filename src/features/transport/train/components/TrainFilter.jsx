@@ -8,13 +8,7 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 
-const TrainFilterBar = ({
-  TrainData,
-  setTrainData,
-  originalTrains,
-  from,
-  to,
-}) => {
+const TrainFilter = ({ TrainData, setTrainData, originalTrains, from, to }) => {
   const [filters, setFilters] = useState({
     SL: false,
     AC1: false,
@@ -257,4 +251,4 @@ const TrainFilterBar = ({
   );
 };
 
-export default TrainFilterBar;
+export default TrainFilter;
