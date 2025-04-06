@@ -25,17 +25,11 @@ const TrainCard = ({ from, to, TrainData }) => {
   };
 
   const handleNavigateToBookingPage = (classId, trainId) => {
-    navigate("/booking/trainTicket", { state: { classId, trainId } });
+    navigate("/book/train", { state: { classId, trainId } });
   };
 
   return (
     <div className=" min-h-screen  ">
-      {/* <div className="max-w-5xl mx-auto"> */}
-      {/* <div className=""> */}
-      {/* <p className="text-xl font-semibold text-gray-700 mb-4">
-          Trains from <span className="text-blue-500">{from}</span> to{" "}
-          <span className="text-blue-500">{to}</span>
-        </p> */}
       {TrainData.map((data) => (
         <div
           onClick={() => (!popUp ? setPopUp(data._id) : setPopUp(null))}

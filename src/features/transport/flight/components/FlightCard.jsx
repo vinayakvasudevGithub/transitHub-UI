@@ -11,7 +11,8 @@ const FlightCard = ({ FlightFrom, FlightTo, FlightData }) => {
   const navigate = useNavigate();
 
   const handleNavigateToBookingPage = (id) => {
-    navigate("/booking/flightTicket", { state: { id } });
+    // navigate("/booking/flightTicket", { state: { id } });
+    navigate("/book/flight", { state: { id } });
   };
 
   return (

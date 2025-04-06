@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getAllFlights } from "../../api/services/transport/flightApi";
 import { getFlightsById } from "../../api/services/transport/flightApi";
+// import { bookFlightTicket } from "../../api/services/transport/flightApi";
 import { bookFlightTicket } from "../../api/services/transport/flightApi";
 
-const FlightBookingPage = () => {
+const FlyBook = () => {
   const [flightData, setFlightData] = useState([]);
   const location = useLocation();
   const id = location.state?.id;
@@ -269,4 +270,4 @@ const FlightBookingPage = () => {
   );
 };
 
-export default FlightBookingPage;
+export default FlyBook;

@@ -9,18 +9,16 @@ import { useState } from "react";
 import PayMentPageCombined from "./payment/PayMentPageCombined";
 import HomePage from "./pages/HomePage";
 import SearchResults from "./pages/SearchResults";
-import BookingPage from "./pages/BookingPage";
+// import BookingPage from "./pages/BookingPage";
 import PaymentPage from "./pages/PaymentPage";
 import BookedPage from "./pages/BookedPage";
 import { Toaster } from "react-hot-toast";
 import UserAuth from "./pages/UserAuth";
 import axios from "axios";
 import { UserContextProvider } from "../context/UserContext";
-// import AdminPanel from "./pages/AdminPanel";
 import Admin from "./pages/Admin";
+import Book from "./pages/Book";
 // import { UserContextProvider } from "./context/UserContext";
-// import { UserContextProvider } from "./context/UserContext";
-// import { UserContextProvider } from "../context/UserContext";
 axios.defaults.baseURL = "http://localhost:3001";
 axios.defaults.withCredentials = true;
 
@@ -35,7 +33,8 @@ function App() {
           <Route path="/home/*" element={<HomePage />} />
           <Route path="/result/*" element={<SearchResults />} />
           <Route path="/upload/*" element={<ClientsToUpload />} />
-          <Route path="/booking/*" element={<BookingPage />} />
+          {/* <Route path="/booking/*" element={<BookingPage />} /> */}
+          <Route path="/book/*" element={<Book />} />
           <Route path="/payment/*" element={<PaymentPage />} />
           <Route path="/booked/*" element={<BookedPage />} />
 

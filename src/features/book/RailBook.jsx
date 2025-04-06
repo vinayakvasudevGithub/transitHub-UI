@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { trainTicketApiStructure } from "../../api/structure/ticket/trainTicketApiStructure";
 import { useTrainTicketForm } from "../../api/ticketform/useTrainTicketForm";
 
-const TrainBookingPage = () => {
+const RailBook = () => {
   const searchKey = useSelector((state) => state.train.TrainList) || [];
   const location = useLocation();
   const trainId = location?.state?.trainId;
@@ -239,4 +239,4 @@ const TrainBookingPage = () => {
   );
 };
 
-export default TrainBookingPage;
+export default RailBook;

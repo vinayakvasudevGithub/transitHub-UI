@@ -44,7 +44,7 @@ const BusCard = ({ from, to, distance, busData }) => {
 
   const handleNavigateToConfirmBookingPage = () => {
     if (isBookingDetailsComplete) {
-      navigate("/booking/busTicket");
+      navigate("/book/bus");
     }
   };
 
