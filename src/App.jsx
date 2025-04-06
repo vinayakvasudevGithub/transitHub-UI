@@ -12,8 +12,8 @@ import Book from "./pages/Book";
 import MyTrip from "./pages/MyTrip";
 import Upload from "./pages/Upload";
 
-axios.defaults.baseURL = "http://localhost:3001";
-axios.defaults.withCredentials = true;
+// axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.withCredentials = true;
 
 function App() {
   return (

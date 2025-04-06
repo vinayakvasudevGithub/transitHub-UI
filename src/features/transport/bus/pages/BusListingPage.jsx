@@ -6,6 +6,7 @@ import BusFilter from "../components/BusFilter";
 import BusSort from "../components/BusSort";
 import BusCard from "../components/BusCard";
 import { searchBuses } from "../../../../api/services/transport/busApi";
+import Loading from "../../../../components/Loading";
 
 const BusListingPage = () => {
   const searchKey = useSelector((state) => state.bus.BusList);
@@ -54,11 +55,7 @@ const BusListingPage = () => {
   // if (!buses.length) return <p>No buses available....</p>;
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

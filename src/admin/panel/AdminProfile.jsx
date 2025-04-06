@@ -1,66 +1,6 @@
-// import { useState, useEffect } from "react";
-// import axios from "axios";
-
-// const AdminProfile = () => {
-//   const [profile, setProfile] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   useEffect(() => {
-//     const source = axios.CancelToken.source();
-
-//     const fetchProfile = async () => {
-//       try {
-//         const response = await axios.get("http://localhost:2001/auth/profile", {
-//           withCredentials: true, // Important for sending cookies
-//           cancelToken: source.token,
-//         });
-
-//         setProfile(response.data);
-//       } catch (err) {
-//         if (!axios.isCancel(err)) {
-//           setError(
-//             err.response?.data?.message ||
-//               err.message ||
-//               "Failed to fetch profile"
-//           );
-//           console.error("Profile fetch error:", err);
-//         }
-//       } finally {
-//         if (!source.token.reason) {
-//           // Only update if not canceled
-//           setLoading(false);
-//         }
-//       }
-//     };
-
-//     fetchProfile();
-
-//     return () => {
-//       source.cancel("Component unmounted, request canceled");
-//     };
-//   }, []);
-
-//   console.log(profile);
-
-//   if (loading) return <div>Loading profile...</div>;
-//   if (error) return <div className="error">Error: {error}</div>;
-//   if (!profile) return <div>No profile data found</div>;
-
-//   return (
-//     <div className="profile">
-//       <h2>Admin Profile</h2>
-//       {
-//         profile.buses.map
-//       }
-//     </div>
-//   );
-// };
-
-// export default AdminProfile;
-
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Loading from "../../components/Loading";
 
 const AdminProfile = () => {
   const [profile, setProfile] = useState(null);
@@ -101,8 +41,7 @@ const AdminProfile = () => {
     };
   }, []);
 
-  if (loading)
-    return <div className="text-center py-4">Loading profile...</div>;
+  if (loading) return <Loading />;
   if (error)
     return <div className="text-red-500 text-center py-4">Error: {error}</div>;
   if (!profile)

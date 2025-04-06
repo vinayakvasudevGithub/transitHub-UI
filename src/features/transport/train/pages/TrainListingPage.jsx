@@ -5,6 +5,7 @@ import TrainSearch from "../components/TrainSearch";
 import TrainFilter from "../components/TrainFilter";
 import TrainSort from "../components/TrainSort";
 import TrainCard from "../components/TrainCard";
+import Loading from "../../../../components/Loading";
 
 const TrainListingPage = () => {
   const searchKey = useSelector((State) => State.train.TrainList);
@@ -35,11 +36,7 @@ const TrainListingPage = () => {
   // if (!TrainData.length) return <p>No trains available....</p>;
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

@@ -20,7 +20,7 @@ export const loginUser = async (formData) => {
       API_ENDPOINTS.USER.LOGIN,
       formData
     );
-    return response.data;
+    return response;
   } catch (error) {
     return handleApiError(error);
   }
@@ -29,6 +29,15 @@ export const loginUser = async (formData) => {
 export const loggedInUser = async () => {
   try {
     const res = await axiosInstance.get(API_ENDPOINTS.USER.CURRENT);
+    return res.data;
+  } catch (error) {
+    return handleApiError(error);
+  }
+};
+
+export const profile = async () => {
+  try {
+    const res = await axiosInstance.get(API_ENDPOINTS.USER.PROFILE);
     return res.data;
   } catch (error) {
     return handleApiError(error);

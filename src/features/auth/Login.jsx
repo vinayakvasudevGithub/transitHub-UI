@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../api/services/auth/authApi";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -24,11 +25,15 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const { data } = await axios.post(
-        "http://localhost:2001/auth/login",
-        formData,
-        { withCredentials: true } // Essential for cookie-based auth
-      );
+      // const { data } = await axios.post(
+      //   "http://localhost:2001/auth/login",
+      //   formData,
+      //   { withCredentials: true } // Essential for cookie-based auth
+      // );
+
+      const { data } = await loginUser(formData);
+
+      console.log(data);
 
       if (data.error) {
         toast.error(data.error);

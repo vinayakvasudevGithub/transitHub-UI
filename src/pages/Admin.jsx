@@ -1,5 +1,5 @@
 import React from "react";
-import AdminPanel from "../admin/panel/AdminPanel";
+// import AdminPanel from "../admin/panel/AdminPanel";
 import AdminProfile from "../admin/panel/AdminProfile";
 
 const Admin = () => {

@@ -5,6 +5,7 @@ import FlightSearch from "../components/FlightSearch";
 import FlightFilter from "../components/FlightFilter";
 import FlightSort from "../components/FlightSort";
 import FlightCard from "../components/FlightCard";
+import Loading from "../../../../components/Loading";
 
 const FlightListingPage = () => {
   const searchKey = useSelector((State) => State.flight.FlightList);
@@ -36,11 +37,7 @@ const FlightListingPage = () => {
   // if (!flight.length) return <p>No flights available....</p>;
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
