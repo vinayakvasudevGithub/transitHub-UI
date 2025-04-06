@@ -1,18 +1,13 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { GiSteeringWheel } from "react-icons/gi";
-import { MdOutlineEventSeat } from "react-icons/md";
 import { useSelector } from "react-redux";
-// import seatImage from "../../../assets/seat.png";
-import seat2 from "../../assets/seat2.png";
-import { bookedBuses } from "../../api/services/transport/busApi";
+import seat2 from "../../../../assets/seat2.png";
+import { bookedBuses } from "../../../../api/services/transport/busApi";
 
 const BusSeat = ({ busData, handleSelectBus }) => {
   const [selectedSeat, setSelectedSeat] = useState(null);
   const searchKey = useSelector((state) => state.bus.BusList);
   const lastSearch = searchKey?.[searchKey.length - 1];
-
-  // console.log(selectedSeat);
 
   const [bookedDetails, setBookedDetails] = useState([]);
   const [error, setError] = useState(null);

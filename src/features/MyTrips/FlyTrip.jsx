@@ -1,9 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
+import { useState, useEffect } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
 
-const BusTicket = () => {
-  const { user, loading: userLoading } = useContext(UserContext);
+const FlyTrip = () => {
+  const { user } = useContext(UserContext);
   const [bookedTickets, setBookedTickets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,7 +15,7 @@ const BusTicket = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          "http://localhost:2001/busticket/user",
+          "http://localhost:2001/flightticket/user",
           {
             withCredentials: true,
           }
@@ -34,36 +36,10 @@ const BusTicket = () => {
     }
   }, [user]);
 
-  if (userLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            Access Denied
-          </h2>
-          <p className="text-gray-600">
-            Please log in to view your booked tickets
-          </p>
-        </div>
-      </div>
-    );
-  }
-
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
-          <p className="text-gray-700">Loading your booked tickets...</p>
-        </div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       </div>
     );
   }
@@ -80,22 +56,13 @@ const BusTicket = () => {
   }
 
   return (
-    // <div className="min-h-screen bg-gray-500 py-8 px-4 sm:px-6 lg:px-8">
-    <div className=" bg-gray-500 py-8 px-4 sm:px-6 lg:px-8">
+    // <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className=" bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        {/* <div className="text-center mb-10">
-          <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Welcome, {user.user?.name}!
-          </h1>
-          <h2 className="mt-2 text-xl font-semibold text-gray-600">
-            Your Booked Tickets
-          </h2>
-        </div> */}
-
         {bookedTickets.length === 0 ? (
           <div className="bg-white shadow rounded-lg p-6 text-center">
             <p className="text-gray-600 text-lg">
-              You haven't booked any tickets yet
+              You haven't booked any flights yet
             </p>
           </div>
         ) : (
@@ -109,7 +76,7 @@ const BusTicket = () => {
                   <div className="flex justify-between items-start">
                     <div>
                       <h3 className="text-lg font-bold text-gray-900 mb-2">
-                        Ticket ID: {ticket._id}
+                        Booking ID: {ticket._id}
                       </h3>
                       <p className="text-sm text-gray-500">
                         Booked by: {ticket.user.transithubUser}
@@ -121,38 +88,72 @@ const BusTicket = () => {
                   </div>
 
                   <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Bus Details */}
+                    {/* Flight Details */}
                     <div className="border border-gray-200 rounded-lg p-4">
                       <h4 className="font-semibold text-gray-800 mb-3 pb-2 border-b">
-                        Bus Information
+                        Flight Information
                       </h4>
-                      {ticket.busdetails.map((bus) => (
-                        <div key={bus._id} className="space-y-2">
-                          <div className="flex justify-between">
-                            <span className="text-gray-600">Bus Name:</span>
-                            <span className="font-medium">{bus.busname}</span>
+                      {ticket.flightDetails.map((flight, index) => (
+                        <div key={index} className="space-y-4">
+                          <div className="flex items-center space-x-4">
+                            <div className="flex-1">
+                              <div className="font-medium text-gray-700">
+                                Departure
+                              </div>
+                              <div className="text-sm text-gray-500">
+                                {flight.departure[0].city} (
+                                {flight.departure[0].code})
+                              </div>
+                              <div className="text-sm">
+                                {flight.departure[0].name}
+                              </div>
+                              <div className="text-sm font-medium mt-1">
+                                {flight.departure[0].departureDate} at{" "}
+                                {flight.departure[0].departureTime}
+                              </div>
+                            </div>
+                            <div className="text-gray-400">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-6 w-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M8 7l4-4m0 0l4 4m-4-4v18"
+                                />
+                              </svg>
+                            </div>
+                            <div className="flex-1">
+                              <div className="font-medium text-gray-700">
+                                Arrival
+                              </div>
+                              <div className="text-sm text-gray-500">
+                                {flight.arrival[0].city} (
+                                {flight.arrival[0].code})
+                              </div>
+                              <div className="text-sm">
+                                {flight.arrival[0].name}
+                              </div>
+                              <div className="text-sm font-medium mt-1">
+                                {flight.arrival[0].arrivalDate} at{" "}
+                                {flight.arrival[0].arrivalTime}
+                              </div>
+                            </div>
                           </div>
-                          <div className="flex justify-between">
-                            <span className="text-gray-600">Bus Type:</span>
-                            <span className="font-medium">{bus.bustype}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-gray-600">Seat Number:</span>
-                            <span className="font-medium bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                              {bus.busseatnumber}
-                            </span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-gray-600">Route:</span>
-                            <span className="font-medium">
-                              {bus.departurecity} → {bus.arrivalcity}
-                            </span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-gray-600">Arrival Time:</span>
-                            <span className="font-medium">
-                              {bus.arrivaltime}
-                            </span>
+                          <div className="flex justify-between items-center pt-2 border-t border-gray-100">
+                            <div>
+                              <span className="text-xs font-medium bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                                Ticket ID: {ticket.airlineTicketId}
+                              </span>
+                            </div>
+                            <div className="text-sm text-gray-500">
+                              Duration: 3h 0m
+                            </div>
                           </div>
                         </div>
                       ))}
@@ -208,7 +209,7 @@ const BusTicket = () => {
                       Print Ticket
                     </button>
                     <button className="px-4 py-2 bg-red-600 rounded-md text-sm font-medium text-white hover:bg-red-700">
-                      Cancel Ticket
+                      Cancel Flight
                     </button>
                   </div>
                 </div>
@@ -221,4 +222,4 @@ const BusTicket = () => {
   );
 };
 
-export default BusTicket;
+export default FlyTrip;

@@ -1,18 +1,5 @@
-// import React from "react";
-
-// const FlightListingPage = () => {
-//   return <div>FlightListingPage</div>;
-// };
-
-// export default FlightListingPage;
-
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-// import FlightSortingBar from "./transport/flightComponents/FlightSortingBar";
-// import FlightFilterBar from "./transport/flightComponents/FlightFilterBar";
-// import FlightList from "./transport/flightComponents/FlightList";
-// import FlightSearchBar from "./transport/flightComponents/FlightSearchBar";
-// import { searchFlights } from "../api/services/transport/flightApi";
 import { searchFlights } from "../../../../api/services/transport/flightApi";
 import FlightSearch from "../components/FlightSearch";
 import FlightFilter from "../components/FlightFilter";
@@ -45,8 +32,16 @@ const FlightListingPage = () => {
     fetchFlights();
   }, [departureCity, destinationCity]);
 
-  if (loading) return <p>Loading flights....</p>;
-  if (!flight.length) return <p>No flights available....</p>;
+  // if (loading) return <p>Loading flights....</p>;
+  // if (!flight.length) return <p>No flights available....</p>;
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-2 bg-gray-200 ">

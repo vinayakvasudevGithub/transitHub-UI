@@ -11,13 +11,14 @@ import HomePage from "./pages/HomePage";
 import SearchResults from "./pages/SearchResults";
 // import BookingPage from "./pages/BookingPage";
 import PaymentPage from "./pages/PaymentPage";
-import BookedPage from "./pages/BookedPage";
+// import BookedPage from "./pages/BookedPage";
 import { Toaster } from "react-hot-toast";
 import UserAuth from "./pages/UserAuth";
 import axios from "axios";
 import { UserContextProvider } from "../context/UserContext";
 import Admin from "./pages/Admin";
 import Book from "./pages/Book";
+import MyTrip from "./pages/MyTrip";
 // import { UserContextProvider } from "./context/UserContext";
 axios.defaults.baseURL = "http://localhost:3001";
 axios.defaults.withCredentials = true;
@@ -36,7 +37,8 @@ function App() {
           {/* <Route path="/booking/*" element={<BookingPage />} /> */}
           <Route path="/book/*" element={<Book />} />
           <Route path="/payment/*" element={<PaymentPage />} />
-          <Route path="/booked/*" element={<BookedPage />} />
+          {/* <Route path="/booked/*" element={<BookedPage />} /> */}
+          <Route path="/mytrip/*" element={<MyTrip />} />
 
           <Route path="/admin/*" element={<Admin />} />
           {/* <Route path="/admin/*" element={<AdminPanel />} /> */}

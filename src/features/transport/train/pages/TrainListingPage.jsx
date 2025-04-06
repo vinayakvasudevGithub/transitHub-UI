@@ -31,8 +31,16 @@ const TrainListingPage = () => {
     fetchTrains();
   }, [from, to]);
 
-  if (loading) return <p>Loading trains....</p>;
-  if (!TrainData.length) return <p>No trains available....</p>;
+  // if (loading) return <p>Loading trains....</p>;
+  // if (!TrainData.length) return <p>No trains available....</p>;
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
 
   return (
     <div className=" bg-gray-100 p-3">

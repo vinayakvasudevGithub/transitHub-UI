@@ -50,8 +50,16 @@ const BusListingPage = () => {
     fetchBuses();
   }, [from, to]);
 
-  if (loading) return <p>Loading buses....</p>;
-  if (!buses.length) return <p>No buses available....</p>;
+  // if (loading) return <p>Loading buses....</p>;
+  // if (!buses.length) return <p>No buses available....</p>;
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
 
   return (
     <div className=" bg-gray-200 p-4  min-h-screen">
