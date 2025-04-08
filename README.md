@@ -7,6 +7,31 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh -->
 
+## 🛠️ Development Setup
+
+### 📜 Available Scripts
+
+- `npm run dev` - Start development server (Vite)
+- `npm run build` - Create production build
+- `npm run lint` - Run ESLint
+- `npm run preview` - Preview production build
+
+### 📦 Key Dependencies
+
+| Category    | Packages                   |
+| ----------- | -------------------------- |
+| **Core**    | React 18, React DOM        |
+| **Routing** | React Router 6             |
+| **State**   | Redux Toolkit, React Redux |
+| **Styling** | Tailwind CSS 3             |
+| **Build**   | Vite 6                     |
+
+### 🔧 Development Tools
+
+- TypeScript types (`@types/react`)
+- ESLint + React plugins
+- PostCSS + Autoprefixer
+
 ## 📁 Frontend Folder Structure
 
 ```
