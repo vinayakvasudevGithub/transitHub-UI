@@ -9,7 +9,7 @@ Currently, two official plugins are available:
 
 ## 📁 Frontend Folder Structure
 
-.
+```
 ├── admin/
 │ └── panel/
 │ └── AdminProfile.jsx
@@ -124,3 +124,4 @@ Currently, two official plugins are available:
 ├── App.jsx
 ├── main.jsx
 └── README.md
+```
