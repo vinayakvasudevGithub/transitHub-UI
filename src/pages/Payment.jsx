@@ -1,11 +1,11 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import TrainPayment from "../payment/TrainPayment";
 
-const PaymentPage = () => {
+const Payment = () => {
   return (
     <div>
-      payment page
+      payment
       {/* <Routes>
         <Route path="/trainPayment" element={<TrainPayment />} />
       </Routes> */}
@@ -13,4 +13,4 @@ const PaymentPage = () => {
   );
 };
 
-export default PaymentPage;
+export default Payment;

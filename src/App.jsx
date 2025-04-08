@@ -2,7 +2,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import SearchResults from "./pages/SearchResults";
-import PaymentPage from "./pages/PaymentPage";
+// import PaymentPage from "./pages/PaymentPage";
 import { Toaster } from "react-hot-toast";
 import UserAuth from "./pages/UserAuth";
 import axios from "axios";
@@ -11,6 +11,7 @@ import Admin from "./pages/Admin";
 import Book from "./pages/Book";
 import MyTrip from "./pages/MyTrip";
 import Upload from "./pages/Upload";
+import Payment from "./pages/Payment";
 
 // axios.defaults.baseURL = "http://localhost:3001";
 // axios.defaults.withCredentials = true;
@@ -25,7 +26,8 @@ function App() {
           <Route path="/home/*" element={<HomePage />} />
           <Route path="/result/*" element={<SearchResults />} />
           <Route path="/book/*" element={<Book />} />
-          <Route path="/payment/*" element={<PaymentPage />} />
+          {/* <Route path="/payment/*" element={<PaymentPage />} /> */}
+          <Route path="/payment/*" element={<Payment />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/upload/*" element={<Upload />} />
           <Route path="/mytrip/*" element={<MyTrip />} />

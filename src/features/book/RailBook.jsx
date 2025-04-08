@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { bookTrainTicket } from "../../api/services/transport/trainApi";
+// import { bookTrainTicket } from "../../api/services/transport/trainApi";
 import { useLocation, useNavigate } from "react-router-dom";
-import { trainTicketApiStructure } from "../../api/structure/ticket/trainTicketApiStructure";
-import { useTrainTicketForm } from "../../api/ticketform/useTrainTicketForm";
+// import { trainTicketApiStructure } from "../../api/structure/ticket/trainTicketApiStructure";
+// import { useTrainTicketForm } from "../../api/ticketform/useTrainTicketForm";
 
 const RailBook = () => {
   const searchKey = useSelector((state) => state.train.TrainList) || [];
@@ -77,7 +77,7 @@ const RailBook = () => {
 
   const handleSubmit = ({ departureStationDetails, arrivalStationDetails }) => {
     isUserDetailsFilled &&
-      navigate("/payment/trainPayment", {
+      navigate("/payment", {
         state: {
           formData,
           trainData,
