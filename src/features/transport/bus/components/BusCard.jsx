@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import busImg from "../../../../assets/bus.png";
-// import BusSeat from "../../../../components/seatComponents/BusSeat";
 import { tripDetails } from "../../../../store/slices/userTransport/busUserSlice";
 import BusSeat from "./BusSeat";
 

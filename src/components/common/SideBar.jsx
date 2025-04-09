@@ -63,7 +63,7 @@ const SideBar = () => {
                 Add New Transport
               </h2>
               <button
-                onClick={(e) => navigate("/admin")}
+                onClick={(e) => navigate("/dashboard")}
                 className="w-full flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-600 transition-colors"
               >
                 Admin panel

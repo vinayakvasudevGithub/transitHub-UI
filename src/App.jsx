@@ -12,6 +12,7 @@ import Book from "./pages/Book";
 import MyTrip from "./pages/MyTrip";
 import Upload from "./pages/Upload";
 import Payment from "./pages/Payment";
+import DashBoard from "./pages/DashBoard";
 
 // axios.defaults.baseURL = "http://localhost:3001";
 // axios.defaults.withCredentials = true;
@@ -21,16 +22,17 @@ function App() {
     <div className="bg-gray-50 min-h-screen">
       <UserContextProvider>
         <Toaster position="bottom-right" toastOptions={{ duration: 2000 }} />
+
         <Routes>
           <Route path="/*" element={<UserAuth />} />
           <Route path="/home/*" element={<HomePage />} />
           <Route path="/result/*" element={<SearchResults />} />
           <Route path="/book/*" element={<Book />} />
-          {/* <Route path="/payment/*" element={<PaymentPage />} /> */}
           <Route path="/payment/*" element={<Payment />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/upload/*" element={<Upload />} />
           <Route path="/mytrip/*" element={<MyTrip />} />
+          <Route path="/dashboard/*" element={<DashBoard />} />
         </Routes>
       </UserContextProvider>
     </div>
