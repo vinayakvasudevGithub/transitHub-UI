@@ -8,8 +8,26 @@ import {
 import StatsCard from "../components/StatsCard";
 import Chart from "../components/Chart";
 import DataTable from "../components/DataTable";
+import { useEffect, useState } from "react";
+import { bookedBuses } from "../../../api/services/transport/busApi";
 
 const Dashboard = () => {
+  const [bookedDetails, setBookedDetails] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await bookedBuses();
+        setBookedDetails(res);
+      } catch (error) {}
+    };
+    fetchData();
+  }, []);
+
+  const revenue = bookedDetails
+    .flatMap((ticket) => ticket.busdetails.map((bus) => bus.price))
+    .reduce((sum, price) => sum + price, 0);
+
+  // console.log(revenue);
   const recentOrders = [
     {
       id: "#1234",
@@ -48,6 +66,8 @@ const Dashboard = () => {
     },
   ];
 
+  // console.log(bookedDetails.length);
+
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
@@ -56,14 +76,14 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatsCard
           title="Total Revenue"
-          value="$12,345"
+          value={revenue}
           change="12"
           trend="up"
           icon={CurrencyDollarIcon}
         />
         <StatsCard
-          title="Total Orders"
-          value="1,234"
+          title="Total Bookings"
+          value={bookedDetails.length}
           change="8"
           trend="up"
           icon={ShoppingCartIcon}
@@ -108,6 +128,7 @@ const Dashboard = () => {
             View all
           </button>
         </div>
+
         <DataTable data={recentOrders} />
       </div>
     </div>

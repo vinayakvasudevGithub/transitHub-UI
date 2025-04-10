@@ -17,14 +17,23 @@ const BusUserSlice = createSlice({
       localStorage.setItem("BusList", JSON.stringify(state.BusList));
     },
     tripDetails: (state, action) => {
-      const { busSeatNumber, busName, busType, arrivalTime, departureTime } =
-        action.payload;
-      const journeyDetails = {
+      const {
         busSeatNumber,
         busName,
+        busnumber,
         busType,
         arrivalTime,
         departureTime,
+        price,
+      } = action.payload;
+      const journeyDetails = {
+        busSeatNumber,
+        busName,
+        busnumber,
+        busType,
+        arrivalTime,
+        departureTime,
+        price,
       };
 
       state.tripDetails.push(journeyDetails);

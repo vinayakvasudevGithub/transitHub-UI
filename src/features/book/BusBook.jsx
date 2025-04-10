@@ -8,16 +8,21 @@ const BusBook = () => {
   const searchKey = useSelector((State) => State.bus.BusList);
   const lastSearch = searchKey?.[searchKey.length - 1];
 
+  // console.log(lastSearch?.departureCity);
+  // console.log(lastBooking?.departureTime);
+
   const [formData, setFormData] = useState({
     busdetails: [
       {
         departurecity: lastSearch?.departureCity,
         arrivalcity: lastSearch?.destinationCity,
         busname: lastBooking?.busName,
+        busnumber: lastBooking?.busnumber,
         busseatnumber: lastBooking?.busSeatNumber,
         bustype: lastBooking?.busType,
         arrivaltime: lastBooking?.arrivalTime,
-        departuretime: lastBooking?.departureTime,
+        departureTime: lastBooking?.departureTime,
+        price: lastBooking?.price,
       },
     ],
     userDetails: [
@@ -30,6 +35,8 @@ const BusBook = () => {
       },
     ],
   });
+
+  console.log(formData.busdetails);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -66,6 +73,8 @@ const BusBook = () => {
     }
   };
 
+  // console.log(lastBooking)
+
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
@@ -78,6 +87,7 @@ const BusBook = () => {
           <h2 className="text-xl font-semibold text-gray-700 mb-2">
             {lastBooking?.busName || "Bus Name"}
           </h2>
+          <p>bys number : {lastBooking?.busnumber}</p>
           <p className="text-gray-600">{lastBooking?.busType || "Bus Type"}</p>
           <div className="grid grid-cols-2 gap-4 mt-4 text-gray-700">
             <p>

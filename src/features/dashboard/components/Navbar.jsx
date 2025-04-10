@@ -1,7 +1,7 @@
 import { Bars3Icon, BellIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
-const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
+const Navbar = ({ user, sidebarOpen, setSidebarOpen }) => {
   return (
     <header className="bg-white shadow-sm z-10">
       <div className="flex items-center justify-between h-16 px-4 sm:px-6">
@@ -57,11 +57,12 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
                 aria-haspopup="true"
               >
                 <span className="sr-only">Open user menu</span>
-                <div className="h-8 w-8 rounded-full bg-primary-500 flex items-center justify-center text-white font-medium">
+                {/* <div className="h-8 w-8 rounded-full bg-primary-500 flex items-center justify-center text-white font-medium">
                   JD
-                </div>
-                <span className="ml-2 text-sm font-medium text-gray-700 hidden md:block">
-                  John Doe
+                </div> */}
+                <span className="ml-2 text-sm font-medium text-gray-700  md:block">
+                  {/* <span className="ml-2 text-sm font-medium text-gray-700 hidden md:block"> */}
+                  {user?.name}
                 </span>
               </button>
             </div>

@@ -9,6 +9,8 @@ const BusCard = ({ from, to, distance, busData }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // console.log(distance);
+
   const [activeBusId, setActiveBusId] = useState(null);
   const [isBookingDetailsComplete, setIsBookingDetailsComplete] =
     useState(false);
@@ -16,29 +18,45 @@ const BusCard = ({ from, to, distance, busData }) => {
   const handleSelectBus = (
     busSeatNumber,
     busName,
+    busnumber,
     busType,
     arrivalTime,
-    departureTime
+    departureTime,
+    price
   ) => {
-    console.log("busSeatNumber", busSeatNumber);
-    console.log("busName", busName);
-    console.log("busType", busType);
-    console.log("arrivalTime", arrivalTime);
-    console.log("departureTime", departureTime);
-    if (busSeatNumber && busName && busType && arrivalTime && departureTime) {
-      console.log(busSeatNumber);
+    // console.log("busSeatNumber", busSeatNumber);
+    // console.log("busName", busName);
+    // console.log("busType", busType);
+    // console.log("arrivalTime", arrivalTime);
+    // console.log("departureTime", departureTime);
+    console.log("depd", departureTime);
+    console.log("arr", arrivalTime);
+    if (
+      busSeatNumber &&
+      busName &&
+      busnumber &&
+      busType &&
+      arrivalTime &&
+      departureTime &&
+      price
+    ) {
+      console.log(price);
       setIsBookingDetailsComplete(true);
       dispatch(
         tripDetails({
           busSeatNumber,
           busName,
+          busnumber,
           busType,
           arrivalTime,
           departureTime,
+          price,
         })
       );
     }
   };
+
+  // console.log(price)
 
   // console.log(busSeatNumber);
 
@@ -208,9 +226,14 @@ const BusCard = ({ from, to, distance, busData }) => {
                           handleSelectBus(
                             busSeatNumber,
                             bus.busname,
+                            bus.busnumber,
                             bus.bustype,
                             arrival?.arrivaltime,
-                            departure?.departureTime
+                            departure?.departureTime,
+                            bus.ticketprices?.[0]
+                              ? bus.ticketprices[0].minimumfare +
+                                  distance * bus.ticketprices[0].perkilometre
+                              : 0
                           )
                         }
                       />

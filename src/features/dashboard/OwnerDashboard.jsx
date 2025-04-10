@@ -128,7 +128,7 @@
 
 // export default OwnerDashboard;
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
@@ -136,10 +136,39 @@ import Dashboard from "./pages/Dashboard";
 import Products from "./pages/Products";
 import Users from "./pages/Users";
 import Settings from "./pages/Settings";
+import axios from "axios";
 
 function OwnerDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [profile, setProfile] = useState("");
+  const [busTicket, setBusTicket] = useState("");
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:2001/auth/profile", {
+          withCredentials: true,
+        });
+        setProfile(response.data);
+      } catch (error) {}
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:2001/busticket", {
+          withCredentials: true,
+        });
+        setBusTicket(response.data);
+      } catch (error) {}
+    };
+    fetchData();
+  }, []);
+
+  const { user, buses } = profile;
+  // console.log(user);
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
@@ -148,7 +177,11 @@ function OwnerDashboard() {
       {/* Content area */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Navbar */}
-        <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <Navbar
+          user={user}
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+        />
 
         {/* Main content */}
         <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-50">
