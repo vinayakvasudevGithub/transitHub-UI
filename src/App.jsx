@@ -13,6 +13,7 @@ import MyTrip from "./pages/MyTrip";
 import Upload from "./pages/Upload";
 import Payment from "./pages/Payment";
 import DashBoard from "./pages/DashBoard";
+// import DashBoard from "./pages/DashBoard";
 
 // axios.defaults.baseURL = "http://localhost:3001";
 // axios.defaults.withCredentials = true;

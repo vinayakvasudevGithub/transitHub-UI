@@ -248,11 +248,11 @@
 // export default Admin;
 
 import React, { useEffect, useState } from "react";
-import BusPanel from "../features/dashboard/bus/pages/BusPanel";
+// import BusPanel from "../features/dashboard/bus/pages/BusPanel";
 import axios from "axios";
 import Loading from "../components/Loading";
 import ErrorMessage from "../components/ErrorMessage";
-import Panel from "../features/dashboard/panel/Panel";
+// import Panel from "../features/dashboard/panel/Panel";
 
 const Admin = () => {
   const [profile, setProfile] = useState(null);
@@ -330,7 +330,7 @@ const Admin = () => {
         </div>
         <div className="container mx-auto px-4 py-8">
           <div className="bg-white rounded-lg shadow-md p-6">
-            <Panel />
+            {/* <Panel /> */}
           </div>
         </div>
 
@@ -347,7 +347,7 @@ const Admin = () => {
               <h1 className="text-2xl font-bold mb-4">
                 you have {buses.length} buses
               </h1>
-              <BusPanel buses={buses} />
+              {/* <BusPanel buses={buses} /> */}
             </div>
           ) : (
             <div className="bg-white rounded-lg shadow-md p-6 text-center">

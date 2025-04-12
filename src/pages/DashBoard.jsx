@@ -1,10 +1,10 @@
 import React from "react";
-import OwnerDashboard from "../features/dashboard/OwnerDashboard";
+import BusDashBoard from "../features/dashboard/bus/pages/BusDashBoard";
 
 const DashBoard = () => {
   return (
     <div>
-      <OwnerDashboard />
+      <BusDashBoard />
     </div>
   );
 };
