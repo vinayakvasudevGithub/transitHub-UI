@@ -680,11 +680,13 @@ const BusDashBoard = () => {
   const stats = calculateStats();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    // <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+    <div className="min-h-screen  bg-blue-100 ">
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-      <main className="max-w-7xl mx-auto px-4 md:px-8 py-8">
+      {/* <main className="max-w-7xl mx-auto px-4 md:px-8 py-8"> */}
+      <main className=" mx-auto px-4 md:px-8 py-8 ">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">Overview</h2>
 
         <motion.div

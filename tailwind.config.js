@@ -4,6 +4,15 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      // animation: {
+      //   "bus-move": "moveBus 3s linear infinite",
+      // },
+      // keyframes: {
+      //   moveBus: {
+      //     "0%": { transform: "translateX(-50%)" },
+      //     "100%": { transform: "translateX(110%)" },
+      //   },
+      // },
       dark: {
         900: "#0f172a", // Make sure these match your CSS
         800: "#1e293b",
