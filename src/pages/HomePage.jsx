@@ -409,6 +409,7 @@ const HomePage = () => {
                 transit<span className="text-teal-500">Hub</span>
               </h1>
             </div>
+            <div className="bg-red-300"></div>
             <SideBar />
           </div>
         </div>

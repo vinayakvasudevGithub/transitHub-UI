@@ -204,14 +204,14 @@ const BusSearch = ({ from, to }) => {
   return (
     <form
       onSubmit={searchMore}
-      className="bg-white p-6 rounded-2xl shadow-xl flex flex-wrap md:flex-nowrap gap-4 items-end"
+      className="bg-white p-6  rounded-2xl shadow-xl flex flex-wrap md:flex-nowrap gap-4 items-end"
     >
       {/* FROM */}
-      <div className="w-full md:w-1/4 relative">
+      <div className="w-full md:w-1/4 relative ">
         <label className="text-sm font-medium text-gray-600 mb-1 block">
           From
         </label>
-        <div className="relative">
+        <div className="relative ">
           <FiMapPin className="absolute top-3 left-3 text-gray-400" />
           <input
             type="text"

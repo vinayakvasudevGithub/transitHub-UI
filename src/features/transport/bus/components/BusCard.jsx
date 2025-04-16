@@ -197,7 +197,7 @@ const BusCard = ({ from, to, distance, busData }) => {
                               )
                             }
                             // className="bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold px-6 py-2 rounded-lg shadow hover:from-blue-700 hover:to-blue-600 transition-all duration-300"
-                            className=" bg-blue-500  text-white  hover:bg-blue-600  font-bold py-2 px-6 rounded-lg shadow-lg   "
+                            className=" bg-gradient-to-r from-teal-500 to-cyan-500 p-4  text-white   font-bold py-2 px-6 rounded-lg shadow-lg   "
                           >
                             {activeBusId === bus._id ? "Close" : "Select"}
                           </button>
