@@ -637,10 +637,12 @@ const BusListingPage = () => {
       </AnimatePresence>
 
       {/* Main content */}
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="flex flex-col lg:flex-row gap-6">
+      {/* <div className="max-w-7xl mx-auto px-4 py-6"> */}
+      <div className=" mx-auto px-2 py-4 ">
+        <div className="flex flex-col lg:flex-row gap-6  p-1">
           {/* Filters - Desktop */}
-          <div className="lg:block w-full lg:w-80 flex-shrink-0 hidden">
+          {/* <div className="lg:block w-full lg:w-80 flex-shrink-0 hidden"> */}
+          <div className="lg:block  lg:w-[25rem] flex-shrink-0 hidden  p-1">
             <div className="bg-white rounded-xl shadow-md overflow-hidden sticky top-4">
               <div
                 className="bg-gradient-to-r from-teal-500 to-cyan-500 px-6 py-4 text-white flex justify-between items-center cursor-pointer"
@@ -657,45 +659,46 @@ const BusListingPage = () => {
                 />
               </div>
 
-              <AnimatePresence>
-                {isFilterExpanded && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="p-6">
-                      <BusFilter
-                        from={from}
-                        to={to}
-                        originalBuses={originalBuses}
-                        setBuses={setBuses}
-                        busData={buses}
-                      />
-                      <div className="mt-6 pt-6 border-t border-gray-100">
-                        <BusSort
-                          originalBuses={originalBuses}
-                          setBuses={setBuses}
-                          buses={buses}
-                        />
-                      </div>
+              {/* <AnimatePresence> */}
+              {isFilterExpanded && (
+                // <motion.div
+                //   initial={{ height: 0, opacity: 0 }}
+                //   animate={{ height: "auto", opacity: 1 }}
+                //   exit={{ height: 0, opacity: 0 }}
+                //   transition={{ duration: 0.3 }}
+                // >
+                // <div className="p-6">
+                <div className="p-1">
+                  <BusFilter
+                    from={from}
+                    to={to}
+                    originalBuses={originalBuses}
+                    setBuses={setBuses}
+                    busData={buses}
+                  />
+                  {/* <div className="mt-6 pt-6 border-t border-gray-100">
+                    <BusSort
+                      originalBuses={originalBuses}
+                      setBuses={setBuses}
+                      buses={buses}
+                    />
+                  </div> */}
 
-                      <div className="mt-6 flex space-x-3">
-                        <button
-                          onClick={() => setBuses(originalBuses)}
-                          className="flex-1 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors text-sm"
-                        >
-                          Reset All
-                        </button>
-                        <button className="flex-1 py-2 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-lg font-medium hover:opacity-90 transition-all shadow-sm text-sm">
-                          Apply Filters
-                        </button>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                  <div className="mt-6 flex space-x-3">
+                    <button
+                      onClick={() => setBuses(originalBuses)}
+                      className="flex-1 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors text-sm"
+                    >
+                      Reset All
+                    </button>
+                    <button className="flex-1 py-2 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-lg font-medium hover:opacity-90 transition-all shadow-sm text-sm">
+                      Apply Filters
+                    </button>
+                  </div>
+                </div>
+                // {/* </motion.div> */}
+              )}
+              {/* </AnimatePresence> */}
             </div>
           </div>
 

@@ -1,510 +1,857 @@
-// // // import React from "react";
+// // // import React, { useEffect, useState } from "react";
+// // // import { FiUsers, FiDollarSign, FiCalendar, FiClock } from "react-icons/fi";
+// // // import DirectionsBus from "@mui/icons-material/DirectionsBus";
+// // // import BusUsers from "./BusUsers";
+// // // import Navbar from "../components/Navbar";
+// // // import Sidebar from "../components/Sidebar";
+// // // import { Routes, Route } from "react-router-dom";
+// // // import BusStatus from "./BusStatus";
+// // // import axios from "axios";
+// // // import Loading from "../../../../components/Loading";
+// // // import { motion } from "framer-motion";
 
-// // // const BusPanel = () => {
-// // //   return <div>BusPanel</div>;
+// // // const BusDashBoard = () => {
+// // //   const [sidebarOpen, setSidebarOpen] = useState(false);
+// // //   const [profile, setProfile] = useState("");
+
+// // //   useEffect(() => {
+// // //     const fetchProfile = async () => {
+// // //       try {
+// // //         const res = await axios.get("http://localhost:2001/auth/profile", {
+// // //           withCredentials: true,
+// // //         });
+// // //         setProfile(res.data);
+// // //       } catch (error) {
+// // //         console.error("Error fetching profile:", error);
+// // //       }
+// // //     };
+// // //     fetchProfile();
+// // //   }, []);
+
+// // //   if (!profile) return <Loading />;
+
+// // //   const { buses, busTickets } = profile;
+
+// // //   const fleetData = [
+// // //     { id: "BUS-001", route: "City A → City B", status: "active", seats: 45 },
+// // //     { id: "BUS-002", route: "City A → City C", status: "active", seats: 52 },
+// // //     {
+// // //       id: "BUS-003",
+// // //       route: "City B → City D",
+// // //       status: "maintenance",
+// // //       seats: 45,
+// // //     },
+// // //     { id: "BUS-004", route: "City C → City D", status: "inactive", seats: 52 },
+// // //   ];
+
+// // //   const bookingsData = [
+// // //     {
+// // //       id: "BK1001",
+// // //       busId: "BUS-001",
+// // //       date: "2023-06-15",
+// // //       seats: 42,
+// // //       revenue: 1890,
+// // //       status: "completed",
+// // //     },
+// // //     {
+// // //       id: "BK1002",
+// // //       busId: "BUS-001",
+// // //       date: "2023-06-16",
+// // //       seats: 38,
+// // //       revenue: 1710,
+// // //       status: "completed",
+// // //     },
+// // //     {
+// // //       id: "BK1003",
+// // //       busId: "BUS-002",
+// // //       date: "2023-06-15",
+// // //       seats: 45,
+// // //       revenue: 2025,
+// // //       status: "completed",
+// // //     },
+// // //     {
+// // //       id: "BK1004",
+// // //       busId: "BUS-001",
+// // //       date: "2023-06-17",
+// // //       seats: 40,
+// // //       revenue: 1800,
+// // //       status: "upcoming",
+// // //     },
+// // //     {
+// // //       id: "BK1005",
+// // //       busId: "BUS-002",
+// // //       date: "2023-06-17",
+// // //       seats: 32,
+// // //       revenue: 1440,
+// // //       status: "upcoming",
+// // //     },
+// // //   ];
+
+// // //   const calculateStats = () => {
+// // //     const revenue = busTickets
+// // //       .flatMap((ticket) => ticket.busdetails.map((details) => details.price))
+// // //       .reduce((sum, price) => sum + price, 0);
+
+// // //     const completedBookings = bookingsData.filter(
+// // //       (b) => b.status === "completed"
+// // //     );
+// // //     const upcomingBookings = bookingsData.filter(
+// // //       (b) => b.status === "upcoming"
+// // //     );
+// // //     const activeBuses = fleetData.filter((b) => b.status === "active").length;
+
+// // //     const avgOccupancy =
+// // //       completedBookings.length > 0
+// // //         ? (
+// // //             (completedBookings.reduce((sum, b) => sum + b.seats, 0) /
+// // //               (completedBookings.length * fleetData[0].seats)) *
+// // //             100
+// // //           ).toFixed(1)
+// // //         : 0;
+
+// // //     return {
+// // //       totalBuses: buses?.length,
+// // //       activeBuses,
+// // //       totalBookings: busTickets.length,
+// // //       completedTrips: completedBookings.length,
+// // //       upcomingTrips: upcomingBookings.length,
+// // //       revenue,
+// // //       avgOccupancy,
+// // //     };
+// // //   };
+
+// // //   const stats = calculateStats();
+
+// // //   return (
+// // //     // <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+// // //     <div className="min-h-screen  bg-blue-100 ">
+// // //       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+// // //       <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+
+// // //       {/* <main className="max-w-7xl mx-auto px-4 md:px-8 py-8"> */}
+// // //       <main className=" mx-auto px-4 md:px-8 py-8 ">
+// // //         <h2 className="text-2xl font-bold text-gray-800 mb-4">Overview</h2>
+
+// // //         <motion.div
+// // //           initial={{ opacity: 0, y: 20 }}
+// // //           animate={{ opacity: 1, y: 0 }}
+// // //           transition={{ duration: 0.6, ease: "easeOut" }}
+// // //           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-6"
+// // //         >
+// // //           <StatCard
+// // //             icon={<DirectionsBus className="text-2xl" />}
+// // //             title="Total Buses"
+// // //             value={stats.totalBuses}
+// // //             change="+1"
+// // //             changeType="positive"
+// // //           />
+// // //           <StatCard
+// // //             icon={<DirectionsBus className="text-2xl text-red-500" />}
+// // //             title="Total Bookings"
+// // //             value={stats.totalBookings}
+// // //             change={`${Math.round(
+// // //               (stats.activeBuses / stats.totalBuses) * 100
+// // //             )}%`}
+// // //             changeType="neutral"
+// // //           />
+// // //           <StatCard
+// // //             icon={<FiCalendar className="text-2xl text-blue-500" />}
+// // //             title="Completed Trips"
+// // //             value={stats.completedTrips}
+// // //             change="+12%"
+// // //             changeType="positive"
+// // //           />
+// // //           <StatCard
+// // //             icon={<FiClock className="text-2xl text-yellow-500" />}
+// // //             title="Upcoming Trips"
+// // //             value={stats.upcomingTrips}
+// // //             change="+2"
+// // //             changeType="neutral"
+// // //           />
+// // //           <StatCard
+// // //             icon={<FiDollarSign className="text-2xl text-green-500" />}
+// // //             title="Total Revenue"
+// // //             value={`$${stats.revenue.toLocaleString()}`}
+// // //             change="+8.5%"
+// // //             changeType="positive"
+// // //           />
+// // //           <StatCard
+// // //             icon={<FiUsers className="text-2xl text-purple-500" />}
+// // //             title="Avg Occupancy"
+// // //             value={`${stats.avgOccupancy}%`}
+// // //             change="-2.3%"
+// // //             changeType="negative"
+// // //           />
+// // //         </motion.div>
+
+// // //         <div className="mt-10">
+// // //           <Routes>
+// // //             <Route
+// // //               path="/"
+// // //               element={
+// // //                 <BusStatus
+// // //                   busData={buses}
+// // //                   fleetData={fleetData}
+// // //                   bookingsData={bookingsData}
+// // //                 />
+// // //               }
+// // //             />
+// // //             <Route
+// // //               path="/users"
+// // //               element={
+// // //                 <BusUsers
+// // //                   busTickets={busTickets}
+// // //                   fleetData={fleetData}
+// // //                   bookingsData={bookingsData}
+// // //                 />
+// // //               }
+// // //             />
+// // //           </Routes>
+// // //         </div>
+// // //       </main>
+// // //     </div>
+// // //   );
 // // // };
 
-// // // export default BusPanel;
+// // // const StatCard = ({ icon, title, value, change, changeType }) => {
+// // //   const changeColor = {
+// // //     positive: "text-green-600 bg-green-100",
+// // //     negative: "text-red-600 bg-red-100",
+// // //     neutral: "text-blue-600 bg-blue-100",
+// // //   };
 
-// // import { useState } from "react";
+// // //   return (
+// // //     <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition duration-300 p-5 flex flex-col justify-between h-full">
+// // //       <div className="flex items-center justify-between">
+// // //         <div className="bg-gradient-to-br from-gray-100 to-gray-200 p-3 rounded-xl text-gray-700 text-2xl shadow-inner">
+// // //           {icon}
+// // //         </div>
+// // //         <span
+// // //           className={`text-xs px-2 py-1 rounded-full font-medium ${changeColor[changeType]}`}
+// // //         >
+// // //           {change}
+// // //         </span>
+// // //       </div>
+// // //       <div className="mt-6">
+// // //         <h3 className="text-sm font-semibold text-gray-500 tracking-wide">
+// // //           {title}
+// // //         </h3>
+// // //         <p className="text-2xl font-bold text-gray-900 mt-1">{value}</p>
+// // //       </div>
+// // //     </div>
+// // //   );
+// // // };
+
+// // // export default BusDashBoard;
+
+// // import React, { useEffect, useState } from "react";
 // // import {
 // //   FiUsers,
-// //   FiUser,
-// //   FiMapPin,
+// //   FiDollarSign,
 // //   FiCalendar,
 // //   FiClock,
-// //   FiCreditCard,
-// //   FiSearch,
+// //   FiTrendingUp,
+// //   FiAlertCircle,
+// //   FiMap,
+// //   FiBarChart2,
+// //   FiInfo,
 // // } from "react-icons/fi";
+// // import {
+// //   DirectionsBus,
+// //   Engineering,
+// //   LocalAtm,
+// //   EventAvailable,
+// //   Person,
+// // } from "@mui/icons-material";
+// // import BusUsers from "./BusUsers";
+// // import Navbar from "../components/Navbar";
+// // import Sidebar from "../components/Sidebar";
+// // import { Routes, Route } from "react-router-dom";
+// // import BusStatus from "./BusStatus";
+// // import axios from "axios";
+// // import Loading from "../../../../components/Loading";
+// // import { motion } from "framer-motion";
+// // // import { Tooltip } from "@mui/material";
+// // // import BusRevenueChart from "./BusRevenueChart";
+// // // import BusOccupancyChart from "./BusOccupancyChart";
 
 // // const BusDashBoard = () => {
-// //   const [searchTerm, setSearchTerm] = useState("");
+// //   const [sidebarOpen, setSidebarOpen] = useState(false);
+// //   const [profile, setProfile] = useState(null);
+// //   const [loading, setLoading] = useState(true);
+// //   const [error, setError] = useState(null);
+// //   const [timeRange, setTimeRange] = useState("week");
 
-// //   // Mock user data
-// //   const users = [
-// //     {
-// //       id: "USR001",
-// //       name: "John Doe",
-// //       phone: "+1 (555) 123-4567",
-// //       email: "john@example.com",
-// //       bookings: [
-// //         {
-// //           busId: "BUS-101",
-// //           route: "New York → Boston",
-// //           date: "2023-06-15",
-// //           seat: "A4",
-// //           status: "completed",
-// //         },
-// //         {
-// //           busId: "BUS-101",
-// //           route: "Boston → New York",
-// //           date: "2023-06-20",
-// //           seat: "B2",
-// //           status: "upcoming",
-// //         },
-// //       ],
-// //       loyaltyPoints: 450,
-// //     },
-// //     {
-// //       id: "USR002",
-// //       name: "Jane Smith",
-// //       phone: "+1 (555) 987-6543",
-// //       email: "jane@example.com",
-// //       bookings: [
-// //         {
-// //           busId: "BUS-102",
-// //           route: "Chicago → Detroit",
-// //           date: "2023-06-18",
-// //           seat: "C3",
-// //           status: "completed",
-// //         },
-// //       ],
-// //       loyaltyPoints: 120,
-// //     },
-// //   ];
+// //   useEffect(() => {
+// //     const fetchProfile = async () => {
+// //       try {
+// //         setLoading(true);
+// //         const res = await axios.get("http://localhost:2001/auth/profile", {
+// //           withCredentials: true,
+// //         });
+// //         setProfile(res.data);
+// //       } catch (error) {
+// //         console.error("Error fetching profile:", error);
+// //         setError("Failed to load dashboard data");
+// //       } finally {
+// //         setLoading(false);
+// //       }
+// //     };
+// //     fetchProfile();
+// //   }, []);
 
-// //   const filteredUsers = users.filter(
-// //     (user) =>
-// //       user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-// //       user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-// //       user.phone.includes(searchTerm)
-// //   );
+// //   if (loading) return <Loading />;
+// //   if (error)
+// //     return <div className="text-red-500 text-center mt-10">{error}</div>;
+// //   if (!profile)
+// //     return <div className="text-center mt-10">No data available</div>;
+
+// //   const { buses = [], busTickets = [] } = profile;
+
+// //   const calculateStats = () => {
+// //     // Calculate total revenue from all tickets
+// //     const totalRevenue = busTickets.reduce(
+// //       (sum, ticket) => sum + (ticket.busdetails?.[0]?.price || 0),
+// //       0
+// //     );
+// //     // FiInfo
+// //     // Group tickets by bus
+// //     const busStats = buses.map((bus) => {
+// //       const busTicketsForBus = busTickets.filter(
+// //         (ticket) => ticket.busdetails?.[0]?.busnumber === bus.busnumber
+// //       );
+
+// //       const revenue = busTicketsForBus.reduce(
+// //         (sum, ticket) => sum + (ticket.busdetails?.[0]?.price || 0),
+// //         0
+// //       );
+
+// //       const occupiedSeats = busTicketsForBus.length;
+// //       const totalSeats = bus.seatdetails?.[0]?.totalseats || 0;
+// //       const occupancyRate =
+// //         totalSeats > 0 ? Math.round((occupiedSeats / totalSeats) * 100) : 0;
+
+// //       return {
+// //         busId: bus._id,
+// //         busNumber: bus.busnumber,
+// //         busName: bus.busname,
+// //         revenue,
+// //         occupiedSeats,
+// //         totalSeats,
+// //         occupancyRate,
+// //       };
+// //     });
+
+// //     // Calculate overall stats
+// //     const totalSeats = buses.reduce(
+// //       (sum, bus) => sum + (bus.seatdetails?.[0]?.totalseats || 0),
+// //       0
+// //     );
+
+// //     const occupiedSeats = busTickets.length;
+// //     const overallOccupancyRate =
+// //       totalSeats > 0 ? Math.round((occupiedSeats / totalSeats) * 100) : 0;
+
+// //     // Calculate recent activity (last 7 days)
+// //     const oneWeekAgo = new Date();
+// //     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+// //     const recentTickets = busTickets.filter((ticket) => {
+// //       const ticketDate = new Date(ticket.createdAt);
+// //       return ticketDate > oneWeekAgo;
+// //     });
+
+// //     const recentRevenue = recentTickets.reduce(
+// //       (sum, ticket) => sum + (ticket.busdetails?.[0]?.price || 0),
+// //       0
+// //     );
+
+// //     const revenueChange =
+// //       busTickets.length > 0
+// //         ? ((recentRevenue / (totalRevenue - recentRevenue)) * 100).toFixed(1)
+// //         : 0;
+
+// //     return {
+// //       totalBuses: buses.length,
+// //       activeBuses: buses.length, // Assuming all are active in this simplified version
+// //       totalBookings: busTickets.length,
+// //       totalRevenue,
+// //       recentRevenue,
+// //       revenueChange,
+// //       overallOccupancyRate,
+// //       busStats,
+// //       recentTickets: recentTickets.length,
+// //     };
+// //   };
+
+// //   const stats = calculateStats();
+
+// //   // Prepare data for charts
+// //   const prepareChartData = () => {
+// //     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+// //     const today = new Date();
+
+// //     const dailyData = days.map((day, index) => {
+// //       const date = new Date(today);
+// //       date.setDate(today.getDate() - (6 - index));
+
+// //       const dayTickets = busTickets.filter((ticket) => {
+// //         const ticketDate = new Date(ticket.createdAt);
+// //         return (
+// //           ticketDate.getDate() === date.getDate() &&
+// //           ticketDate.getMonth() === date.getMonth() &&
+// //           ticketDate.getFullYear() === date.getFullYear()
+// //         );
+// //       });
+
+// //       const revenue = dayTickets.reduce(
+// //         (sum, ticket) => sum + (ticket.busdetails?.[0]?.price || 0),
+// //         0
+// //       );
+
+// //       return {
+// //         day,
+// //         revenue,
+// //         bookings: dayTickets.length,
+// //       };
+// //     });
+
+// //     return dailyData;
+// //   };
+
+// //   const chartData = prepareChartData();
 
 // //   return (
 // //     <div className="min-h-screen bg-gray-50">
-// //       {/* Header */}
-// //       <header className="bg-blue-600 text-white p-4 shadow-md">
-// //         <div className="container mx-auto flex justify-between items-center">
-// //           <h1 className="text-2xl font-bold">BusTrack Pro</h1>
-// //           <div className="flex items-center space-x-4">
-// //             <span className="hidden md:inline">Admin Dashboard</span>
+// //       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+// //       <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+
+// //       <main className="mx-auto px-4 md:px-6 py-6 lg:px-8 max-w-7xl">
+// //         <div className="flex justify-between items-center mb-6">
+// //           <h1 className="text-2xl font-bold text-gray-800">Bus Dashboard</h1>
+// //           <div className="flex space-x-2">
+// //             <button
+// //               onClick={() => setTimeRange("week")}
+// //               className={`px-3 py-1 text-sm rounded-md ${
+// //                 timeRange === "week"
+// //                   ? "bg-blue-600 text-white"
+// //                   : "bg-white text-gray-700"
+// //               }`}
+// //             >
+// //               Week
+// //             </button>
+// //             <button
+// //               onClick={() => setTimeRange("month")}
+// //               className={`px-3 py-1 text-sm rounded-md ${
+// //                 timeRange === "month"
+// //                   ? "bg-blue-600 text-white"
+// //                   : "bg-white text-gray-700"
+// //               }`}
+// //             >
+// //               Month
+// //             </button>
+// //             <button
+// //               onClick={() => setTimeRange("year")}
+// //               className={`px-3 py-1 text-sm rounded-md ${
+// //                 timeRange === "year"
+// //                   ? "bg-blue-600 text-white"
+// //                   : "bg-white text-gray-700"
+// //               }`}
+// //             >
+// //               Year
+// //             </button>
 // //           </div>
 // //         </div>
-// //       </header>
 
-// //       {/* Main Content */}
-// //       <main className="container mx-auto p-4 md:p-6">
-// //         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-// //           <div>
-// //             <h2 className="text-2xl font-bold text-gray-800">
-// //               Passenger Tracking
-// //             </h2>
-// //             <p className="text-gray-600">
-// //               Monitor user bookings and travel history
-// //             </p>
+// //         <motion.div
+// //           initial={{ opacity: 0, y: 20 }}
+// //           animate={{ opacity: 1, y: 0 }}
+// //           transition={{ duration: 0.6, ease: "easeOut" }}
+// //           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mb-8"
+// //         >
+// //           <StatCard
+// //             icon={<DirectionsBus className="text-2xl text-blue-600" />}
+// //             title="Total Buses"
+// //             value={stats.totalBuses}
+// //             description="Active in fleet"
+// //             trend={stats.totalBuses > 0 ? "positive" : "neutral"}
+// //           />
+// //           <StatCard
+// //             icon={<EventAvailable className="text-2xl text-green-600" />}
+// //             title="Total Bookings"
+// //             value={stats.totalBookings}
+// //             description={`${stats.recentTickets} this week`}
+// //             trend={stats.recentTickets > 0 ? "positive" : "neutral"}
+// //           />
+// //           <StatCard
+// //             icon={<LocalAtm className="text-2xl text-purple-600" />}
+// //             title="Total Revenue"
+// //             value={`₹${stats.totalRevenue.toLocaleString()}`}
+// //             description={`₹${stats.recentRevenue.toLocaleString()} this week`}
+// //             trend={stats.revenueChange > 0 ? "positive" : "negative"}
+// //             trendValue={`${stats.revenueChange}%`}
+// //           />
+// //           <StatCard
+// //             icon={<FiBarChart2 className="text-2xl text-amber-600" />}
+// //             title="Occupancy Rate"
+// //             value={`${stats.overallOccupancyRate}%`}
+// //             description="Average seat utilization"
+// //             trend={stats.overallOccupancyRate > 50 ? "positive" : "negative"}
+// //           />
+// //         </motion.div>
+
+// //         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+// //           <div className="bg-white p-5 rounded-xl shadow">
+// //             <div className="flex justify-between items-center mb-4">
+// //               <h3 className="font-semibold text-lg">Revenue Overview</h3>
+// //               {/* <Tooltip title="Revenue generated from ticket sales"> */}
+// //               <FiInfo className="text-gray-400" />
+// //               {/* </Tooltip> */}
+// //             </div>
+// //             {/* <BusRevenueChart data={chartData} /> */}
 // //           </div>
-// //           <div className="relative mt-4 md:mt-0">
-// //             <FiSearch className="absolute left-3 top-3 text-gray-400" />
-// //             <input
-// //               type="text"
-// //               placeholder="Search users..."
-// //               className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-// //               value={searchTerm}
-// //               onChange={(e) => setSearchTerm(e.target.value)}
+// //           <div className="bg-white p-5 rounded-xl shadow">
+// //             <div className="flex justify-between items-center mb-4">
+// //               <h3 className="font-semibold text-lg">Occupancy Rate</h3>
+// //               {/* <Tooltip title="Seat utilization across all buses"> */}
+// //               <FiInfo className="text-gray-400" />
+// //               {/* </Tooltip> */}
+// //             </div>
+// //             {/* <BusOccupancyChart busStats={stats.busStats} /> */}
+// //           </div>
+// //         </div>
+
+// //         <div className="mt-6">
+// //           <Routes>
+// //             <Route
+// //               path="/"
+// //               element={<BusStatus busData={buses} busTickets={busTickets} />}
 // //             />
-// //           </div>
-// //         </div>
-
-// //         {/* Stats Cards */}
-// //         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-// //           <StatCard
-// //             icon={<FiUsers className="text-2xl" />}
-// //             title="Total Passengers"
-// //             value={users.length}
-// //           />
-// //           <StatCard
-// //             icon={<FiUser className="text-2xl text-green-500" />}
-// //             title="Active Today"
-// //             value={
-// //               users.filter((u) =>
-// //                 u.bookings.some(
-// //                   (b) => b.date === new Date().toISOString().split("T")[0]
-// //                 )
-// //               ).length
-// //             }
-// //           />
-// //           <StatCard
-// //             icon={<FiCreditCard className="text-2xl text-blue-500" />}
-// //             title="Avg. Bookings"
-// //             value={(
-// //               users.reduce((sum, user) => sum + user.bookings.length, 0) /
-// //               users.length
-// //             ).toFixed(1)}
-// //           />
-// //           <StatCard
-// //             icon={<FiMapPin className="text-2xl text-purple-500" />}
-// //             title="Routes Used"
-// //             value={
-// //               [...new Set(users.flatMap((u) => u.bookings.map((b) => b.route)))]
-// //                 .length
-// //             }
-// //           />
-// //         </div>
-
-// //         {/* Users Table */}
-// //         <div className="bg-white rounded-xl shadow-md overflow-hidden">
-// //           <div className="overflow-x-auto">
-// //             <table className="min-w-full divide-y divide-gray-200">
-// //               <thead className="bg-gray-50">
-// //                 <tr>
-// //                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-// //                     User
-// //                   </th>
-// //                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-// //                     Contact
-// //                   </th>
-// //                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-// //                     Bookings
-// //                   </th>
-// //                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-// //                     Loyalty
-// //                   </th>
-// //                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-// //                     Actions
-// //                   </th>
-// //                 </tr>
-// //               </thead>
-// //               <tbody className="bg-white divide-y divide-gray-200">
-// //                 {filteredUsers.map((user) => (
-// //                   <tr key={user.id}>
-// //                     <td className="px-6 py-4 whitespace-nowrap">
-// //                       <div className="flex items-center">
-// //                         <div className="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
-// //                           <FiUser className="text-blue-600" />
-// //                         </div>
-// //                         <div className="ml-4">
-// //                           <div className="text-sm font-medium text-gray-900">
-// //                             {user.name}
-// //                           </div>
-// //                           <div className="text-sm text-gray-500">
-// //                             ID: {user.id}
-// //                           </div>
-// //                         </div>
-// //                       </div>
-// //                     </td>
-// //                     <td className="px-6 py-4 whitespace-nowrap">
-// //                       <div className="text-sm text-gray-900">{user.email}</div>
-// //                       <div className="text-sm text-gray-500">{user.phone}</div>
-// //                     </td>
-// //                     <td className="px-6 py-4">
-// //                       <div className="space-y-2">
-// //                         {user.bookings.map((booking, index) => (
-// //                           <div key={index} className="text-sm">
-// //                             <span
-// //                               className={`inline-block w-2 h-2 rounded-full mr-2 ${
-// //                                 booking.status === "completed"
-// //                                   ? "bg-green-500"
-// //                                   : "bg-yellow-500"
-// //                               }`}
-// //                             ></span>
-// //                             {booking.route} ({booking.date})
-// //                           </div>
-// //                         ))}
-// //                       </div>
-// //                     </td>
-// //                     <td className="px-6 py-4 whitespace-nowrap">
-// //                       <div className="text-sm text-gray-900">
-// //                         {user.loyaltyPoints} pts
-// //                       </div>
-// //                       <div className="text-xs text-gray-500">
-// //                         {user.loyaltyPoints >= 500
-// //                           ? "Gold Member"
-// //                           : "Regular Member"}
-// //                       </div>
-// //                     </td>
-// //                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-// //                       <button className="text-blue-600 hover:text-blue-900 mr-3">
-// //                         View
-// //                       </button>
-// //                       <button className="text-gray-600 hover:text-gray-900">
-// //                         Message
-// //                       </button>
-// //                     </td>
-// //                   </tr>
-// //                 ))}
-// //               </tbody>
-// //             </table>
-// //           </div>
+// //             <Route
+// //               path="/users"
+// //               element={<BusUsers busTickets={busTickets} buses={buses} />}
+// //             />
+// //           </Routes>
 // //         </div>
 // //       </main>
 // //     </div>
 // //   );
 // // };
 
-// // // StatCard Component
-// // const StatCard = ({ icon, title, value }) => (
-// //   <div className="bg-white rounded-lg shadow-sm p-4">
-// //     <div className="flex items-center">
-// //       <div className="bg-gray-100 p-2 rounded-lg text-gray-600">{icon}</div>
-// //       <div className="ml-4">
+// // const StatCard = ({ icon, title, value, description, trend, trendValue }) => {
+// //   const trendColors = {
+// //     positive: "text-green-600 bg-green-50",
+// //     negative: "text-red-600 bg-red-50",
+// //     neutral: "text-blue-600 bg-blue-50",
+// //   };
+
+// //   const trendIcons = {
+// //     positive: <FiTrendingUp className="inline" />,
+// //     negative: <FiTrendingUp className="inline transform rotate-180" />,
+// //     neutral: <FiBarChart2 className="inline" />,
+// //   };
+
+// //   return (
+// //     <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-5">
+// //       <div className="flex items-center justify-between">
+// //         <div className="p-3 rounded-lg bg-gray-50 text-gray-700">{icon}</div>
+// //         {trend && (
+// //           <span
+// //             className={`text-xs px-2 py-1 rounded-full font-medium ${trendColors[trend]}`}
+// //           >
+// //             {trendIcons[trend]} {trendValue || ""}
+// //           </span>
+// //         )}
+// //       </div>
+// //       <div className="mt-4">
 // //         <h3 className="text-sm font-medium text-gray-500">{title}</h3>
-// //         <p className="text-xl font-semibold text-gray-800">{value}</p>
+// //         <p className="text-2xl font-semibold text-gray-900 mt-1">{value}</p>
+// //         {description && (
+// //           <p className="text-xs text-gray-500 mt-2">{description}</p>
+// //         )}
 // //       </div>
 // //     </div>
-// //   </div>
-// // );
+// //   );
+// // };
 
 // // export default BusDashBoard;
 
-// import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState, useMemo } from "react";
 // import {
-//   // FiBus,
 //   FiUsers,
 //   FiDollarSign,
-//   FiMap,
 //   FiCalendar,
 //   FiClock,
-//   FiPieChart,
 //   FiTrendingUp,
-//   FiAlertTriangle,
+//   FiTrendingDown,
 // } from "react-icons/fi";
 // import DirectionsBus from "@mui/icons-material/DirectionsBus";
+// import AirlineSeatReclineNormalIcon from "@mui/icons-material/AirlineSeatReclineNormal";
+// import { Routes, Route, NavLink, useLocation } from "react-router-dom";
+// import axios from "axios";
+// import { motion } from "framer-motion";
+
+// // Components
 // import BusUsers from "./BusUsers";
 // import Navbar from "../components/Navbar";
 // import Sidebar from "../components/Sidebar";
-// import { Routes, Route } from "react-router-dom";
 // import BusStatus from "./BusStatus";
-// import Actions from "../components/Actions";
-// import axios from "axios";
 // import Loading from "../../../../components/Loading";
 
 // const BusDashBoard = () => {
-//   const [activeTab, setActiveTab] = useState("overview");
-//   const [timeRange, setTimeRange] = useState("week");
 //   const [sidebarOpen, setSidebarOpen] = useState(false);
-//   const [profile, setProfile] = useState("");
+//   const [profile, setProfile] = useState(null);
+//   const [isLoading, setIsLoading] = useState(true);
+//   const [error, setError] = useState(null);
+//   const location = useLocation();
 
 //   useEffect(() => {
 //     const fetchProfile = async () => {
+//       setIsLoading(true);
 //       try {
 //         const res = await axios.get("http://localhost:2001/auth/profile", {
 //           withCredentials: true,
 //         });
 //         setProfile(res.data);
+//         setError(null);
 //       } catch (error) {
 //         console.error("Error fetching profile:", error);
+//         setError("Failed to load dashboard data. Please try again later.");
+//       } finally {
+//         setIsLoading(false);
 //       }
 //     };
 //     fetchProfile();
 //   }, []);
 
-//   if (!profile) return <Loading />;
+//   const fleetData = useMemo(
+//     () => [
+//       { id: "BUS-001", route: "City A → City B", status: "active", seats: 45 },
+//       { id: "BUS-002", route: "City A → City C", status: "active", seats: 52 },
+//       {
+//         id: "BUS-003",
+//         route: "City B → City D",
+//         status: "maintenance",
+//         seats: 45,
+//       },
+//       {
+//         id: "BUS-004",
+//         route: "City C → City D",
+//         status: "inactive",
+//         seats: 52,
+//       },
+//     ],
+//     []
+//   );
 
-//   // console.log(ticket);
+//   const bookingsData = useMemo(
+//     () => [
+//       {
+//         id: "BK1001",
+//         busId: "BUS-001",
+//         date: "2023-06-15",
+//         seats: 42,
+//         revenue: 1890,
+//         status: "completed",
+//       },
+//       {
+//         id: "BK1002",
+//         busId: "BUS-001",
+//         date: "2023-06-16",
+//         seats: 38,
+//         revenue: 1710,
+//         status: "completed",
+//       },
+//       {
+//         id: "BK1003",
+//         busId: "BUS-002",
+//         date: "2023-06-15",
+//         seats: 45,
+//         revenue: 2025,
+//         status: "completed",
+//       },
+//       {
+//         id: "BK1004",
+//         busId: "BUS-001",
+//         date: "2023-06-17",
+//         seats: 40,
+//         revenue: 1800,
+//         status: "upcoming",
+//       },
+//       {
+//         id: "BK1005",
+//         busId: "BUS-002",
+//         date: "2023-06-17",
+//         seats: 32,
+//         revenue: 1440,
+//         status: "upcoming",
+//       },
+//     ],
+//     []
+//   );
 
-//   const { user, buses, busTickets } = profile;
-//   // console.log(busTickets);
-//   // Sample data
+//   const stats = useMemo(() => {
+//     if (!profile || !profile.buses || !profile.busTickets) {
+//       return {
+//         totalBuses: 0,
+//         activeBuses: 0,
+//         totalBookings: 0,
+//         completedTrips: 0,
+//         upcomingTrips: 0,
+//         revenue: 0,
+//         avgOccupancy: 0,
+//         totalSeats: 0,
+//         bookedSeats: 0,
+//       };
+//     }
 
-//   // const ticketPrices = busTickets.flatMap((ticket) =>
-//   //   ticket.busdetails.map((details) => details.price)
-//   // );
-//   // console.log(ticketPrices);
-//   const fleetData = [
-//     {
-//       id: "BUS-001",
-//       route: "City A → City B",
-//       status: "active",
-//       seats: 45,
-//       lastMaintenance: "2023-05-20",
-//     },
-//     {
-//       id: "BUS-002",
-//       route: "City A → City C",
-//       status: "active",
-//       seats: 52,
-//       lastMaintenance: "2023-05-15",
-//     },
-//     {
-//       id: "BUS-003",
-//       route: "City B → City D",
-//       status: "maintenance",
-//       seats: 45,
-//       lastMaintenance: "2023-06-01",
-//     },
-//     {
-//       id: "BUS-004",
-//       route: "City C → City D",
-//       status: "inactive",
-//       seats: 52,
-//       lastMaintenance: "2023-04-10",
-//     },
-//   ];
+//     const { buses, busTickets } = profile;
 
-//   const bookingsData = [
-//     {
-//       id: "BK1001",
-//       busId: "BUS-001",
-//       date: "2023-06-15",
-//       seats: 42,
-//       revenue: 1890,
-//       status: "completed",
-//     },
-//     {
-//       id: "BK1002",
-//       busId: "BUS-001",
-//       date: "2023-06-16",
-//       seats: 38,
-//       revenue: 1710,
-//       status: "completed",
-//     },
-//     {
-//       id: "BK1003",
-//       busId: "BUS-002",
-//       date: "2023-06-15",
-//       seats: 45,
-//       revenue: 2025,
-//       status: "completed",
-//     },
-//     {
-//       id: "BK1004",
-//       busId: "BUS-001",
-//       date: "2023-06-17",
-//       seats: 40,
-//       revenue: 1800,
-//       status: "upcoming",
-//     },
-//     {
-//       id: "BK1005",
-//       busId: "BUS-002",
-//       date: "2023-06-17",
-//       seats: 32,
-//       revenue: 1440,
-//       status: "upcoming",
-//     },
-//   ];
-
-//   const revenueData = {
-//     week: [1200, 1900, 1500, 2100, 1800, 2400, 2200],
-//     month: [15000, 18000, 22000, 19500],
-//     year: [125000, 145000, 165000, 185000, 205000, 225000],
-//   };
-
-//   // console.log(buses);
-
-//   const calculateStats = () => {
-//     // const tickets = buses;
-//     // console.log(tickets);
-
+//     // Calculate total revenue from tickets
 //     const revenue = busTickets
 //       .flatMap((ticket) => ticket.busdetails.map((details) => details.price))
 //       .reduce((sum, price) => sum + price, 0);
 
-//     // console.log(revenue);
-//     const completedBookings = bookingsData.filter(
-//       (b) => b.status === "completed"
-//     );
-//     const upcomingBookings = bookingsData.filter(
-//       (b) => b.status === "upcoming"
-//     );
-//     const activeBuses = fleetData.filter((b) => b.status === "active").length;
+//     // Calculate active buses
+//     // const activeBuses = fleetData.filter((b) => b.status === "active").length;
 
-//     const totalRevenue = completedBookings.reduce(
-//       (sum, b) => sum + b.revenue,
-//       0
-//     );
+//     // Calculate trips
+//     // const completedBookings = bookingsData.filter(
+//     //   (b) => b.status === "completed"
+//     // );
+//     // const upcomingBookings = bookingsData.filter(
+//     //   (b) => b.status === "upcoming"
+//     // );
+
+//     // Calculate total seats and booked seats for occupancy
+//     const totalSeats = buses.reduce((sum, bus) => {
+//       return sum + (bus.seatdetails[0]?.totalseats || 0);
+//     }, 0);
+
+//     const bookedSeats = busTickets.length;
+
+//     // Calculate average occupancy
 //     const avgOccupancy =
-//       completedBookings.length > 0
-//         ? (
-//             (completedBookings.reduce((sum, b) => sum + b.seats, 0) /
-//               (completedBookings.length * fleetData[0].seats)) *
-//             100
-//           ).toFixed(1)
-//         : 0;
+//       totalSeats > 0 ? ((bookedSeats / totalSeats) * 100).toFixed(1) : 0;
 
 //     return {
-//       // totalBuses: fleetData.length,
-//       totalBuses: buses?.length,
-//       activeBuses,
+//       totalBuses: buses.length,
+//       // activeBuses,
 //       totalBookings: busTickets.length,
-//       completedTrips: completedBookings.length,
-//       upcomingTrips: upcomingBookings.length,
-//       // totalRevenue,
+//       // completedTrips: completedBookings.length,
+//       // upcomingTrips: upcomingBookings.length,
 //       revenue,
 //       avgOccupancy,
+//       totalSeats,
+//       bookedSeats,
 //     };
-//   };
+//   }, [profile]);
+//   // }, [profile, fleetData, bookingsData]);
 
-//   const stats = calculateStats();
+//   if (isLoading) return <Loading />;
+//   if (error)
+//     return (
+//       <div className="flex justify-center items-center h-screen bg-red-50 text-red-600 p-4">
+//         {error}
+//       </div>
+//     );
 
 //   return (
-//     <div className="min-h-screen bg-gray-50">
-//       {/* Header */}
-//       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-//       <Navbar
-//         // user={user}
-//         sidebarOpen={sidebarOpen}
-//         setSidebarOpen={setSidebarOpen}
-//       />
+//     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-50">
+//       {/* <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
+//       <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-//       <main className="container mx-auto p-4 md:p-6">
-//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mb-6">
-//           <StatCard
-//             icon={<DirectionsBus className="text-2xl" />}
-//             title="Total Buses"
-//             value={stats.totalBuses}
-//             change="+1"
-//             changeType="positive"
-//           />
-//           <StatCard
-//             icon={<DirectionsBus className="text-2xl text-red-500" />}
-//             title="Total Bookings"
-//             value={stats.totalBookings}
-//             change={`${Math.round(
-//               (stats.activeBuses / stats.totalBuses) * 100
-//             )}%`}
-//             changeType="neutral"
-//           />
-//           {/* <StatCard
-//             icon={<DirectionsBus className="text-2xl text-green-500" />}
-//             title="Active Buses"
-//             value={stats.activeBuses}
-//             change={`${Math.round(
-//               (stats.activeBuses / stats.totalBuses) * 100
-//             )}%`}
-//             changeType="neutral"
-//           /> */}
-//           <StatCard
-//             icon={<FiCalendar className="text-2xl text-blue-500" />}
-//             title="Completed Trips"
-//             value={stats.completedTrips}
-//             change="+12%"
-//             changeType="positive"
-//           />
-//           <StatCard
-//             icon={<FiClock className="text-2xl text-yellow-500" />}
-//             title="Upcoming Trips"
-//             value={stats.upcomingTrips}
-//             change="+2"
-//             changeType="neutral"
-//           />
-//           <StatCard
-//             icon={<FiDollarSign className="text-2xl text-green-500" />}
-//             title="Total Revenue"
-//             value={`$${stats.revenue.toLocaleString()}`}
-//             change="+8.5%"
-//             changeType="positive"
-//           />
-//           <StatCard
-//             icon={<FiUsers className="text-2xl text-purple-500" />}
-//             title="Avg Occupancy"
-//             value={`${stats.avgOccupancy}%`}
-//             change="-2.3%"
-//             changeType="negative"
-//           />
+//       {/* <main className="lg:ml-64 px-4 md:px-8 py-8"> */}
+//       <main className=" px-4 md:px-8 py-8">
+//         <div className="mb-8">
+//           <h1 className="text-3xl font-bold text-gray-800">Bus Dashboard</h1>
+//           <p className="text-gray-600 mt-1">
+//             Manage your fleet, track bookings, and monitor performance
+//           </p>
 //         </div>
 
-//         {/* Main Content Area */}
-//         {/* <div>
-//           <Actions />
-//         </div> */}
-//         <div className="mt-5">
+//         {/* Navigation Tabs */}
+//         <div className="mb-6 flex border-b border-gray-200">
+//           <NavLink
+//             to="/dashboard"
+//             end
+//             className={({ isActive }) =>
+//               `px-4 py-2 mr-2 font-medium text-sm transition-colors ${
+//                 isActive
+//                   ? "text-blue-600 border-b-2 border-blue-600"
+//                   : "text-gray-600 hover:text-blue-600"
+//               }`
+//             }
+//           >
+//             Overview
+//           </NavLink>
+//           <NavLink
+//             to="/dashboard/users"
+//             className={({ isActive }) =>
+//               `px-4 py-2 mr-2 font-medium text-sm transition-colors ${
+//                 isActive
+//                   ? "text-blue-600 border-b-2 border-blue-600"
+//                   : "text-gray-600 hover:text-blue-600"
+//               }`
+//             }
+//           >
+//             Users & Bookings
+//           </NavLink>
+//         </div>
+
+//         {location.pathname === "/dashboard" && (
+//           <motion.div
+//             initial={{ opacity: 0, y: 20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.5 }}
+//             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8"
+//           >
+//             <StatCard
+//               icon={<DirectionsBus className="text-2xl" />}
+//               title="Fleet Size"
+//               value={stats.totalBuses}
+//               change={"+1"}
+//               changeType="positive"
+//               description="Total buses in fleet"
+//             />
+//             <StatCard
+//               icon={<FiUsers className="text-2xl" />}
+//               title="Bookings"
+//               value={stats.totalBookings}
+//               change={"+2"}
+//               changeType="positive"
+//               description="Total ticket bookings"
+//             />
+//             <StatCard
+//               icon={<FiDollarSign className="text-2xl" />}
+//               title="Revenue"
+//               value={`$${stats.revenue.toLocaleString()}`}
+//               change={"+8.5%"}
+//               changeType="positive"
+//               description="Total revenue generated"
+//             />
+//             <StatCard
+//               icon={<AirlineSeatReclineNormalIcon className="text-2xl" />}
+//               title="Occupancy"
+//               value={`${stats.avgOccupancy}%`}
+//               change={stats.avgOccupancy > 80 ? "+5.2%" : "-2.3%"}
+//               changeType={stats.avgOccupancy > 80 ? "positive" : "negative"}
+//               description={`${stats.bookedSeats}/${stats.totalSeats} seats booked`}
+//             />
+//           </motion.div>
+//         )}
+
+//         <motion.div
+//           initial={{ opacity: 0, y: 20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.5, delay: 0.2 }}
+//         >
 //           <Routes>
 //             <Route
 //               path="/"
 //               element={
 //                 <BusStatus
-//                   busData={buses}
+//                   busData={profile.buses}
 //                   fleetData={fleetData}
 //                   bookingsData={bookingsData}
 //                 />
@@ -514,240 +861,318 @@
 //               path="/users"
 //               element={
 //                 <BusUsers
-//                   busTickets={busTickets}
+//                   busTickets={profile.busTickets}
 //                   fleetData={fleetData}
 //                   bookingsData={bookingsData}
 //                 />
 //               }
 //             />
 //           </Routes>
-//         </div>
+//         </motion.div>
 //       </main>
 //     </div>
 //   );
 // };
 
-// // StatCard Component
-// const StatCard = ({ icon, title, value, change, changeType }) => {
+// const StatCard = ({ icon, title, value, change, changeType, description }) => {
 //   const changeColor = {
-//     positive: "text-green-600 bg-green-100",
-//     negative: "text-red-600 bg-red-100",
-//     neutral: "text-gray-600 bg-gray-100",
+//     positive: "text-green-600 bg-green-50",
+//     negative: "text-red-600 bg-red-50",
+//     neutral: "text-blue-600 bg-blue-50",
 //   };
 
+//   const TrendIcon = changeType === "positive" ? FiTrendingUp : FiTrendingDown;
+
 //   return (
-//     <div className="bg-white rounded-lg shadow-sm p-4">
-//       <div className="flex items-center justify-between">
-//         <div className="bg-gray-100 p-2 rounded-lg text-gray-600">{icon}</div>
+//     <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 p-5 flex flex-col h-full border border-gray-100">
+//       <div className="flex items-center justify-between mb-3">
+//         <div className="bg-blue-50 p-3 rounded-lg text-blue-600">{icon}</div>
 //         <span
-//           className={`text-xs px-2 py-1 rounded-full ${changeColor[changeType]}`}
+//           className={`text-xs px-2 py-1 rounded-full font-medium flex items-center ${changeColor[changeType]}`}
 //         >
+//           <TrendIcon className="mr-1 h-3 w-3" />
 //           {change}
 //         </span>
 //       </div>
-//       <div className="mt-4">
-//         <h3 className="text-sm font-medium text-gray-500">{title}</h3>
-//         <p className="text-xl font-semibold text-gray-800 mt-1">{value}</p>
-//       </div>
+//       <h3 className="text-sm font-medium text-gray-500">{title}</h3>
+//       <p className="text-2xl font-bold text-gray-900 mt-1 mb-2">{value}</p>
+//       <p className="text-xs text-gray-500 mt-auto">{description}</p>
 //     </div>
 //   );
 // };
 
 // export default BusDashBoard;
 
-import React, { useEffect, useState } from "react";
-import { FiUsers, FiDollarSign, FiCalendar, FiClock } from "react-icons/fi";
+import React, { useEffect, useState, useMemo } from "react";
+import {
+  FiUsers,
+  FiDollarSign,
+  FiCalendar,
+  FiClock,
+  FiTrendingUp,
+  FiTrendingDown,
+} from "react-icons/fi";
 import DirectionsBus from "@mui/icons-material/DirectionsBus";
+import AirlineSeatReclineNormalIcon from "@mui/icons-material/AirlineSeatReclineNormal";
+import { Routes, Route, NavLink, useLocation } from "react-router-dom";
+import axios from "axios";
+import { motion } from "framer-motion";
+
+// Components
 import BusUsers from "./BusUsers";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import { Routes, Route } from "react-router-dom";
 import BusStatus from "./BusStatus";
-import axios from "axios";
 import Loading from "../../../../components/Loading";
-import { motion } from "framer-motion";
 
 const BusDashBoard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [profile, setProfile] = useState("");
+  const [profile, setProfile] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     const fetchProfile = async () => {
+      setIsLoading(true);
       try {
         const res = await axios.get("http://localhost:2001/auth/profile", {
           withCredentials: true,
         });
         setProfile(res.data);
+        setError(null);
       } catch (error) {
         console.error("Error fetching profile:", error);
+        setError("Failed to load dashboard data. Please try again later.");
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchProfile();
   }, []);
 
-  if (!profile) return <Loading />;
+  const fleetData = useMemo(
+    () => [
+      { id: "BUS-001", route: "City A → City B", status: "active", seats: 45 },
+      { id: "BUS-002", route: "City A → City C", status: "active", seats: 52 },
+      {
+        id: "BUS-003",
+        route: "City B → City D",
+        status: "maintenance",
+        seats: 45,
+      },
+      {
+        id: "BUS-004",
+        route: "City C → City D",
+        status: "inactive",
+        seats: 52,
+      },
+    ],
+    []
+  );
 
-  const { buses, busTickets } = profile;
+  const bookingsData = useMemo(
+    () => [
+      {
+        id: "BK1001",
+        busId: "BUS-001",
+        date: "2023-06-15",
+        seats: 42,
+        revenue: 1890,
+        status: "completed",
+      },
+      {
+        id: "BK1002",
+        busId: "BUS-001",
+        date: "2023-06-16",
+        seats: 38,
+        revenue: 1710,
+        status: "completed",
+      },
+      {
+        id: "BK1003",
+        busId: "BUS-002",
+        date: "2023-06-15",
+        seats: 45,
+        revenue: 2025,
+        status: "completed",
+      },
+      {
+        id: "BK1004",
+        busId: "BUS-001",
+        date: "2023-06-17",
+        seats: 40,
+        revenue: 1800,
+        status: "upcoming",
+      },
+      {
+        id: "BK1005",
+        busId: "BUS-002",
+        date: "2023-06-17",
+        seats: 32,
+        revenue: 1440,
+        status: "upcoming",
+      },
+    ],
+    []
+  );
 
-  const fleetData = [
-    { id: "BUS-001", route: "City A → City B", status: "active", seats: 45 },
-    { id: "BUS-002", route: "City A → City C", status: "active", seats: 52 },
-    {
-      id: "BUS-003",
-      route: "City B → City D",
-      status: "maintenance",
-      seats: 45,
-    },
-    { id: "BUS-004", route: "City C → City D", status: "inactive", seats: 52 },
-  ];
+  const stats = useMemo(() => {
+    if (!profile || !profile.buses || !profile.busTickets) {
+      return {
+        totalBuses: 0,
+        activeBuses: 0,
+        totalBookings: 0,
+        completedTrips: 0,
+        upcomingTrips: 0,
+        revenue: 0,
+        avgOccupancy: 0,
+        totalSeats: 0,
+        bookedSeats: 0,
+      };
+    }
 
-  const bookingsData = [
-    {
-      id: "BK1001",
-      busId: "BUS-001",
-      date: "2023-06-15",
-      seats: 42,
-      revenue: 1890,
-      status: "completed",
-    },
-    {
-      id: "BK1002",
-      busId: "BUS-001",
-      date: "2023-06-16",
-      seats: 38,
-      revenue: 1710,
-      status: "completed",
-    },
-    {
-      id: "BK1003",
-      busId: "BUS-002",
-      date: "2023-06-15",
-      seats: 45,
-      revenue: 2025,
-      status: "completed",
-    },
-    {
-      id: "BK1004",
-      busId: "BUS-001",
-      date: "2023-06-17",
-      seats: 40,
-      revenue: 1800,
-      status: "upcoming",
-    },
-    {
-      id: "BK1005",
-      busId: "BUS-002",
-      date: "2023-06-17",
-      seats: 32,
-      revenue: 1440,
-      status: "upcoming",
-    },
-  ];
+    const { buses, busTickets } = profile;
 
-  const calculateStats = () => {
+    // Calculate total revenue from tickets
     const revenue = busTickets
       .flatMap((ticket) => ticket.busdetails.map((details) => details.price))
       .reduce((sum, price) => sum + price, 0);
 
-    const completedBookings = bookingsData.filter(
-      (b) => b.status === "completed"
-    );
-    const upcomingBookings = bookingsData.filter(
-      (b) => b.status === "upcoming"
-    );
-    const activeBuses = fleetData.filter((b) => b.status === "active").length;
+    // Calculate total seats and booked seats for occupancy
+    const totalSeats = buses.reduce((sum, bus) => {
+      return sum + (bus.seatdetails[0]?.totalseats || 0);
+    }, 0);
 
+    const bookedSeats = busTickets.length;
+
+    // Calculate average occupancy
     const avgOccupancy =
-      completedBookings.length > 0
-        ? (
-            (completedBookings.reduce((sum, b) => sum + b.seats, 0) /
-              (completedBookings.length * fleetData[0].seats)) *
-            100
-          ).toFixed(1)
-        : 0;
+      totalSeats > 0 ? ((bookedSeats / totalSeats) * 100).toFixed(1) : 0;
 
     return {
-      totalBuses: buses?.length,
-      activeBuses,
+      totalBuses: buses.length,
       totalBookings: busTickets.length,
-      completedTrips: completedBookings.length,
-      upcomingTrips: upcomingBookings.length,
       revenue,
       avgOccupancy,
+      totalSeats,
+      bookedSeats,
     };
-  };
+  }, [profile]);
 
-  const stats = calculateStats();
+  if (isLoading) return <Loading />;
+  if (error)
+    return (
+      <div className="flex justify-center items-center h-screen bg-white text-red-600 p-4">
+        {error}
+      </div>
+    );
 
   return (
-    // <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
-    <div className="min-h-screen  bg-blue-100 ">
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+    <div className="min-h-screen bg-white">
+      {/* <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
 
-      {/* <main className="max-w-7xl mx-auto px-4 md:px-8 py-8"> */}
-      <main className=" mx-auto px-4 md:px-8 py-8 ">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">Overview</h2>
+      <main className="px-4 md:px-8 py-8 max-w-7xl mx-auto">
+        {/* Header with gradient accent */}
+        <div className="mb-8 pb-6 border-b border-gray-200">
+          <h1 className="text-3xl font-bold text-gray-800">Bus Dashboard</h1>
+          <p className="text-gray-600 mt-1">
+            Manage your fleet, track bookings, and monitor performance
+          </p>
+        </div>
+
+        {/* Navigation Tabs with gradient indicator */}
+        <div className="mb-8 flex border-b border-gray-200">
+          <NavLink
+            to="/dashboard"
+            end
+            className={({ isActive }) =>
+              `px-4 py-3 mr-2 font-medium text-sm transition-colors relative ${
+                isActive ? "text-teal-600" : "text-gray-600 hover:text-teal-600"
+              }`
+            }
+          >
+            Overview
+            {location.pathname === "/dashboard" && (
+              <motion.div
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-teal-500 to-cyan-500"
+                layoutId="navIndicator"
+              />
+            )}
+          </NavLink>
+          <NavLink
+            to="/dashboard/users"
+            className={({ isActive }) =>
+              `px-4 py-3 mr-2 font-medium text-sm transition-colors relative ${
+                isActive ? "text-teal-600" : "text-gray-600 hover:text-teal-600"
+              }`
+            }
+          >
+            Users & Bookings
+            {location.pathname === "/dashboard/users" && (
+              <motion.div
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-teal-500 to-cyan-500"
+                layoutId="navIndicator"
+              />
+            )}
+          </NavLink>
+        </div>
+
+        {location.pathname === "/dashboard" && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+          >
+            <StatCard
+              icon={<DirectionsBus className="text-2xl text-teal-600" />}
+              title="Fleet Size"
+              value={stats.totalBuses}
+              change={"+1"}
+              changeType="positive"
+              description="Total buses in fleet"
+            />
+            <StatCard
+              icon={<FiUsers className="text-2xl text-cyan-600" />}
+              title="Bookings"
+              value={stats.totalBookings}
+              change={"+2"}
+              changeType="positive"
+              description="Total ticket bookings"
+            />
+            <StatCard
+              icon={<FiDollarSign className="text-2xl text-teal-500" />}
+              title="Revenue"
+              value={`₹${stats.revenue.toLocaleString()}`}
+              change={"+8.5%"}
+              changeType="positive"
+              description="Total revenue generated"
+            />
+            <StatCard
+              icon={
+                <AirlineSeatReclineNormalIcon className="text-2xl text-cyan-500" />
+              }
+              title="Occupancy"
+              value={`${stats.avgOccupancy}%`}
+              change={stats.avgOccupancy > 80 ? "+5.2%" : "-2.3%"}
+              changeType={stats.avgOccupancy > 80 ? "positive" : "negative"}
+              description={`${stats.bookedSeats}/${stats.totalSeats} seats booked`}
+            />
+          </motion.div>
+        )}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-6"
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <StatCard
-            icon={<DirectionsBus className="text-2xl" />}
-            title="Total Buses"
-            value={stats.totalBuses}
-            change="+1"
-            changeType="positive"
-          />
-          <StatCard
-            icon={<DirectionsBus className="text-2xl text-red-500" />}
-            title="Total Bookings"
-            value={stats.totalBookings}
-            change={`${Math.round(
-              (stats.activeBuses / stats.totalBuses) * 100
-            )}%`}
-            changeType="neutral"
-          />
-          <StatCard
-            icon={<FiCalendar className="text-2xl text-blue-500" />}
-            title="Completed Trips"
-            value={stats.completedTrips}
-            change="+12%"
-            changeType="positive"
-          />
-          <StatCard
-            icon={<FiClock className="text-2xl text-yellow-500" />}
-            title="Upcoming Trips"
-            value={stats.upcomingTrips}
-            change="+2"
-            changeType="neutral"
-          />
-          <StatCard
-            icon={<FiDollarSign className="text-2xl text-green-500" />}
-            title="Total Revenue"
-            value={`$${stats.revenue.toLocaleString()}`}
-            change="+8.5%"
-            changeType="positive"
-          />
-          <StatCard
-            icon={<FiUsers className="text-2xl text-purple-500" />}
-            title="Avg Occupancy"
-            value={`${stats.avgOccupancy}%`}
-            change="-2.3%"
-            changeType="negative"
-          />
-        </motion.div>
-
-        <div className="mt-10">
           <Routes>
             <Route
               path="/"
               element={
                 <BusStatus
-                  busData={buses}
+                  busData={profile.buses}
                   fleetData={fleetData}
                   bookingsData={bookingsData}
                 />
@@ -757,44 +1182,44 @@ const BusDashBoard = () => {
               path="/users"
               element={
                 <BusUsers
-                  busTickets={busTickets}
+                  busTickets={profile.busTickets}
                   fleetData={fleetData}
                   bookingsData={bookingsData}
                 />
               }
             />
           </Routes>
-        </div>
+        </motion.div>
       </main>
     </div>
   );
 };
 
-const StatCard = ({ icon, title, value, change, changeType }) => {
+const StatCard = ({ icon, title, value, change, changeType, description }) => {
   const changeColor = {
-    positive: "text-green-600 bg-green-100",
-    negative: "text-red-600 bg-red-100",
-    neutral: "text-blue-600 bg-blue-100",
+    positive: "text-green-600 bg-green-50",
+    negative: "text-red-600 bg-red-50",
+    neutral: "text-blue-600 bg-blue-50",
   };
 
+  const TrendIcon = changeType === "positive" ? FiTrendingUp : FiTrendingDown;
+
   return (
-    <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition duration-300 p-5 flex flex-col justify-between h-full">
-      <div className="flex items-center justify-between">
-        <div className="bg-gradient-to-br from-gray-100 to-gray-200 p-3 rounded-xl text-gray-700 text-2xl shadow-inner">
+    <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 p-5 flex flex-col h-full border border-gray-100">
+      <div className="flex items-center justify-between mb-3">
+        <div className="p-3 rounded-lg bg-gradient-to-br from-teal-50 to-cyan-50">
           {icon}
         </div>
         <span
-          className={`text-xs px-2 py-1 rounded-full font-medium ${changeColor[changeType]}`}
+          className={`text-xs px-2 py-1 rounded-full font-medium flex items-center ${changeColor[changeType]}`}
         >
+          <TrendIcon className="mr-1 h-3 w-3" />
           {change}
         </span>
       </div>
-      <div className="mt-6">
-        <h3 className="text-sm font-semibold text-gray-500 tracking-wide">
-          {title}
-        </h3>
-        <p className="text-2xl font-bold text-gray-900 mt-1">{value}</p>
-      </div>
+      <h3 className="text-sm font-medium text-gray-500">{title}</h3>
+      <p className="text-2xl font-bold text-gray-900 mt-1 mb-2">{value}</p>
+      <p className="text-xs text-gray-500 mt-auto">{description}</p>
     </div>
   );
 };

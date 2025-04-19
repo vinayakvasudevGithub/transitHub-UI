@@ -420,7 +420,143 @@ const BusBook = () => {
             </p>
 
             {/* Bus Summary Card */}
+
             <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="relative overflow-hidden rounded-2xl p-6 mb-8 shadow-2xl"
+              style={{
+                background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+                boxShadow:
+                  "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+              }}
+            >
+              {/* Glow effect */}
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-indigo-500 rounded-full filter blur-3xl opacity-20"></div>
+
+              <div className="relative z-10">
+                {/* Header */}
+                <div className="flex justify-between items-start mb-6">
+                  <div>
+                    <h2 className="text-2xl font-bold text-white mb-1">
+                      {lastBooking?.busName || "Premium Express"}
+                    </h2>
+                    <div className="flex items-center gap-2">
+                      <span className="px-2 py-1 bg-indigo-500/20 text-indigo-300 text-xs font-medium rounded-full">
+                        {lastBooking?.busType || "Luxury Class"}
+                      </span>
+                      <span className="text-slate-300 text-sm">
+                        Seat {lastBooking?.busSeatNumber || "A12"}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-3xl font-bold text-white">
+                      ₹
+                      {lastBooking?.price
+                        ? lastBooking.price.toLocaleString()
+                        : "0"}
+                    </p>
+                    <p className="text-slate-300 text-sm">Total Fare</p>
+                  </div>
+                </div>
+
+                {/* Journey details */}
+                <div className="mt-8 grid grid-cols-3 gap-4">
+                  <div>
+                    <p className="text-slate-400 text-xs font-medium uppercase tracking-wider mb-1">
+                      From
+                    </p>
+                    <p className="text-white font-semibold text-lg">
+                      {lastSearch?.departureCity || "Mumbai"}
+                    </p>
+                    <p className="text-slate-400 text-sm mt-1">
+                      {lastBooking?.departureDate || "15 Jun"} •{" "}
+                      {lastBooking?.departureTime || "08:30 AM"}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col items-center">
+                    <div className="relative w-full flex justify-center">
+                      <div className="absolute top-3 h-0.5 bg-slate-600 w-full"></div>
+                      <div className="relative z-10 bg-indigo-500 p-1 rounded-full">
+                        <svg
+                          className="h-4 w-4 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <p className="text-slate-400 text-xs font-medium uppercase tracking-wider mt-6 mb-1">
+                      Duration
+                    </p>
+                    <p className="text-white font-medium">4h 30m</p>
+                  </div>
+
+                  <div className="text-right">
+                    <p className="text-slate-400 text-xs font-medium uppercase tracking-wider mb-1">
+                      To
+                    </p>
+                    <p className="text-white font-semibold text-lg">
+                      {lastSearch?.destinationCity || "Goa"}
+                    </p>
+                    <p className="text-slate-400 text-sm mt-1">
+                      {lastBooking?.arrivalDate || "15 Jun"} •{" "}
+                      {lastBooking?.arrivalTime || "01:00 PM"}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Footer */}
+                <div className="mt-8 pt-5 border-t border-slate-700/50 flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center">
+                      <svg
+                        className="h-4 w-4 text-indigo-300"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-slate-300 text-sm">
+                      Booking ID: {lastBooking?._id?.slice(-8) || "X7B92K4D"}
+                    </span>
+                  </div>
+                  <button className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium rounded-lg transition-all flex items-center gap-2">
+                    View Ticket
+                    <svg
+                      className="h-4 w-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+            {/* <motion.div
               whileHover={{ scale: 1.01 }}
               className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-6 text-white mb-8 shadow-lg"
             >
@@ -460,7 +596,7 @@ const BusBook = () => {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </motion.div> */}
 
             {/* Passenger Form */}
             <form onSubmit={handleSubmit}>
